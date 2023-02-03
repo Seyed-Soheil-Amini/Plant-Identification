@@ -1,26 +1,35 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Identify</title>
-  
-  <link rel="icon" href="img/iconTit3.jpg">
-  <link rel="stylesheet" href="style.css">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Identify</title>
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="container-fluid carousel-item p-0">
-  <img class="w-100 h-50 btn-blur" data-wow-delay="0.1s" src="img/backIden5.jpg">
-  <form action="upload.php" method="POST">
-    <input type="file" multiple>
-    <p>Drag your files here or click in this area.</p>
-    <button type="submit">Upload</button>
-  </form>
-</div>
+    <link rel="icon" href="img/iconTit3.jpg">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- partial:index.partial.html -->
+    <div class="container-fluid carousel-indicators p-0">
+      <img class="w-100 h-50 btn-blur" data-wow-delay="0.1s"
+        src="img/backIden5.jpg">
+        <div class="carousel-caption display-1 text-white mb-5">
+          <div class="btn-success bg-gradient form-control-sm btn-group-vertical align-items-center div-more-info-iden">
+            More information about Identification picture
+          </div>
+          <div class="text-light form-control-sm position-fixed" style="right: 8cm;">
+            <form action="upload.php" method="POST">
+              <input type="file" multiple>
+              <p>Drag your files here or click in this area.</p>
+              <button type="submit">Upload</button>
+            </form>
+          </div>
+        </div>
 
-<!-- partial -->
-  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
+    </div>
 
-</body>
+    <!-- partial -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script
+      src="./script.js"></script>
+
+  </body>
 </html>

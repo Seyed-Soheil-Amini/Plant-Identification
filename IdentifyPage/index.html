@@ -13,9 +13,6 @@
       <img class="w-100 h-50 btn-blur" data-wow-delay="0.1s"
         src="img/backIden5.jpg">
         <div class="carousel-caption display-1 text-white mb-5">
-          <div class="btn-success bg-gradient form-control-sm btn-group-vertical align-items-center div-more-info-iden">
-            More information about Identification picture
-          </div>
           <div class="text-light form-control-sm position-fixed" style="right: 8cm;">
             <form action="upload.php" method="POST">
               <input type="file" multiple>
@@ -23,8 +20,17 @@
               <button type="submit">Upload</button>
             </form>
           </div>
+          <div class="p-4 mb-2 text-white position-fixed" style="font-size: 12pt; background-color:#17a2b8 !important; top: 0.9cm; right: 0.8cm;font-family:monospace; border-radius: 4mm; width: 15cm; border-style:dotted;border-color:black;">
+            Tips: Select your picture, click the "Online Identify Plant" button to see the result.
+            We use machine learning to train in millions of plant images,
+            and the accuracy of identification can be as high as 99% or more.
+          </div>
+          <div class="carousel-caption position-fixed" style="background-color: darkgreen;width: 15cm;height: 13cm; top: 2cm;margin-left: 2mm;vertical-align: middle;align-items:center;align-content: center;border-radius: 3mm;border-style: ridge;">
+            <div class="btn-success bg-gradient form-control-sm btn-group-vertical position-fixed align-items-center div-more-info-iden" style="margin: 0 auto 0;">
+              More information about Identification picture
+            </div>  
+          </div>
         </div>
-
     </div>
 
     <!-- partial -->

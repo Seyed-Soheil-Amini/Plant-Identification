@@ -13138,8 +13138,7 @@ form button:active {
 }
 
 .div-more-info-iden {
-    position        : fixed;
-    left            : 2cm;
+    position        : relative;
     width           : 12cm;
     height          : 10cm;
     border-radius   : 3.5mm;

@@ -8,22 +8,19 @@ html {
     -ms-text-size-adjust    : 100%;
     -webkit-text-size-adjust: 100%
 }
-
+/* 
 body {
     margin: 0
-}
+} */
 
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
-header,
 hgroup,
 main,
 menu,
-nav,
 section,
 summary {
     display: block
@@ -218,9 +215,6 @@ th {
     padding: 0
 }
 
-/* ==========================================================================
-   Start of base Webflow CSS - If you're looking for some ultra-clean CSS, skip the boilerplate and see the unminified code below.
-   ========================================================================== */
 @font-face {
     font-family: 'webflow-icons';
     src        : url("data:application/x-font-ttf;charset=utf-8;base64,AAEAAAALAIAAAwAwT1MvMg8SBiUAAAC8AAAAYGNtYXDpP+a4AAABHAAAAFxnYXNwAAAAEAAAAXgAAAAIZ2x5ZmhS2XEAAAGAAAADHGhlYWQTFw3HAAAEnAAAADZoaGVhCXYFgQAABNQAAAAkaG10eCe4A1oAAAT4AAAAMGxvY2EDtALGAAAFKAAAABptYXhwABAAPgAABUQAAAAgbmFtZSoCsMsAAAVkAAABznBvc3QAAwAAAAAHNAAAACAAAwP4AZAABQAAApkCzAAAAI8CmQLMAAAB6wAzAQkAAAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAAAAAAAABAAADpAwPA/8AAQAPAAEAAAAABAAAAAAAAAAAAAAAgAAAAAAADAAAAAwAAABwAAQADAAAAHAADAAEAAAAcAAQAQAAAAAwACAACAAQAAQAg5gPpA//9//8AAAAAACDmAOkA//3//wAB/+MaBBcIAAMAAQAAAAAAAAAAAAAAAAABAAH//wAPAAEAAAAAAAAAAAACAAA3OQEAAAAAAQAAAAAAAAAAAAIAADc5AQAAAAABAAAAAAAAAAAAAgAANzkBAAAAAAEBIAAAAyADgAAFAAAJAQcJARcDIP5AQAGA/oBAAcABwED+gP6AQAABAOAAAALgA4AABQAAEwEXCQEH4AHAQP6AAYBAAcABwED+gP6AQAAAAwDAAOADQALAAA8AHwAvAAABISIGHQEUFjMhMjY9ATQmByEiBh0BFBYzITI2PQE0JgchIgYdARQWMyEyNj0BNCYDIP3ADRMTDQJADRMTDf3ADRMTDQJADRMTDf3ADRMTDQJADRMTAsATDSANExMNIA0TwBMNIA0TEw0gDRPAEw0gDRMTDSANEwAAAAABAJ0AtAOBApUABQAACQIHCQEDJP7r/upcAXEBcgKU/usBFVz+fAGEAAAAAAL//f+9BAMDwwAEAAkAABcBJwEXAwE3AQdpA5ps/GZsbAOabPxmbEMDmmz8ZmwDmvxmbAOabAAAAgAA/8AEAAPAAB0AOwAABSInLgEnJjU0Nz4BNzYzMTIXHgEXFhUUBw4BBwYjNTI3PgE3NjU0Jy4BJyYjMSIHDgEHBhUUFx4BFxYzAgBqXV6LKCgoKIteXWpqXV6LKCgoKIteXWpVSktvICEhIG9LSlVVSktvICEhIG9LSlVAKCiLXl1qal1eiygoKCiLXl1qal1eiygoZiEgb0tKVVVKS28gISEgb0tKVVVKS28gIQABAAABwAIAA8AAEgAAEzQ3PgE3NjMxFSIHDgEHBhUxIwAoKIteXWpVSktvICFmAcBqXV6LKChmISBvS0pVAAAAAgAA/8AFtgPAADIAOgAAARYXHgEXFhUUBw4BBwYHIxUhIicuAScmNTQ3PgE3NjMxOAExNDc+ATc2MzIXHgEXFhcVATMJATMVMzUEjD83NlAXFxYXTjU1PQL8kz01Nk8XFxcXTzY1PSIjd1BQWlJJSXInJw3+mdv+2/7c25MCUQYcHFg5OUA/ODlXHBwIAhcXTzY1PTw1Nk8XF1tQUHcjIhwcYUNDTgL+3QFt/pOTkwABAAAAAQAAmM7nP18PPPUACwQAAAAAANciZKUAAAAA1yJkpf/9/70FtgPDAAAACAACAAAAAAAAAAEAAAPA/8AAAAW3//3//QW2AAEAAAAAAAAAAAAAAAAAAAAMBAAAAAAAAAAAAAAAAgAAAAQAASAEAADgBAAAwAQAAJ0EAP/9BAAAAAQAAAAFtwAAAAAAAAAKABQAHgAyAEYAjACiAL4BFgE2AY4AAAABAAAADAA8AAMAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAADgCuAAEAAAAAAAEADQAAAAEAAAAAAAIABwCWAAEAAAAAAAMADQBIAAEAAAAAAAQADQCrAAEAAAAAAAUACwAnAAEAAAAAAAYADQBvAAEAAAAAAAoAGgDSAAMAAQQJAAEAGgANAAMAAQQJAAIADgCdAAMAAQQJAAMAGgBVAAMAAQQJAAQAGgC4AAMAAQQJAAUAFgAyAAMAAQQJAAYAGgB8AAMAAQQJAAoANADsd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzVmVyc2lvbiAxLjAAVgBlAHIAcwBpAG8AbgAgADEALgAwd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzUmVndWxhcgBSAGUAZwB1AGwAYQByd2ViZmxvdy1pY29ucwB3AGUAYgBmAGwAbwB3AC0AaQBjAG8AbgBzRm9udCBnZW5lcmF0ZWQgYnkgSWNvTW9vbi4ARgBvAG4AdAAgAGcAZQBuAGUAcgBhAHQAZQBkACAAYgB5ACAASQBjAG8ATQBvAG8AbgAuAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==") format('truetype');
@@ -275,8 +269,8 @@ th {
 html {
     height: 100%
 }
-
-body {
+/* 
+div {
     margin          : 0;
     min-height      : 100%;
     background-color: #fff;
@@ -284,7 +278,7 @@ body {
     font-size       : 14px;
     line-height     : 20px;
     color           : #333
-}
+} */
 
 img {
     max-width     : 100%;
@@ -2305,9 +2299,6 @@ textarea.w-select {
     display: none !important
 }
 
-/* ==========================================================================
-      Start of custom Webflow CSS
-      ========================================================================== */
 .features-list {
     position     : relative;
     padding      : 80px 30px;
@@ -2439,7 +2430,7 @@ textarea.w-select {
 }
 
 .body {
-    background-image     : url("img/backIden5.jpg");
+    background-image     : url("../img/backIden5.jpg");
     background-position  : 0px 0px;
     background-size      : auto;
     background-attachment: fixed;
@@ -2499,7 +2490,7 @@ textarea.w-select {
     -ms-flex-align         : center;
     align-items            : center;
 }
-
+/* 
 .nav-link {
     margin-right   : 5px;
     margin-left    : 5px;
@@ -2509,12 +2500,12 @@ textarea.w-select {
     line-height    : 20px;
     letter-spacing : 0.25px;
     text-decoration: none;
-}
-
+} */
+/* 
 .nav-link:hover {
     color: rgba(26, 27, 31, 0.75);
-}
-
+} */
+/* 
 .nav-link:focus-visible {
     border-radius : 4px;
     outline-color : #0050bd;
@@ -2522,8 +2513,8 @@ textarea.w-select {
     outline-style : solid;
     outline-width : 2px;
     color         : #0050bd;
-}
-
+} */
+/* 
 .nav-link[data-wf-focus-visible] {
     border-radius : 4px;
     outline-color : #0050bd;
@@ -2531,7 +2522,7 @@ textarea.w-select {
     outline-style : solid;
     outline-width : 2px;
     color         : #0050bd;
-}
+} */
 
 .nav-dropdown {
     margin-right: 5px;
@@ -2642,8 +2633,6 @@ textarea.w-select {
     bottom          : 0px;
     padding         : 50px 30px 40px;
     border-bottom   : 1px solid #e4ebf3;
-    background-color: #0a5341;
-    font-family     : 'Droid Sans', sans-serif;
 }
 
 .container-2 {
@@ -2814,10 +2803,10 @@ textarea.w-select {
     -ms-flex-align         : center;
     align-items            : center;
 }
-
+/* 
 .footer-copyright {
     color: #3a4554;
-}
+} */
 
 .footer-legal-block {
     display                : -webkit-box;
@@ -3083,11 +3072,11 @@ textarea.w-select {
         align-items            : center;
         background-color       : #fff;
     }
-
+/* 
     .nav-link {
         padding-right: 5px;
         padding-left : 5px;
-    }
+    } */
 
     .nav-dropdown-list.shadow-three.w--open {
         position: absolute;
@@ -3167,12 +3156,12 @@ textarea.w-select {
         -ms-flex-direction    : column;
         flex-direction        : column;
     }
-
+/* 
     .nav-link {
         display       : inline-block;
         padding-top   : 10px;
         padding-bottom: 10px;
-    }
+    } */
 
     .nav-dropdown {
         display               : -webkit-box;
@@ -3373,7 +3362,7 @@ textarea.w-select {
     }
 
     .body {
-        background-image     : url("img/backIden5.jpg");
+        background-image     : url("../img/backIden5.jpg");
         background-position  : 0% 0%;
         background-size      : cover;
         background-repeat    : repeat;
@@ -3397,7 +3386,7 @@ textarea.w-select {
         right   : 0px;
     }
 
-    .menu-button {
+    /* .menu-button {
         position              : relative;
         display               : -webkit-box;
         display               : -webkit-flex;
@@ -3415,7 +3404,7 @@ textarea.w-select {
         align-items           : stretch;
         grid-column-gap       : 2%;
         grid-row-gap          : 2%;
-    }
+    } */
 
     .footer-subscribe {
         padding-top   : 10px;

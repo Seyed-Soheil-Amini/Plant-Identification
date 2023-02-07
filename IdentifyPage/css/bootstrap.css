@@ -12531,6 +12531,7 @@ fieldset:disabled .btn {
     .d-print-none {
         display: none !important
     }
+<<<<<<< HEAD:IdentifyPage/style.css
 }
 
 body {
@@ -13184,3 +13185,6 @@ form button:active {
         height: 100%;
     }
 } */
+=======
+}
+>>>>>>> tryNewDesign:IdentifyPage/css/bootstrap.css

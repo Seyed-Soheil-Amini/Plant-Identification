@@ -62,7 +62,7 @@
             <span>info@semicolon.com</span>
           </div>
         </div>
-        <div class="col-lg-5 px-5 text-end">
+        <div class="col-lg-5F px-5 text-end">
           <div class="h-100 d-inline-flex align-items-center mx-n2">
             <span>Follow Us:</span>
             <a class="btn btn-link text-light" href=""><i class="fab
@@ -128,7 +128,7 @@
                   <div class="col-lg-3 col-md-5 wow fadeInUp"
                     data-wow-delay="0.1s">
                     <img class="img-fluid rounded" data-wow-delay="0.1s"
-                      src="../img/focusPhone.jpg">
+                      src="img/focusPhone3.jpg">
                   </div>
                   <div class="col-lg-6 col-md-7 wow fadeInUp"
                     data-wow-delay="0.3s">
@@ -164,13 +164,6 @@
                           photo(s) will be uploaded to website.</li>
                       </ol>
                     </p>
-                    <!-- <div class="btn-light justify-content-center"
-                      style="margin-top:
-                      1.5%;border-radius: 3.5mm; line-height: 1.5cm;">
-                      <span class="row-cols-10 justify-content-lg-between
-                        list-group-item-warning"> -->
-                    <!-- </span>
-                    </div> -->
                     <a class="btn btn-primary py-3 px-4"
                       href="https://giphy.com/upload">Help Me More</a>
                   </div>
@@ -188,9 +181,11 @@
                       </div>
                       <div class="col-12 col-sm-6 col-lg-12">
                         <div class="border-start ps-4">
-                          <i class="fa bi-bookmark-plus-fill fa-3x text-primary mb-3"></i>
+                          <i class="fa bi-bookmark-plus-fill fa-3x text-primary
+                            mb-3"></i>
                           <h4 class="mb-3">Add to database</h4>
-                          <span>Your photo will be added to our database if you allow it</span>
+                          <span>Your photo will be added to our database if you
+                            allow it</span>
                         </div>
                       </div>
                     </div>
@@ -209,8 +204,12 @@
               <div class="col-lg-5">
                 <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
                   data-wow-delay="0.1s">
-                  <input type="file" name="uploadField"
-                    class="bi-file-earmark-arrow-up-fill">
+                  <form action="#" method="POST">
+                    <input type="file" name="uploadField"
+                    class="bi-file-earmark-arrow-up-fill" multiple accept="image/*">
+                    <p>Drag your files here or click in this area.</p>
+                  </form>
+                  <button type="submit" class="btn-primary">Upload</button>
                 </div>
               </div>
             </div>
@@ -298,6 +297,7 @@
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>

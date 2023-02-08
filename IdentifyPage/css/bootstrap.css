@@ -608,7 +608,7 @@ progress {
 
 .img-fluid {
     max-width: 100%;
-    height   : auto
+    height   : auto;
 }
 
 .img-thumbnail {
@@ -1420,7 +1420,13 @@ progress {
 
     .col-lg-5 {
         flex : 0 0 auto;
+        /* width: 41.66667% */
+        width: 80%;
+    }
+    .col-lg-5F {
+        flex : 0 0 auto;
         width: 41.66667%
+        /* width: 80%; */
     }
 
     .col-lg-6 {
@@ -3084,9 +3090,12 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
+    /* position: relative; */
+    margin-left: 45%;
+    /* align-self: center; */
     color           : #000;
     background-color: #348E38;
-    border-color    : #348E38
+    border-color    : #348E38;
 }
 
 .btn-primary:hover {

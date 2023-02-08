@@ -169,12 +169,14 @@ address {
 
 ol,
 ul {
+    /* font-size: 1.2rem; */
     padding-left: 2rem
 }
 
 ol,
 ul,
 dl {
+    /* font-size: 1.2rem; */
     margin-top   : 0;
     margin-bottom: 1rem
 }
@@ -183,6 +185,7 @@ ol ol,
 ul ul,
 ol ul,
 ul ol {
+    /* font-size: 1.2rem; */
     margin-bottom: 0
 }
 

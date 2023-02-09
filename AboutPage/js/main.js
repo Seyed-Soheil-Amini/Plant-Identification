@@ -10,8 +10,8 @@
         }, 1);
     };
     spinner();
-
-
+    
+    
     // Initiate the wowjs
     new WOW().init();
 
@@ -24,14 +24,8 @@
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
         }
     });
-
-
-    $(document).ready(function () {
-        $('form input').change(function () {
-            $('form p').text(this.files.length + " file(s) selected");
-        });
-    });
-
+    
+    
     // Back to top button
     $(window).scroll(function () {
         if ($(this).scrollTop() > 300) {
@@ -41,7 +35,7 @@
         }
     });
     $('.back-to-top').click(function () {
-        $('html, body').animate({ scrollTop: 0 }, 1500, 'easeInOutExpo');
+        $('html, body').animate({scrollTop: 0}, 1500, 'easeInOutExpo');
         return false;
     });
 
@@ -62,7 +56,7 @@
         $("#portfolio-flters li").removeClass('active');
         $(this).addClass('active');
 
-        portfolioIsotope.isotope({ filter: $(this).data('filter') });
+        portfolioIsotope.isotope({filter: $(this).data('filter')});
     });
 
 
@@ -74,12 +68,12 @@
         dots: false,
         loop: true,
         nav: true,
-        navText: [
+        navText : [
             '<i class="bi bi-chevron-left"></i>',
             '<i class="bi bi-chevron-right"></i>'
         ]
     });
 
-})(jQuery)
+    
+})(jQuery);
 
-//selecting all required elements

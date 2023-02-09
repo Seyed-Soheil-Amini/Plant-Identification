@@ -169,14 +169,12 @@ address {
 
 ol,
 ul {
-    /* font-size: 1.2rem; */
     padding-left: 2rem
 }
 
 ol,
 ul,
 dl {
-    /* font-size: 1.2rem; */
     margin-top   : 0;
     margin-bottom: 1rem
 }
@@ -185,7 +183,6 @@ ol ol,
 ul ul,
 ol ul,
 ul ol {
-    /* font-size: 1.2rem; */
     margin-bottom: 0
 }
 
@@ -608,7 +605,7 @@ progress {
 
 .img-fluid {
     max-width: 100%;
-    height   : auto;
+    height   : auto
 }
 
 .img-thumbnail {
@@ -1420,13 +1417,7 @@ progress {
 
     .col-lg-5 {
         flex : 0 0 auto;
-        /* width: 41.66667% */
-        width: 80%;
-    }
-    .col-lg-5F {
-        flex : 0 0 auto;
         width: 41.66667%
-        /* width: 80%; */
     }
 
     .col-lg-6 {
@@ -3090,12 +3081,9 @@ fieldset:disabled .btn {
 }
 
 .btn-primary {
-    /* position: relative; */
-    margin-left: 42%;
-    /* align-self: center; */
     color           : #000;
     background-color: #348E38;
-    border-color    : #348E38;
+    border-color    : #348E38
 }
 
 .btn-primary:hover {
@@ -3318,7 +3306,6 @@ fieldset:disabled .btn {
 }
 
 .btn-danger {
-    margin-left: auto;
     color           : #fff;
     background-color: #dc3545;
     border-color    : #dc3545

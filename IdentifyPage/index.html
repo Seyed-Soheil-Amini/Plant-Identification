@@ -203,13 +203,21 @@
             <div class="row justify-content-md-center">
               <div class="col-lg-5">
                 <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
-                  data-wow-delay="0.1s">
-                  <form action="#" method="POST">
-                    <input type="file" name="uploadField"
-                    class="bi-file-earmark-arrow-up-fill" multiple accept="image/*">
-                    <p>Drag your files here or click in this area.</p>
+                  data-wow-delay="0.1s" name="">
+                  <form action="#" method="POST" name="ImageUp">
+                    <div class="drag-area">
+                      <button type="button" class="btn-outline-success fas
+                        fa-cloud-upload-alt">Browse files</button>
+                      <!-- <input type="file" name="uploadField" -->
+                      <!-- class="bi-file-earmark-arrow-up-fill" multiple accept="image/*"> -->
+                      <p>Drag your files here or click in this area.</p>
+                      <input type="file" hidden />
+                    </div>
+                    <button type="submit" class="btn-primary"
+                      style="margin-top: 0.5cm;border-radius: 2.5mm;">Upload</button>
+                    <input type="reset" class="btn-danger" style="margin-top:
+                      0.5cm;border-radius: 2.5mm;" value="Reset" onclick='restored()'/>
                   </form>
-                  <button type="submit" class="btn-primary">Upload</button>
                 </div>
               </div>
             </div>
@@ -297,7 +305,8 @@
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script
+          src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script
           src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="lib/wow/wow.min.js"></script>
@@ -311,6 +320,7 @@
 
         <!-- Template Javascript -->
         <script src="js/main.js"></script>
+        <script src="js/dragDrapScrips.js"></script>
       </body>
 
     </html>

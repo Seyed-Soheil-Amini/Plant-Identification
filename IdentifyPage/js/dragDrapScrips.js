@@ -5,7 +5,7 @@ const dropArea = document.querySelector(".drag-area"),
     input = dropArea.querySelector("input");
 let file; //this is a global variable and we'll use it inside multiple functions
 let imgTag;//this is a global variable to save image html tag
-let tempTag= dropArea.innerHTML;//this is a global variable that has been declared to save base html format of form (for reseting)
+let tempTag = dropArea.innerHTML;//this is a global variable that has been declared to save base html format of form (for reseting)
 
 button.onclick = () => {
     input.click(); //if user click on the button then the input also clicked
@@ -63,4 +63,4 @@ function restored() {
     let img = document.getElementById("imgUp").remove();
     dropArea.innerHTML = tempTag;
     dragText.textContent = "Drag your files here or click in this area.";
-}  
+}

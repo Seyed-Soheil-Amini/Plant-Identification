@@ -104,28 +104,6 @@ class myHeader extends HTMLElement {
   </div>
 </div>
 <!-- Topbar End -->
-
-
-<!-- Navbar Start -->
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0">
-  <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-      <h1 class="m-0" style="font-family:Georgia, 'Times New Roman', Times, serif, oblique;">Detector plants</h1>
-  </a>
-  <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav ms-auto p-4 p-lg-0">
-          <a href="../HomePage/index.html" class="nav-item nav-link">Home</a>
-          <a href="../IdentifyPage/index.html" class="nav-item nav-link">Identify</a>
-          <a href="../HomePage/index.html" class="nav-item nav-link">Explore</a>
-          <a href="../AboutPage/index.html" class="nav-item nav-link">About us</a>
-          <a href="service.html" class="nav-item nav-link">Help</a>
-          <a href="project.html" class="nav-item nav-link">FAQ</a>
-      </div>
-  </div> 
-</nav>
-<!-- Navbar End -->
 `
   }
 }
@@ -180,7 +158,7 @@ class myFooter extends HTMLElement {
                 </h4>
                 <div>
                   <img class="img-fluid" style="border-radius: 3.5mm;"
-                    src="../img/footYazdUni.png" alt="">
+                    src="img/footYazdUni.png" alt="">
                 </div>
               </div>
             </div>
@@ -197,7 +175,6 @@ class myFooter extends HTMLElement {
                 All Right Reserved.
               </div>
               <div class="col-md-6 text-center text-md-end">
-                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                 Designed By <a class="border-bottom"
                   href="https://soheilmaster.ir">semicolon group</a>
               </div>

@@ -29,7 +29,7 @@ dropArea.addEventListener("dragover", (event) => {
 //If user leave dragged File from DropArea
 dropArea.addEventListener("dragleave", () => {
     dropArea.classList.remove("active");
-    dragText.textContent = "Drag your files here or click in this area.";
+    dragText.textContent = "Drag your files here.";
 });
 
 //If user drop File on DropArea
@@ -54,7 +54,7 @@ function showFile() {
     } else {
         alert("This is not an Image File!");
         dropArea.classList.remove("active");
-        dragText.textContent = "Drag your files here or click in this area.";
+        dragText.textContent = "Drag your files here.";
     }
 }
 //this function for reset picture data 
@@ -62,5 +62,5 @@ function restored() {
     dropArea.classList.remove("active");
     let img = document.getElementById("imgUp").remove();
     dropArea.innerHTML = tempTag;
-    dragText.textContent = "Drag your files here or click in this area.";
+    dragText.textContent = "Drag your files here.";
 }

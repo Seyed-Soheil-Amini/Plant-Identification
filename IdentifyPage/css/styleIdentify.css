@@ -68,3 +68,62 @@ form p {
     justify-items: center;
     margin-right : 10%;
 }
+
+#submit-button {
+    margin-top   : 0.5cm;
+    border-radius: 2mm;
+    margin-left  : 39%;
+}
+
+#form-upload {
+    width      : 96%;
+    margin-left: 1.8%;
+}
+
+.container-button {
+    justify-content: center;
+    width          : fit-content;
+    margin-left    : 39.5%;
+}
+
+@media (max-width:450px) {
+
+    .container-button {
+        justify-content: center;
+        width          : fit-content;
+        margin-left    : 28%;
+    }
+
+    #form-upload {
+        width : 100%;
+        margin: 0%;
+    }
+}
+
+@media (max-width:530px) and (width>450px) {
+
+    .container-button {
+        justify-content: center;
+        width          : fit-content;
+        margin-left    : 33.7%;
+    }
+
+    #form-upload {
+        width : 100%;
+        margin: 0%;
+    }
+}
+
+@media (max-width:750px) and (width>530px) {
+
+    .container-button {
+        justify-content: center;
+        width          : fit-content;
+        margin-left    : 32.5%;
+    }
+
+    #form-upload {
+        width : 95%;
+        margin: 3%;
+    }
+}

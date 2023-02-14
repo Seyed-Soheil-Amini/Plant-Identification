@@ -18,3 +18,9 @@
     flex : 0 0 auto;
     width: 90%
 }
+
+#item-history{
+    border-radius: 2.5mm;
+    border-color: darkgreen;
+    border-style:outset;
+}

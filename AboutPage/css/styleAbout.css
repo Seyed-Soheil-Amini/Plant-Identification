@@ -19,12 +19,10 @@
     width: 90%
 }
 
-#item-history {
-    border-radius: 2.5mm;
-    border-color : darkgreen;
-    border-style : outset;
-}
-
 #img-fluid-profile {
     max-width: 100%;
+}
+
+#border-about{
+    border-radius: 2mm;
 }

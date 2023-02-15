@@ -1,6 +1,6 @@
 .page-header {
     background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/images2.jfif) center center no-repeat;
-    background-size:contain;
+    background-size: contain;
 }
 
 .row {
@@ -19,8 +19,12 @@
     width: 90%
 }
 
-#item-history{
+#item-history {
     border-radius: 2.5mm;
-    border-color: darkgreen;
-    border-style:outset;
+    border-color : darkgreen;
+    border-style : outset;
+}
+
+#img-fluid-profile {
+    max-width: 100%;
 }

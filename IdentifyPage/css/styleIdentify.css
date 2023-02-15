@@ -85,7 +85,7 @@ form p {
     width          : fit-content;
     margin-left    : 39.5%;
 }
-
+/* 
 @media (max-width:450px) {
 
     .container-button {
@@ -126,4 +126,4 @@ form p {
         width : 95%;
         margin: 3%;
     }
-}
+} */

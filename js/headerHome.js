@@ -14,9 +14,9 @@ class HomeHeader extends HTMLElement {
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="#" class="nav-item nav-link" active>Home</a>
             <a href="IdentifyPage/index.html" class="nav-item nav-link" target="_balnk">Identify</a>
-            <a href="Explore/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="ExplorePage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
             <a href="AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
-            <a href="service.html" class="nav-item nav-link">Help</a>
+            <a href="HelpPage/index.html" class="nav-item nav-link" target="_balnk">Help</a>
             <a href="project.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 
@@ -46,7 +46,7 @@ class IdentifyHeader extends HTMLElement {
             <a href="#" class="nav-item nav-link" active>Identify</a>
             <a href="../Explore/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
             <a href="../AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
-            <a href="service.html" class="nav-item nav-link">Help</a>
+            <a href="../HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
             <a href="project.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 
@@ -76,7 +76,7 @@ class AboutHeader extends HTMLElement {
             <a href="../IdentifyPage/index.html" class="nav-item nav-link" target="_balnk">Identify</a>
             <a href="../Explore/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
             <a href="#" class="nav-item nav-link" active target="_balnk">About us</a>
-            <a href="service.html" class="nav-item nav-link">Help</a>
+            <a href="../HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
             <a href="project.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 

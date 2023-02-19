@@ -4771,6 +4771,29 @@
 }
 
 #margin-support {
-    border-radius: 12mm;
+    border-radius   : 12mm;
     /* border-color : darkgreen; */
+}
+
+@media (max-width:600px) {
+    #display-guides {
+        display       : flex;
+        flex-direction: column;
+    }
+
+    .w-25 {
+        width: 100% !important;
+        margin: auto;
+
+    }
+
+    .w-25 {
+        width: 100% !important;
+        margin: auto;
+
+    }
+
+    #width-topics-m{
+        width: 100% !important;
+    }
 }

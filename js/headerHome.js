@@ -16,7 +16,7 @@ class HomeHeader extends HTMLElement {
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="#" class="nav-item nav-link" active>Home</a>
             <a href="IdentifyPage/index.html" class="nav-item nav-link" target="_balnk">Identify</a>
-            <a href="ExplorePage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="ExplorePage/Explore.html" class="nav-item nav-link" target="_balnk">Explore</a>
             <a href="AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
             <a href="HelpPage/index.html" class="nav-item nav-link" target="_balnk">Help</a>
             <a href="FAQ/index.html" class="nav-item nav-link">FAQ</a>
@@ -46,7 +46,7 @@ class OtherHeader extends HTMLElement {
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="/index.html" class="nav-item nav-link" target="_balnk">Home</a>
             <a href="../IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
-            <a href="../ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="../ExplorPage/Explore.html" class="nav-item nav-link" target="_balnk">Explore</a>
             <a href="../AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
             <a href="../HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
             <a href="../FAQPage/index.html" class="nav-item nav-link">FAQ</a>

@@ -28,10 +28,6 @@
     float: right !important;
 }
 
-/*!
- * Font Awesome Free 5.1.0 by @fontawesome - https://fontawesome.com
- * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
- */
 .fa,
 .fab,
 .fal,
@@ -4771,8 +4767,11 @@
 }
 
 #margin-support {
-    border-radius   : 12mm;
-    /* border-color : darkgreen; */
+    border-radius: 12mm;
+}
+
+.help-text {
+    margin
 }
 
 @media (max-width:600px) {
@@ -4782,18 +4781,65 @@
     }
 
     .w-25 {
-        width: 100% !important;
+        width : 100% !important;
         margin: auto;
 
     }
 
-    .w-25 {
-        width: 100% !important;
+    .w-75 {
+        width : 100% !important;
         margin: auto;
 
     }
 
-    #width-topics-m{
+    #width-topics-m {
         width: 100% !important;
     }
+
+    .container-fluid {
+        width       : 100%;
+        margin-right: auto;
+        margin-left : auto
+    }
+}
+
+.result-as {
+    display: none;
+}
+
+/* .result-as:active {
+    display       : flex;
+    flex-direction: row;
+} */
+
+.collapsible {
+    background-color: #eee;
+    color           : #444;
+    cursor          : pointer;
+    padding         : 18px;
+    width           : 100%;
+    border          : none;
+    text-align      : left;
+    outline         : none;
+    font-size       : 15px;
+}
+
+.active,
+.collapsible:hover {
+    background-color: #ccc;
+}
+
+.content {
+    padding         : 0 18px;
+    display         : none;
+    overflow        : hidden;
+    background-color: #f1f1f1;
+}
+
+.search_help:active {
+    display: none;
+}
+
+#display-guides:active {
+    display: none;
 }

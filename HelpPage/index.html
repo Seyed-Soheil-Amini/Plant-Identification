@@ -46,7 +46,7 @@
 
     <body>
         <plant-header></plant-header>
-        <help-header></help-header>
+        <other-header></other-header>
         <div class="container-fluid page-header py-5 mb-5 w-100 wow
             fadeIn"
             data-wow-delay="0.1s">
@@ -58,7 +58,7 @@
                 <br/>
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <form class="card card-sm" id="border-bottun">
+                            <form onsubmit="false" action="#" class="card card-sm" id="border-bottun">
                                 <div class="card-body row
                                     align-items-center">
                                     <div class="col-auto">
@@ -69,13 +69,12 @@
                                             form-control-lg
                                             form-control-borderless
                                             form-control-plaintext"
-                                            type="search" placeholder="Search">
-                                            <!-- style="border-radius: 12mm;" -->
+                                            type="search" placeholder="Search" id="keyword">
                                     </div>
                                     <div class="col-auto">
                                         <button class="btn btn-lg btn-success"
                                             id="border-bottun"
-                                            type="submit">Search</button>
+                                            type="submit" onclick="search_help_ajax(document.getElementById('keyword').value)">Search</button>
                                     </div>
                                 </div>
                             </form>
@@ -89,16 +88,16 @@
                 </div>
             </div>
             <!-- Topic End -->
-
-            <div class="row container-xxl py-5" id="display-guides">
-                <div class="row container w-75">
+            <!-- <div id="result_of_search" class="result-as" style="display: flex;flex-direction: column;"></div> -->
+            <div class="row container-fluid py-5">
+                <div id="display-guides" class="row container w-75">
                     <div class="text-center wow fadeInUp mx-auto"
                         data-wow-delay="0.1s" style="max-width: 600px;">
                         <p class="fs-5 fw-bold text-primary">Topics</p>
                         <h1 class="display-5 mb-5">Topics we help you with</h1>
                     </div>
                     <div class="row g-1" id="width-topics-m">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp" 
+                        <div class="col-lg-4 col-md-6 wow fadeInUp"
                             data-wow-delay="0.1s">
                             <div class="service-item rounded d-flex h-100">
                                 <div class="service-img rounded">
@@ -222,7 +221,8 @@
                                             src="img/midcineIcon4.png"
                                             alt="Icon">
                                     </div>
-                                    <h4 class="mb-3">Finding Medicinal Properties</h4>
+                                    <h4 class="mb-3">Finding Medicinal
+                                        Properties</h4>
                                     <p class="mb-4">Erat ipsum justo amet duo et
                                         elitr dolor, est duo duo eos lorem sed
                                         diam
@@ -350,6 +350,8 @@
             <!-- Template Javascript -->
             <script src="../js/main.js"></script>
             <script src="../js/headerHome.js"></script>
+            <script src="js/helpScript.js"></script>
 
+            <!-- Ajax code -->
         </body>
     </html>

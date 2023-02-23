@@ -1,0 +1,11 @@
+#button-faq {
+    /* padding       : 0.35em 1.2em; */
+    
+    border-radius    : 2mm;
+    border-style     : solid;
+    border-color     : darkgreen;
+    font-size-adjust:inherit;
+    font-size: 1rem;
+    text-align       : center;
+    /* align-items   : center; */
+}

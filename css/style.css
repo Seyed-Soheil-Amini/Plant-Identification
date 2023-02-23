@@ -250,6 +250,7 @@ h6,
     object-fit: cover;
     transform : scale(1.2);
     transition: .3s;
+    overflow  : visible;
     z-index   : -1;
 }
 

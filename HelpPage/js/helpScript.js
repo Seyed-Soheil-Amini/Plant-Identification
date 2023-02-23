@@ -172,15 +172,21 @@ function search_in_text(text, keyword, subject, num_search) {
     }
     index++;
     sentence = text.substring(first_index + 1, last_index + 1);
-    result = result.concat(`<button class="btn-outline-success py-2 my-2" style="border-radius: 1.5mm;border-color : darkgreen;
-    text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
-    "
-     data-toggle="collapse" data-target="#${num_search}${index}demo"><b>Topic </b>: ${subject}<i class=" bi-arrow-down-circle fa-2x float-end"></i></button>
-    <div id="${num_search}${index}demo" class="collapse">
-    <p class="bg-light text-center mb-0 p-4">${sentence}</p>
+    result = result.concat(`<div class="collapsible fadeIn" style="font-family:Verdana, Geneva, Tahoma, sans-serif;">
+    <strong>Result ${index} :</strong> &nbsp
+    <p class=" bg-light text-center mb-0 p-4">${sentence}</p>
     </div>`);
   }
-  return result;
+  if (result == ``) return ``;
+  let result_topic = `<button class="btn-outline-success py-2 my-2" style="border-radius: 1.5mm;border-color : darkgreen;
+  text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
+  "
+  data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
+  <i class=" bi-arrow-down-circle fa-2x float-end"></i>
+  </button>
+  
+  <div id="${num_search}demo" class="collapse">${result}</div>`;
+  return result_topic;
 }
 
 function search_help_ajax(keyword) {
@@ -203,7 +209,16 @@ function search_help_ajax(keyword) {
   responsive = responsive.concat(
     search_in_text(growth_guides, keyword, "Help In Growth", 1)
   );
-
+  if (responsive == ``) {
+    responsive = `
+      No results found`;
+  }
+  responsive = responsive.concat(`
+    <form action="/HelpPage/index.html" method="get" class="align-center mx-auto my-0 px-2 w-25">
+    <button class="btn-danger my-2 mx-auto p-3 w-100" style="border-radius: 1mm;">
+    Back to Help
+    </button>
+    <form>`);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {

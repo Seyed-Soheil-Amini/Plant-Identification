@@ -4830,10 +4830,10 @@
     font-size       : 15px;
 }
 
-.active,
+/* .active,
 .collapsible:hover {
     background-color: #ccc;
-}
+} */
 
 .content {
     padding         : 0 18px;

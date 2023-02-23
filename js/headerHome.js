@@ -1,6 +1,11 @@
-var choose_server = prompt("If you use github server enter 1 otherwise 0");
-var server_address; 
+const c = 0;
+if(c==0){
+var choose_server = prompt("If you use github server enter 1 otherwise 0,for first load enter 0");
+var server_address;
+    c++;
 if(choose_server == 1)server_address = "/Plant-Identification";
+else server_address = "";
+}
 else server_address = "";
 class OtherHeader extends HTMLElement {
     connectedCallback() {

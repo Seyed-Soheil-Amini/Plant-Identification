@@ -4830,11 +4830,6 @@
     font-size       : 15px;
 }
 
-/* .active,
-.collapsible:hover {
-    background-color: #ccc;
-} */
-
 .content {
     padding         : 0 18px;
     display         : none;
@@ -4843,9 +4838,5 @@
 }
 
 .search_help:active {
-    display: none;
-}
-
-#display-guides:active {
     display: none;
 }

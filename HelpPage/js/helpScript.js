@@ -13,41 +13,6 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-var guides_text = `Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-Eos nobis debitis non. Eos, deserunt optio. Corrupti tempora
-non libero eligendi iste doloribus saepe obcaecati. Est eum
-quis fugiat reprehenderit. Explicabo voluptas consequatur
-porro eaque ex a maxime. Non quod molestias necessitatibus
-aut provident. Nesciunt quo facere eligendi quod placeat
-laboriosam neque voluptate molestiae blanditiis voluptatibus
-sit porro error veritatis iure voluptatum, deleniti
-architecto eveniet amet exercitationem vitae dicta!
-Repellendus saepe ratione voluptates praesentium velit. Enim
-quibusdam aspernatur, numquam veritatis recusandae facere
-qui, optio error totam cum quisquam fugiat ipsa asperiores.
-Reiciendis, saepe, perferendis ex unde ut omnis aliquam
-necessitatibus voluptatem voluptates ab aperiam animi sint
-vitae vel iusto laudantium dicta deserunt veritatis vero
-optio quo, ipsa eveniet. Necessitatibus rem perspiciatis
-unde accusantium optio quo obcaecati consequatur, facere,
-amet nisi voluptas quia veritatis saepe? Temporibus ducimus
-vero ratione, numquam eligendi molestias voluptatum est,
-architecto a nulla ipsam, qui exercitationem odio adipisci
-natus ab! Sapiente rem maxime impedit provident quidem
-dolores esse quas culpa nihil debitis optio doloremque
-necessitatibus, ex voluptatum quia, nemo excepturi ipsam
-voluptas omnis alias soluta ea? Molestiae rem cumque
-perferendis sunt neque doloribus vero veritatis iusto
-itaque, suscipit delectus adipisci vel sapiente ex minima
-quo unde accusantium commodi similique omnis deleniti
-inventore laboriosam repellendus? Ipsa, quis. Consequuntur,
-ab, neque accusantium illo nesciunt earum recusandae ea
-sunt, eos non pariatur officiis qui eveniet ex cumque
-dignissimos. Repudiandae, esse. Distinctio aspernatur
-cupiditate quisquam quibusdam voluptas itaque cum, eum
-officia libero veritatis optio, illo tenetur corrupti, nihil
-ipsa temporibus facere illum?`;
-
 var idetify_guides = `The ability to properly identify plants is critical to proper environmental analysis and management. 
 In this course, designed for entry-level field biologists, botanists
 , environmental management professionals and ecologists,
@@ -211,7 +176,7 @@ function search_help_ajax(keyword) {
   );
   if (responsive == ``) {
     responsive = `
-      No results found`;
+      <h3 class="text-center">No results found  <i class=" bi-clock-history"></i> </h3>`;
   }
   responsive = responsive.concat(`
     <form action="/HelpPage/index.html" method="get" class="align-center mx-auto my-0 px-2 w-25">

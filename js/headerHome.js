@@ -1,4 +1,3 @@
-var host_name = window.location.host; 
 class OtherHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -14,12 +13,12 @@ class OtherHeader extends HTMLElement {
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="${host_name}/index.html" class="nav-item nav-link" target="_balnk">Home</a>
-            <a href="${host_name}/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
-            <a href="${host_name}/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
-            <a href="${host_name}/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
-            <a href="${host_name}/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
-            <a href="${host_name}/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
+            <a href="/Plant-Identification/index.html" class="nav-item nav-link" target="_balnk">Home</a>
+            <a href="/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
+            <a href="/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
+            <a href="/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
+            <a href="/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 
     </nav>

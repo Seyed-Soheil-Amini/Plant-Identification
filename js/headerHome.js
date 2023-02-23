@@ -1,5 +1,5 @@
 const base_address = window.location;
-alert(base_address);
+// alert(base_address);
 class HomeHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `

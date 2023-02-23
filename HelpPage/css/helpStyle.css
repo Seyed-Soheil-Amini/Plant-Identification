@@ -4746,9 +4746,15 @@
     font-weight: 900
 }
 
-#border-bottun {
+.border-bottun-h {
     border-radius: 12mm;
     border-color : darkgreen;
+}
+
+#border-search-box {
+    border-radius: 12mm;
+    border-color : darkgreen;
+    border-style :inset;
 }
 
 .w-75 {

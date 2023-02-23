@@ -58,37 +58,32 @@
                 <br/>
                     <div class="row justify-content-center">
                         <div class="col-12 col-md-10 col-lg-8">
-                            <form onsubmit="false" action="#" class="card card-sm" id="border-bottun">
-                                <div class="card-body row
-                                    align-items-center">
-                                    <div class="col-auto">
-                                        <i class="fas fa-search h4 text-body"></i>
-                                    </div>
-                                    <div class="col">
-                                        <input class="form-control
-                                            form-control-lg
-                                            form-control-borderless
-                                            form-control-plaintext"
-                                            type="search" placeholder="Search" id="keyword">
-                                    </div>
-                                    <div class="col-auto">
-                                        <button class="btn btn-lg btn-success"
-                                            id="border-bottun"
-                                            type="submit" onclick="search_help_ajax(document.getElementById('keyword').value)">Search</button>
-                                    </div>
+                            <div class="card-body row
+                                align-items-center bg-white" id="border-search-box">
+                                <div class="col-auto">
+                                    <i class="fas fa-search h4 text-body"></i>
                                 </div>
-                            </form>
+                                <div class="col">
+                                    <input class="form-control
+                                        form-control-lg
+                                        form-control-borderless
+                                        form-control-plaintext card card-sm
+                                        "
+                                        type="search" placeholder="Search"
+                                        id="keyword">
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-lg btn-success"
+                                        id="border-bottun-h"
+                                        type="submit"
+                                        onclick="search_help_ajax(document.getElementById('keyword').value)">Search</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="container">
-
-                </div>
-            </div>
             <!-- Topic End -->
-            <!-- <div id="result_of_search" class="result-as" style="display: flex;flex-direction: column;"></div> -->
             <div class="row container-fluid py-5">
                 <div id="display-guides" class="row container w-75">
                     <div class="text-center wow fadeInUp mx-auto"
@@ -351,7 +346,5 @@
             <script src="../js/main.js"></script>
             <script src="../js/headerHome.js"></script>
             <script src="js/helpScript.js"></script>
-
-            <!-- Ajax code -->
         </body>
     </html>

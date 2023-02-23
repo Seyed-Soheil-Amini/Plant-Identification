@@ -1,3 +1,7 @@
+var choose_server = prompt("If you use github server enter 1 otherwise 0");
+var server_address; 
+if(choose_server == 1)server_address = "/Plant-Identification";
+else server_address = "";
 class OtherHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -13,12 +17,12 @@ class OtherHeader extends HTMLElement {
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="/Plant-Identification/index.html" class="nav-item nav-link" target="_balnk">Home</a>
-            <a href="/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
-            <a href="/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
-            <a href="/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
-            <a href="/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
-            <a href="/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
+            <a href="${server_address}/index.html" class="nav-item nav-link" target="_balnk">Home</a>
+            <a href="${server_address}/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
+            <a href="${server_address}/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="${server_address}/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
+            <a href="${server_address}/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
+            <a href="${server_address}/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 
     </nav>

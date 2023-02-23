@@ -1,12 +1,4 @@
-const c = 0;
-if(c==0){
-var choose_server = prompt("If you use github server enter 1 otherwise 0,for first load enter 0");
-var server_address;
-    c++;
-if(choose_server == 1)server_address = "/Plant-Identification";
-else server_address = "";
-}
-else server_address = "";
+var host_name = window.location.host; 
 class OtherHeader extends HTMLElement {
     connectedCallback() {
         this.innerHTML = `
@@ -22,12 +14,12 @@ class OtherHeader extends HTMLElement {
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="${server_address}/index.html" class="nav-item nav-link" target="_balnk">Home</a>
-            <a href="${server_address}/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
-            <a href="${server_address}/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
-            <a href="${server_address}/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
-            <a href="${server_address}/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
-            <a href="${server_address}/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
+            <a href="${host_name}/index.html" class="nav-item nav-link" target="_balnk">Home</a>
+            <a href="${host_name}/Plant-Identification/IdentifyPage/index.html" class="nav-item nav-link" active>Identify</a>
+            <a href="${host_name}/Plant-Identification/ExplorPage/index.html" class="nav-item nav-link" target="_balnk">Explore</a>
+            <a href="${host_name}/Plant-Identification/AboutPage/index.html" class="nav-item nav-link" target="_balnk">About us</a>
+            <a href="${host_name}/Plant-Identification/HelpPage/index.html" class="nav-item nav-link"  target="_balnk">Help</a>
+            <a href="${host_name}/Plant-Identification/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
         </div>
     </div> 
     </nav>

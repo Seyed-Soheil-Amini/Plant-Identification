@@ -17,7 +17,7 @@ class OtherHeader extends HTMLElement {
         <div class="navbar-nav ms-auto p-4 p-lg-0">
             <a href="index.html" class="nav-item nav-link">Home</a>
             <a href="IdentifyPage/index.html" class="nav-item nav-link">Identify</a>
-            <a href="ExplorPage/index.html" class="nav-item nav-link">Explore</a>
+            <a href="ExplorePage/index.html" class="nav-item nav-link">Explore</a>
             <a href="AboutPage/index.html" class="nav-item nav-link">About us</a>
             <a href="HelpPage/index.html" class="nav-item nav-link">Help</a>
             <a href="FAQPage/index.html" class="nav-item nav-link">FAQ</a>

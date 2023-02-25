@@ -1,11 +1,29 @@
-#button-faq {
-    /* padding       : 0.35em 1.2em; */
-    
-    border-radius    : 2mm;
-    border-style     : solid;
-    border-color     : darkgreen;
+.button-faq {
+    /* border-radius    : 2mm; */
+    /* border-style     : solid; */
+    /* border-color     :darkgrey; */
     font-size-adjust:inherit;
-    font-size: 1rem;
+    font-size: 1.5rem;
+    font-family:cursive;
     text-align       : center;
-    /* align-items   : center; */
+}
+
+.collapsible {
+    background-color: #eee;
+    color           : #444;
+    cursor          : pointer;
+    padding         : 18px;
+    width           : 100%;
+    border          : none;
+    text-align      : left;
+    outline         : none;
+    font-size       : 15px;
+}
+
+#border-topics{
+    border-radius: 1mm;
+    border-width: 0.5mm;
+    border-style:solid;
+    border-color:darkgray;
+    color:dimgrey;
 }

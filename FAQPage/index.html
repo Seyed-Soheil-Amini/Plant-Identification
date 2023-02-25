@@ -53,41 +53,113 @@
 
         <plant-header></plant-header>
         <other-header></other-header>
-        <div class="row container-fluid mx-auto my-3 h-100">
-            <div class="col col-form-label-lg d-flex align-content-between
-                justify-content-center w-100">
-                <div class=" row w-50 justify-content-between mx-auto">
-                    <div class="w-25"><button type="button" class="w-100 float-start"
-                            id="button-faq">identify</button></div>
-                        <div class="w-25"><button type="button" class="w-100 align-self-center"
-                                id="button-faq">Explore</button></div>
-                            <div class="w-25"><button type="button" class="w-100 float-end"
-                                    id="button-faq">Growth</button></div>
-                            </div>
-                        </div>
+
+        <div class="w-100">
+            <div class="row container-fluid mx-auto my-0 h-100">
+                <div class="col col-form-label-lg d-flex align-content-between
+                    justify-content-center w-100">
+                    <div class="row w-75 justify-content-between mx-auto py-3">
+                        <div class="w-25"><button type="button" class="bg-white
+                                w-100
+                                float-start py-2 button-faq"
+                                id="button-faq-first" data-toggle="collapse"
+                                data-target="#first-part"
+                                onclick="IdnetificationFAQ()"><i
+                                    class="float-start fas fa-2x fa-search"
+                                    style="color: darkgreen;"></i><b>identify</b></button></div>
+                        <div class="w-25"><button type="button" class="bg-white
+                                w-100
+                                align-self-center py-2 button-faq"
+                                id="button-faq-second" data-toggle="collapse"
+                                data-target="#second-part"
+                                onclick="ExploreFAQ()"><i class="float-start fas
+                                    fa-2x fa-database" style="color:
+                                    darkgreen;"></i><b>Explore</b></button></div>
+                        <div class="w-25"><button type="button" class="bg-white
+                                w-100
+                                float-end py-2 button-faq"
+                                id="button-faq-third" data-toggle="collapse"
+                                data-target="#third-part" onclick="GrowthFAQ()"><i
+                                    class="float-start fas fa-2x fa-chart-area" style="color: darkgreen;"></i><b>Growth</b></button></div>
                     </div>
-                    <plant-footer></plant-footer>
+                </div>
+            </div>
+            <div class="mt-0">
+                <div class="collapse w-100" id="identify-faq">
+                    <div class="mx-auto my-auto pb-5 px-2 w-75">
+                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
+                            id="border-topics">Lorem ipsum dolor, sit amet
+                            consectetur adipisicing
+                            elit. Velit, commodi?<i class="fas fa-angle-down
+                                fa-2x float-end" style="color: dimgrey;"></i></button>
+                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
+                            id="border-topics">Lorem ipsum dolor sit amet
+                            consectetur adipisicing
+                            elit. Beatae, voluptatibus?<i class="fas
+                                fa-angle-down fa-2x float-end" style="color:
+                                dimgrey;"></i></button>
+                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
+                            id="border-topics">Lorem ipsum dolor, sit amet
+                            consectetur adipisicing
+                            elit. Aperiam, sint?<i class="fas fa-angle-down
+                                fa-2x float-end" style="color: dimgrey;"></i></button>
+                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
+                            id="border-topics">Lorem, ipsum dolor sit amet
+                            consectetur adipisicing
+                            elit. Dolores, praesentium?<i class="fas
+                                fa-angle-down fa-2x float-end" style="color:
+                                dimgrey;"></i></button>
+                    </div>
+                </div>
+                <div class="collapse w-100" id="explore-faq">
+                    <ul>
+                        <li>Lorem ipsum dolor sit, amet consectetur adipisicing
+                            elit. Dolor, vel.</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Quisquam, maxime.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Illo, impedit!</li>
+                    </ul>
+                </div>
+                <div class="collapse w-100" id="growth-faq">
+                    <ul>
+                        <li>Lorem ipsum dolor, sit amet consectetur adipisicing
+                            elit. Consectetur, deleniti?</li>
+                        <li>Lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit. Accusamus, soluta.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Soluta, facilis!</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Perferendis, ex.</li>
+                        <li>Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Amet, mollitia?</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
 
-                    <!-- Back to Top -->
-                    <a href="#" class="btn btn-lg btn-primary btn-lg-square
-                        rounded-circle
-                        back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <plant-footer></plant-footer>
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square
+            rounded-circle
+            back-to-top"><i class="bi bi-arrow-up"></i></a>
 
-                    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-                    <script
-                        src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-                    <script
-                        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-                    <script src="../lib/wow/wow.min.js"></script>
-                    <script src="../lib/easing/easing.min.js"></script>
-                    <script src="../lib/waypoints/waypoints.min.js"></script>
-                    <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
-                    <script src="../lib/counterup/counterup.min.js"></script>
-                    <script src="../lib/parallax/parallax.min.js"></script>
-                    <script src="../lib/isotope/isotope.pkgd.min.js"></script>
-                    <script src="../lib/lightbox/js/lightbox.min.js"></script>
-                    <!-- Template Javascript -->
-                    <script src="../js/main.js"></script>
-                    <script src="../js/headerHome.js"></script>
-                </body>
-            </html>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script
+            src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../lib/wow/wow.min.js"></script>
+        <script src="../lib/easing/easing.min.js"></script>
+        <script src="../lib/waypoints/waypoints.min.js"></script>
+        <script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="../lib/counterup/counterup.min.js"></script>
+        <script src="../lib/parallax/parallax.min.js"></script>
+        <script src="../lib/isotope/isotope.pkgd.min.js"></script>
+        <script src="../lib/lightbox/js/lightbox.min.js"></script>
+        <!-- Template Javascript -->
+        <script src="../js/main.js"></script>
+        <script src="../js/headerHome.js"></script>
+        <script src="js/FAQScript.js"></script>
+    </body>
+</html>

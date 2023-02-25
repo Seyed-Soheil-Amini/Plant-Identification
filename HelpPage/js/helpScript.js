@@ -184,6 +184,7 @@ function search_help_ajax(keyword) {
     Back to Help
     </button>
     <form>`);
+    responsive = responsive.replaceAll(`${keyword}`,`<b style="background-color: chartreuse;">${keyword}</b>`);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
     if (xhr.readyState == 4 && xhr.status == 200) {

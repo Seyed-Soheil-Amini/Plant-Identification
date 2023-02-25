@@ -15,12 +15,21 @@ class OtherHeader extends HTMLElement {
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
+<<<<<<< HEAD
             <a href="/index.html" class="nav-item nav-link">Home</a>
             <a href="/IdentifyPage/index.html" class="nav-item nav-link">Identify</a>
             <a href="/ExplorPage/index.html" class="nav-item nav-link">Explore</a>
             <a href="/AboutPage/index.html" class="nav-item nav-link">About us</a>
             <a href="/HelpPage/index.html" class="nav-item nav-link">Help</a>
             <a href="/FAQPage/index.html" class="nav-item nav-link">FAQ</a>
+=======
+            <a href="index.html" class="nav-item nav-link">Home</a>
+            <a href="IdentifyPage/index.html" class="nav-item nav-link">Identify</a>
+            <a href="ExplorePage/index.html" class="nav-item nav-link">Explore</a>
+            <a href="AboutPage/index.html" class="nav-item nav-link">About us</a>
+            <a href="HelpPage/index.html" class="nav-item nav-link">Help</a>
+            <a href="FAQPage/index.html" class="nav-item nav-link">FAQ</a>
+>>>>>>> d247425668c9742eccd13ab4de4ca2874a3f7146
         </div>
     </div> 
     </nav>

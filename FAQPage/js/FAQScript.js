@@ -48,3 +48,9 @@ function GrowthFAQ() {
   document.getElementById("button-faq-first").style.border = "none";
   document.getElementById("button-faq-second").style.border = "none";
 }
+
+function answer_identify(part_name){
+  if(part_name==`i-a-1`){
+    
+  }
+}

@@ -40,16 +40,6 @@
         <link href="css/FAQstyle.css" rel="stylesheet">
     </head>
     <body>
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle
-            w-100
-            vh-100 top-50 start-50 d-flex align-items-center
-            justify-content-center">
-            <div class="spinner-border text-primary" role="status" style="width:
-                3rem;
-                height: 3rem;"></div>
-        </div>
-        <!-- Spinner End -->
 
         <plant-header></plant-header>
         <other-header></other-header>
@@ -87,116 +77,335 @@
                 </div>
             </div>
             <div class="mt-0">
-                <div class="collapse w-100" id="identify-faq">
+                <div class="w-100" id="identify-faq">
                     <div class="mx-auto my-auto pb-5 px-2 w-75">
-                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#i-a-1">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Velit, commodi?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
-                        <div id="i-a-1" class="collapse">Lorem
-                            ipsum, dolor sit amet consectetur
-                            adipisicing elit. Veritatis magnam ullam atque ad
-                            eius! Inventore!</div>
-                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#i-a-2">Lorem ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit. Beatae, voluptatibus?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#i-a-3">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Aperiam, sint?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100 text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#i-a-4">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit. Dolores, praesentium?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
+                        <div class="div-topic p-2 my-2 justify-content-center
+                            text-center" id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#i-a-1"
+                                onclick="change_icon_topic('icon-i-1')">Lorem
+                                ipsum dolor, sit amet
+                                consectetur adipisicing
+                                elit. Velit, commodi?<i class="fas fa-angle-left
+                                    fa-2x float-end" id="icon-i-1" style="color:
+                                    dimgrey;"
+                                    id="icon-i-1"></i></button>
+                            <div id="i-a-1" class="collapse p-4
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                                <div class="py-3">
+                                    Lorem ipsum dolor sit, amet consectetur
+                                    adipisicing elit. Ipsam, aliquid porro
+                                    corporis
+                                    vero beatae amet!
+                                </div>
+                                <div class="py-3">
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Sapiente facilis, ea
+                                    nesciunt
+                                    totam et nisi.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#i-a-2"
+                                onclick="change_icon_topic('icon-i-2')">Lorem
+                                ipsum dolor sit amet
+                                consectetur adipisicing
+                                elit. Beatae, voluptatibus?<i id="icon-i-2"
+                                    class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;"></i></button>
+                            <div id="i-a-2" class="collapse p-4
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#i-a-3"
+                                onclick="change_icon_topic('icon-i-3')">Lorem
+                                ipsum dolor, sit amet
+                                consectetur adipisicing
+                                elit. Aperiam, sint?<i class="fas fa-angle-left
+                                    fa-2x float-end" style="color: dimgrey;"
+                                    id="icon-i-3"></i></button>
+                            <div id="i-a-3" class="collapse p-4
+                                bg-light-subtle text-primary">Lorem
+                                ipsum, dolor sit amet consectetur
+                                adipisicing elit. Veritatis magnam ullam atque
+                                ad
+                                eius! Inventore!</div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#i-a-4"
+                                onclick="change_icon_topic('icon-i-4')">Lorem,
+                                ipsum dolor sit amet
+                                consectetur adipisicing
+                                elit. Dolores, praesentium?<i class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;" id="icon-i-4"></i></button>
+                            <div id="i-a-4" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="collapse w-100" id="explore-faq">
                     <div class="mx-auto my-auto pb-5 px-2 w-75">
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#e-a-1">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Velit, commodi?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
-                        <div id="e-a-1" class="text-danger collapse">Lorem
-                            ipsum, dolor sit amet consectetur
-                            adipisicing elit. Veritatis magnam ullam atque
-                            ad
-                            eius! Inventore!</div>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#e-a-2">Lorem ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit. Beatae, voluptatibus?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#e-a-3">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Aperiam, sint?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#e-a-1"
+                                onclick="change_icon_topic('icon-e-1')">Lorem
+                                ipsum
+                                dolor, sit amet
+                                consectetur adipisicing
+                                elit. Velit, commodi?<i class="fas fa-angle-left
+                                    fa-2x float-end" style="color: dimgrey;"
+                                    id="icon-e-1"></i></button>
+                            <div id="e-a-1" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem
+                                    ipsum, dolor sit amet consectetur
+                                    adipisicing elit. Veritatis magnam ullam
+                                    atque
+                                    ad
+                                    eius! Inventore!</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur,
+                                    adipisicing elit. Tempora dolorum neque, quo
+                                    dolore
+                                    laborum ea.</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#e-a-2"
+                                onclick="change_icon_topic('icon-e-2')">Lorem
+                                ipsum
+                                dolor sit amet
+                                consectetur adipisicing
+                                elit. Beatae, voluptatibus?<i class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;" id="icon-e-2"></i></button>
+                            <div id="e-a-2" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem ipsum, dolor sit amet
+                                    consectetur adipisicing elit. Odio
+                                    laudantium
+                                    incidunt accusantium illum, exercitationem
+                                    sunt.</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Harum
+                                    possimus, fuga iusto tempore veritatis
+                                    error!</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Facilis
+                                    consequuntur architecto recusandae quam quos
+                                    delectus.</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                data-toggle="collapse"
+                                data-target="#e-a-3"
+                                onclick="change_icon_topic('icon-e-3')">Lorem
+                                ipsum
+                                dolor, sit amet
+                                consectetur adipisicing
+                                elit. Aperiam, sint?<i class="fas fa-angle-left
+                                    fa-2x float-end" style="color: dimgrey;"
+                                    id="icon-e-3"></i></button>
+                            <div id="e-a-3" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem, ipsum dolor sit amet
+                                    consectetur adipisicing elit. Quidem id
+                                    repellat odio, accusamus numquam explicabo.</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. Odio quam
+                                    possimus nostrum eum? Consequuntur, qui!</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="collapse w-100" id="growth-faq">
                     <div class="mx-auto my-auto pb-5 px-2 w-75">
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#g-a-1">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Velit, commodi?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                id="border-topics" data-toggle="collapse"
+                                data-target="#g-a-1"
+                                onclick="change_icon_topic('icon-g-1')">Lorem
+                                ipsum
+                                dolor, sit amet
+                                consectetur adipisicing
+                                elit. Velit, commodi?<i class="fas fa-angle-left
+                                    fa-2x float-end" style="color: dimgrey;"
+                                    id="icon-g-1"></i></button>
+                            <div id="g-a-1" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Soluta
+                                    voluptas rem fugit ab illum eius?</div>
+                            </div>
+                        </div>
                         <div id="g-a-1" class="text-danger collapse">Lorem
                             ipsum, dolor sit amet consectetur
                             adipisicing elit. Veritatis magnam ullam atque
                             ad
                             eius! Inventore!</div>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#g-a-2">Lorem ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit. Beatae, voluptatibus?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#g-a-3">Lorem ipsum dolor, sit amet
-                            consectetur adipisicing
-                            elit. Aperiam, sint?<i class="fas fa-angle-down
-                                fa-2x float-end" style="color: dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#g-a-4">Lorem, ipsum dolor sit amet
-                            consectetur adipisicing
-                            elit. Dolores, praesentium?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
-                        <button class="bg-white py-4 mb-2 w-100
-                            text-lg-start"
-                            id="border-topics" data-toggle="collapse"
-                            data-target="#g-a-5">Lorem ipsum dolor sit amet
-                            consectetur adipisicing elit. Consequuntur,
-                            accusantium ?<i class="fas
-                                fa-angle-down fa-2x float-end" style="color:
-                                dimgrey;"></i></button>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                id="border-topics" data-toggle="collapse"
+                                data-target="#g-a-2"
+                                onclick="change_icon_topic('icon-g-2')">Lorem
+                                ipsum
+                                dolor sit amet
+                                consectetur adipisicing
+                                elit. Beatae, voluptatibus?<i class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;" id="icon-g-2"></i></button>
+                            <div id="g-a-2" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem, ipsum dolor sit amet
+                                    consectetur adipisicing elit. Dolorum illo
+                                    repudiandae unde ullam libero corrupti?</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur, adipisicing elit. Est,
+                                    voluptatibus? Natus, labore vero. Aut,
+                                    dolor.</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                id="border-topics" data-toggle="collapse"
+                                data-target="#g-a-3"
+                                onclick="change_icon_topic('icon-g-3')">Lorem
+                                ipsum
+                                dolor, sit amet
+                                consectetur adipisicing
+                                elit. Aperiam, sint?<i class="fas fa-angle-left
+                                    fa-2x float-end" style="color: dimgrey;"
+                                    id="icon-g-3"></i></button>
+                            <div id="g-a-3" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem ipsum, dolor sit amet
+                                    consectetur adipisicing elit. Culpa error
+                                    iste, illo mollitia ut cum?</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet,
+                                    consectetur adipisicing elit. Doloremque
+                                    architecto dolorem nam saepe. Recusandae,
+                                    perspiciatis.</div>
+                                <div class="py-3">Lorem, ipsum dolor sit amet
+                                    consectetur adipisicing elit. Totam beatae
+                                    magnam iusto iste doloremque optio.</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                id="border-topics" data-toggle="collapse"
+                                data-target="#g-a-4"
+                                onclick="change_icon_topic('icon-g-5')">Lorem,
+                                ipsum
+                                dolor sit amet
+                                consectetur adipisicing
+                                elit. Dolores, praesentium?<i class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;" id="icon-g-5"></i></button>
+                            <div id="g-a-4" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Harum officiis
+                                    consectetur recusandae voluptatibus hic
+                                    incidunt!</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Officiis
+                                    delectus aspernatur unde, minus enim nobis?</div>
+                                <div class="py-3">Lorem ipsum, dolor sit amet
+                                    consectetur adipisicing elit. Veniam natus
+                                    officiis itaque maiores, quidem cupiditate?</div>
+                            </div>
+                        </div>
+                        <div class="div-topic p-2 my-2 text-center"
+                            id="border-topics">
+                            <button class="bg-white py-4 w-100
+                                text-lg-start border-0 box-topic"
+                                id="border-topics" data-toggle="collapse"
+                                data-target="#g-a-5"
+                                onclick="change_icon_topic('icon-g-6')">Lorem
+                                ipsum
+                                dolor sit amet
+                                consectetur adipisicing elit. Consequuntur,
+                                accusantium ?<i class="fas
+                                    fa-angle-left fa-2x float-end" style="color:
+                                    dimgrey;" id="icon-g-6"></i></button>
+                            <div id="g-a-5" class="collapse p-1
+                                bg-light-subtle text-primary">
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Fuga
+                                    temporibus voluptatem quas perspiciatis illo
+                                    nam.</div>
+                                <div class="py-3">Lorem ipsum dolor sit amet
+                                    consectetur adipisicing elit. Quis magni,
+                                    natus sequi quam aliquam saepe!</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -220,6 +429,8 @@
             <script src="../lib/parallax/parallax.min.js"></script>
             <script src="../lib/isotope/isotope.pkgd.min.js"></script>
             <script src="../lib/lightbox/js/lightbox.min.js"></script>
+            <script
+                src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
             <!-- Template Javascript -->
             <script src="../js/main.js"></script>
             <script src="../js/headerHome.js"></script>

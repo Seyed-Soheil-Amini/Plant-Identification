@@ -36,7 +36,6 @@ function ExploreFAQ() {
   document.getElementById("button-faq-second").style.borderRadius = "1.2mm";
   document.getElementById("button-faq-first").style.border = "none";
   document.getElementById("button-faq-third").style.border = "none";
-
 }
 
 function GrowthFAQ() {
@@ -49,8 +48,29 @@ function GrowthFAQ() {
   document.getElementById("button-faq-second").style.border = "none";
 }
 
-function answer_identify(part_name){
-  if(part_name==`i-a-1`){
-    
+function answer_identify(part_name) {
+  if (part_name == `i-a-1`) {
   }
+}
+
+// function hideBorder() {
+// var btn = document.getElementById("border-topics");
+//   if (btn.onclick) {
+//     count++;
+//   }
+//   if (count % 2 == 0) {
+//     btn.style.borderBottom = "0.5mm solid darkgray";
+//     btn.style.borderRadius = "1mm";
+//     // btn.style.borderEndStartRadius = "10px";
+//   } else if (count % 2 == 1) {
+//     // btn.style.borderBottom = "none";
+//     // btn.style.borderEndEndRadius = "0px";
+//     // btn.style.borderEndStartRadius = "0px";
+//   }
+// }
+
+function change_icon_topic(id_topic) {
+  var btn = document.getElementById(id_topic);
+  btn.classList.toggle("fa-angle-left");
+  btn.classList.toggle("fa-angle-down");
 }

@@ -149,7 +149,6 @@ function search_in_text(text, keyword, subject, num_search) {
   data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
   <i class=" bi-arrow-down-circle fa-2x float-end"></i>
   </button>
-  
   <div id="${num_search}demo" class="collapse">${result}</div>`;
   return result_topic;
 }

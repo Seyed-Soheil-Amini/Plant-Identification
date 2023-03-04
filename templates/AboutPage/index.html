@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,8 +55,7 @@
         </div>
         <!-- Spinner End -->
 
-        <plant-header></plant-header>
-        <other-header></other-header>
+
 
         <!-- Page Header Start -->
         <div class="container-fluid page-header py-5 mb-5 wow fadeIn"
@@ -267,7 +269,6 @@
         </div>
         <!-- Team End -->
 
-        <plant-footer></plant-footer>
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square
@@ -291,3 +292,4 @@
     </body>
 
 </html>
+{% endblock content %}

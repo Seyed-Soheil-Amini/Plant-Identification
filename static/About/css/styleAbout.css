@@ -1,0 +1,28 @@
+.page-header {
+    background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/images2.jfif) center center no-repeat;
+    background-size: contain;
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display      : flex;
+    flex-wrap    : wrap;
+    margin-top   : calc(var(--bs-gutter-y) * -1);
+    margin-right : calc(var(--bs-gutter-x) / -2);
+    margin-left  : calc(var(--bs-gutter-x) / -2);
+}
+
+
+.col-lg-6 {
+    flex : 0 0 auto;
+    width: 90%
+}
+
+#img-fluid-profile {
+    max-width: 100%;
+}
+
+#border-about{
+    border-radius: 2mm;
+}

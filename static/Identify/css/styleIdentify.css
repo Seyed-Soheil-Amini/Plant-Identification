@@ -1,0 +1,87 @@
+.page-header {
+    background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/focusPhone2.jpg) center center no-repeat;
+    background-size: cover;
+}
+
+form {
+    width : auto;
+    height: auto;
+    border: 4px;
+}
+
+form p {
+    width      : 100%;
+    height     : 100%;
+    text-align : center;
+    line-height: 170px;
+    color      : rgba(15, 66, 41, .6) font-family: Arial;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+.drag-area {
+    border         : 2px dashed #072A19;
+    border-radius  : 5px;
+    display        : flex;
+    align-items    : center;
+    justify-content: center;
+    flex-direction : column;
+}
+
+.drag-area.active {
+    border: 2px solid #348E38;
+}
+
+.drag-area .icon {
+    font-size: 100px;
+    color    : #fff;
+}
+
+.drag-area p {
+    font-size: 18px;
+    color    : #0F4229;
+    margin   : 10px 0 15px 0;
+}
+
+.drag-area input {
+    padding      : 10px 25px;
+    font-size    : 20px;
+    font-weight  : 500;
+    border       : none;
+    outline      : none;
+    background   : #fff;
+    color        : #072A19;
+    border-radius: 5px;
+    cursor       : pointer;
+}
+
+.drag-area img {
+    height       : 100%;
+    width        : 100%;
+    object-fit   : cover;
+    border-radius: 5px;
+}
+
+.submit-button {
+    align-self   : center;
+    justify-self : center;
+    justify-items: center;
+    margin-right : 10%;
+}
+
+#submit-button {
+    margin-top   : 0.5cm;
+    border-radius: 2mm;
+    margin-left  : 39%;
+}
+
+#form-upload {
+    width      : 96%;
+    margin-left: 1.8%;
+}
+
+.container-button {
+    justify-content: center;
+    width          : fit-content;
+    margin-left    : 39.5%;
+}

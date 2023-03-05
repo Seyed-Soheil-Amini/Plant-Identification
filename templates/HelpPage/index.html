@@ -3,274 +3,261 @@
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Help</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
-            rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-
-
-
-            <link rel="stylesheet" href="{% static 'help/css/helpStyle.css' %}">
-    </head>
-
-    <body>
-
-        <div class="container-fluid page-header py-5 mb-5 w-100 wow
+<head>
+    <meta charset="utf-8">
+    <title>Help</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="{% static 'Help/css/helpStyle.css' %}">
+</head>
+<body>
+<div class="container-fluid page-header py-5 mb-5 w-100 wow
             fadeIn"
-            data-wow-delay="0.1s">
-            <div class="container text-center mx-auto my-auto py-5-help">
-                <h1 class="display-3 text-white animated
+     data-wow-delay="0.1s">
+    <div class="container text-center mx-auto my-auto py-5-help">
+        <h1 class="display-3 text-white animated
                     slideInDown">How can we help?</h1>
-            </div>
-            <div class="container pb-5">
-                <br/>
-                    <div class="row justify-content-center">
-                        <div class="col-12 col-md-10 col-lg-8">
-                            <div class="card-body row
+    </div>
+    <div class="container pb-5">
+        <br/>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+                <div class="card-body row
                                 align-items-center bg-white"
-                                id="border-search-box">
-                                <div class="col-auto">
-                                    <i class="fas fa-search h4 text-body"></i>
-                                </div>
-                                <div class="col">
-                                    <input class="form-control
+                     id="border-search-box">
+                    <div class="col-auto">
+                        <i class="fas fa-search h4 text-body"></i>
+                    </div>
+                    <div class="col">
+                        <input class="form-control
                                         form-control-lg
                                         form-control-borderless
                                         form-control-plaintext card card-sm
                                         "
-                                        type="search" placeholder="Search"
-                                        id="keyword">
-                                </div>
-                                <div class="col-auto">
-                                    <button class="btn btn-lg btn-success"
-                                        id="border-bottun-h"
-                                        type="submit"
-                                        onclick="search_help_ajax(document.getElementById('keyword').value)">Search</button>
-                                </div>
-                            </div>
-                        </div>
+                               type="search" placeholder="Search"
+                               id="keyword">
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-lg btn-success"
+                                id="border-bottun-h"
+                                type="submit"
+                                onclick="search_help_ajax(document.getElementById('keyword').value)">Search
+                        </button>
                     </div>
                 </div>
             </div>
-            <!-- Topic End -->
-            <div class="row container-fluid py-5">
-                <div id="display-guides" class="row container w-75">
-                    <div class="text-center wow fadeInUp mx-auto"
-                        data-wow-delay="0.1s" style="max-width:
+        </div>
+    </div>
+</div>
+<!-- Topic End -->
+<div class="row container-fluid py-5">
+    <div id="display-guides" class="row container w-75">
+        <div class="text-center wow fadeInUp mx-auto"
+             data-wow-delay="0.1s" style="max-width:
                         600px;font-family:Verdana, Geneva, Tahoma, sans-serif;">
-                        <p class="fs-5 fw-bold text-primary">Topics</p>
-                        <h1 class="display-5 mb-5">Topics we help you with</h1>
+            <p class="fs-5 fw-bold text-primary">Topics</p>
+            <h1 class="display-5 mb-5">Topics we help you with</h1>
+        </div>
+        <div class="row g-1" id="width-topics-m">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
+                 data-wow-delay="0.1s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img">
+                        <img class="img-fluid rounded"
+                             src="{% static 'Help/img/idenBack.jpg' %}"
+                             alt="">
                     </div>
-                    <div class="row g-1" id="width-topics-m">
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.1s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img">
-                                    <img class="img-fluid rounded"
-                                        src="img/idenBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
                                         mx-auto
                                         mb-3">
-                                        <img class="img-fluid rounded-circle"
-                                            src="../img/icon/iconIden.jpg"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Identification</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a href="/HelpPage/topics/identifiy.html"
-                                        class="btn btn-sm"><i class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
+                            <img class="img-fluid rounded-circle"
+                                 src="{% static 'img/icon/iconIden.jpg' %}"
+                                 alt="Icon">
                         </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.3s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img rounded">
-                                    <img class="img-fluid"
-                                        src="img/exploreBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
-                                        mx-auto
-                                        mb-3">
-                                        <img class="img-fluid"
-                                            src="img/exploreIcon2.png"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Explore</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a class="btn btn-sm"
-                                        href="/HelpPage/topics/explore.html"><i
-                                            class="fa
+                        <h4 class="mb-3">Identification</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a href="/HelpPage/topics/identifiy.html"
+                           class="btn btn-sm"><i class="fa
                                             fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.5s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img rounded">
-                                    <img class="img-fluid"
-                                        src="img/supportBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
-                                        mx-auto
-                                        mb-3">
-                                        <img class="img-fluid"
-                                            src="img/supportIcon3.png"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Online Supporting</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a class="btn btn-sm"
-                                        href="/HelpPage/topics/support.html"><i
-                                            class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.1s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img rounded">
-                                    <img class="img-fluid"
-                                        src="img/habiBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
-                                        mx-auto
-                                        mb-3">
-                                        <img class="img-fluid rounded-circle"
-                                            src="img/habiIcon2.png"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Find Habitat</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a class="btn btn-sm"
-                                        href="/HelpPage/topics/habitat.html"><i
-                                            class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.3s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img rounded">
-                                    <img class="img-fluid"
-                                        src="img/midBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
-                                        mx-auto
-                                        mb-3">
-                                        <img class="img-fluid rounded-circle"
-                                            src="img/midcineIcon4.png"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Finding Medicinal
-                                        Properties</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a class="btn btn-sm"
-                                        href="/HelpPage/topics/midcine.html"><i
-                                            class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 wow fadeInUp"
-                            data-wow-delay="0.5s">
-                            <div class="service-item rounded d-flex h-100">
-                                <div class="service-img rounded">
-                                    <img class="img-fluid"
-                                        src="img/growBack.jpg"
-                                        alt="">
-                                </div>
-                                <div class="service-text rounded p-5">
-                                    <div class="btn-square rounded-circle
-                                        mx-auto
-                                        mb-3">
-                                        <img class="img-fluid rounded-circle"
-                                            src="img/growIcon4.png"
-                                            alt="Icon">
-                                    </div>
-                                    <h4 class="mb-3">Help In Growth</h4>
-                                    <p class="mb-4">Erat ipsum justo amet duo et
-                                        elitr dolor, est duo duo eos lorem sed
-                                        diam
-                                        stet diam sed stet.</p>
-                                    <a class="btn btn-sm"
-                                        href="/HelpPage/topics/growth.html"><i
-                                            class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                                        More</a>
-                                </div>
-                            </div>
-                        </div>
+                            More</a>
                     </div>
                 </div>
-                <div class="col container w-25 mt-5">
-                    <div class="list-group
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
+                 data-wow-delay="0.3s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/exploreBack.jpg' %}"
+                             alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                        mx-auto
+                                        mb-3">
+                            <img class="img-fluid"
+                                 src="{% static 'Help/img/exploreIcon2.png' %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Explore</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a class="btn btn-sm"
+                           href="/HelpPage/topics/explore.html"><i
+                                class="fa
+                                            fa-plus text-primary me-2"></i>Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
+                 data-wow-delay="0.5s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/supportBack.jpg' %}"
+                             alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                        mx-auto
+                                        mb-3">
+                            <img class="img-fluid"
+                                 src="{% static 'Help/img/supportIcon3.png' %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Supporting</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a class="btn btn-sm"
+                           href="/HelpPage/topics/support.html"><i
+                                class="fa
+                                            fa-plus text-primary me-2"></i>Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.1s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/habiBack.jpg' %}"
+                             alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                        mx-auto
+                                        mb-3">
+                            <img class="img-fluid rounded-circle"
+                                 src="{% static 'Help/img/habiIcon2.png' %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Find Habitat</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a class="btn btn-sm"
+                           href="/HelpPage/topics/habitat.html"><i
+                                class="fa
+                                            fa-plus text-primary me-2"></i>Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.3s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/midBack.jpg' %}"
+                             alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                        mx-auto
+                                        mb-1">
+                            <img class="img-fluid rounded-circle mt-0"
+                                 src="{% static 'Help/img/midcineIcon4.png' %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-0">Medicinal Properties</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a class="btn btn-sm"
+                           href="/HelpPage/topics/midcine.html"><i
+                                class="fa
+                                            fa-plus text-primary me-2"></i>Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.5s">
+                <div class="service-item rounded d-flex">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/growBack.jpg' %}"
+                             alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                        mx-auto
+                                        mb-3">
+                            <img class="img-fluid rounded-circle"
+                                 src="{% static 'Help/img/growIcon4.png' %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Help In Growth</h4>
+                        <p class="mb-4">Erat ipsum justo amet duo et
+                            elitr dolor, est duo duo eos lorem sed
+                            diam
+                            stet diam sed stet.</p>
+                        <a class="btn btn-sm"
+                           href="/HelpPage/topics/growth.html"><i
+                                class="fa
+                                            fa-plus text-primary me-2"></i>Read
+                            More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col container w-25 mt-5">
+        <div class="list-group
                         justify-content-center"
-                        style="font-family:system-ui, -apple-system,
+             style="font-family:system-ui, -apple-system,
                         BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
                         Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-                        <div class="p-4 bg-light h-25" id="margin-between-box">
-                            <h3 class="w-100 h-25 fw-bold pb-2" id="common-q-h">Commonly
-                                Questions</h3>
-                            <ul class="text-decoration-underline">
-                                <li>How to upload image of plants?</li>
-                                <li>How to search about a plants?</li>
-                                <li>How to find the areas where the desired
-                                    plant
-                                    grows?</li>
-                                <li>How to contact support?</li>
-                                <li>Does the site also support flower
-                                    recognition?</li>
-                            </ul>
-                        </div>
-                        <div class="w-100 h-50 my-auto py-5 text-center">
+            <div class="p-4 bg-light h-25" id="margin-between-box">
+                <h3 class="w-100 h-25 fw-bold pb-2" id="common-q-h">Commonly
+                    Questions</h3>
+                <ul class="text-decoration-underline">
+                    <li>How to upload image of plants?</li>
+                    <li>How to search about a plants?</li>
+                    <li>How to find the areas where the desired
+                        plant
+                        grows?
+                    </li>
+                    <li>How to contact support?</li>
+                    <li>Does the site also support flower
+                        recognition?
+                    </li>
+                </ul>
+            </div>
+            <div class="w-100 h-50 my-auto py-5 text-center">
                             <span>
                                 Lorem ipsum, dolor sit amet consectetur
                                 adipisicing elit. Ullam iste explicabo suscipit
@@ -289,13 +276,13 @@
                                 voluptas ipsa modi ex, nisi ipsum perspiciatis
                                 itaque quod possimus porro?
                             </span>
-                        </div>
-                        <div class="w-100 p-4 bg-light mt-4 h-25
+            </div>
+            <div class="w-100 p-4 bg-light mt-4 h-25
                             justify-content-center"
-                            id="margin-between-box">
-                            <h3 class="w-100 h-25 fw-bolder pb-3 text-center">Need
-                                Support?</h3>
-                            <span class="text-center">
+                 id="margin-between-box">
+                <h3 class="w-100 h-25 fw-bolder pb-3 text-center">Need
+                    Support?</h3>
+                <span class="text-center">
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur
                                     adipisicing elit. Et corporis, quam vel
@@ -305,19 +292,19 @@
                                     incidunt.
                                 </p>
                             </span>
-                            <div class="mx-auto my-auto" style="width:
+                <div class="mx-auto my-auto" style="width:
                                 fit-content;">
-                                <button class="btn-primary w-100"
-                                    id="margin-support" type="submit">CONTACT
-                                    SUPPORT</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="btn-primary w-100"
+                            id="margin-support" type="submit">CONTACT
+                        SUPPORT
+                    </button>
                 </div>
             </div>
-            <!-- Topic End -->
-
-
-        </body>
-    </html>
+        </div>
+    </div>
+</div>
+<!-- Topic End -->
+<script src="{% static 'Help/js/helpScript.js' %}"></script>
+</body>
+</html>
 {% endblock content %}

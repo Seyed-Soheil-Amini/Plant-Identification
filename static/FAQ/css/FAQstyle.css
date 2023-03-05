@@ -1,0 +1,37 @@
+.button-faq {
+    font-size-adjust: inherit;
+    font-size       : 1.5rem;
+    font-family     : cursive;
+    text-align      : center;
+}
+
+.collapsible {
+    background-color: #eee;
+    color           : #444;
+    cursor          : pointer;
+    padding         : 18px;
+    width           : 100%;
+    border          : none;
+    text-align      : left;
+    outline         : none;
+    font-size       : 15px;
+}
+
+#border-topics {
+    border-radius: 1mm;
+    border-width : 0.5mm;
+    border-style : solid;
+    border-color : darkgray;
+    color        : dimgrey;
+}
+
+.div-topic {
+    padding      : 1em;
+    margin       : 0 -1em;
+    border-bottom: 1mm solid darkgray;
+}
+
+
+.box-topic {
+    color        : dimgrey;
+}

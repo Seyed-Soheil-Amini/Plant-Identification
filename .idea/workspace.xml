@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="127651a8-4706-4bd8-9572-6adf9c6c7d12" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Plant_Identification/.idea/Plant_Identification.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/css/styleAbout.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/AbolfazlPro2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/TayebPro.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/futureIcon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/historyIcon4.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/ideaIcon.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/images2.jfif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/sinaPro.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/soheilPro3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/About/img/sponserIcon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/FAQ/css/FAQstyle.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/FAQ/js/FAQScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/back4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/exploreBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/exploreIcon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/growBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/growIcon4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/habiBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/habiIcon2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/idenBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/midBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/midcineIcon4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/supportBack.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/img/supportIcon3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Help/js/helpScript.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Identify/css/styleIdentify.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Identify/img/focusPhone2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Identify/img/focusPhone3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/Identify/js/dragDrapScrips.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/AbolfazlPro2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/HomeBack.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/TayebPro.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/carousel-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/focusPhone.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/footYazdUni.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/icon/icon-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/icon/iconIden.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/icon/iconSearch.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/serviceExp.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/serviceIden.webp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/serviceSup.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/sinaPro.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/img/soheilPro3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/help/css/helpStyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/Help/css/helpStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/AboutPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/AboutPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/FAQPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/FAQPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/HelpPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/HelpPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/IdentifyPage/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/IdentifyPage/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MYrh4efjvGfzjYhNCUgnwqTkXM" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "F:/plantCheckProject/plantFrontend/Plant-Identification/static/Help/img",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\Help\img" />
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\FAQ\js" />
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\FAQ\css" />
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\help\img" />
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\help\js" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\plantCheckProject\plantFrontend\Plant-Identification\static\img" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="127651a8-4706-4bd8-9572-6adf9c6c7d12" name="Changes" comment="" />
+      <created>1677955472387</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677955472387</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

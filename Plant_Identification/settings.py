@@ -79,7 +79,7 @@ DATABASES = {
         'NAME': 'plant_identification',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'plantide',
         'PORT': '3306'
     }
 }

@@ -125,7 +125,8 @@
             ">
             <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
               data-wow-delay="0.1s" style="align-self: center;">
-              <form action="#" method="POST" name="ImageUp">
+              <form action="result/" method="POST" name="ImageUp" enctype="multipart/form-data">
+                {% csrf_token %}
                 <div class="drag-area">
                   <button type="button" class="btn-outline-success fas
                     fa-cloud-upload-alt">Browse files</button>

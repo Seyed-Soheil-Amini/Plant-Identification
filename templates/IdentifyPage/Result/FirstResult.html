@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Result</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+</head>
+<body>
+<div>
+    <form>
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"><br>
+
+        <label for="location">Location:</label><br>
+        <input type="text" id="location" name="location"><br>
+
+        <label for="bio">Bio:</label><br>
+        <textarea id="bio" name="bio"></textarea><br>
+
+        <h2>My Plants:</h2>
+
+        <label for="plant1">Plant Name:</label><br>
+        <input type="text" id="plant1" name="plant1"><br>
+
+        <label for="plant1-type">Plant Type:</label><br>
+        <input type="text" id="plant1-type" name="plant1-type"><br>
+
+        <label for="plant1-watering">Watering Schedule:</label><br>
+        <input type="text" id="plant1-watering" name="plant1-watering"><br>
+
+        <label for="plant1-photo">Plant Photo:</label><br>
+        <input type="file" id="plant1-photo" name="plant1-photo"><br>
+
+        <label for="plant2">Plant Name:</label><br>
+        <input type="text" id="plant2" name="plant2"><br>
+
+        <label for="plant2-type">Plant Type:</label><br>
+        <input type="text" id="plant2-type" name="plant2-type"><br>
+
+        <label for="plant2-watering">Watering Schedule:</label><br>
+        <input type="text" id="plant2-watering" name="plant2-watering"><br>
+
+        <label for="plant2-photo">Plant Photo:</label><br>
+        <input type="file" id="plant2-photo" name="plant2-photo"><br>
+
+        <!-- Add as many plant information fields as needed -->
+
+        <input type="submit" value="Save Changes">
+    </form>
+
+</div>
+</body>
+</html>
+{% endblock content %}

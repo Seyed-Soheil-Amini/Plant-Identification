@@ -1,4 +1,4 @@
-document.getElementById("identify-faq").style.display = "flex";
+document.getElementById("detail-faq").style.display = "flex";
 document.getElementById("button-faq-first").style.border = "solid darkgray";
 document.getElementById("button-faq-first").style.borderRadius = "1.2mm";
 document.getElementById("button-faq-second").style.border = "none";
@@ -19,7 +19,7 @@ for (i = 0; i < coll.length; i++) {
 }
 
 function IdnetificationFAQ() {
-  document.getElementById("identify-faq").style.display = "flex";
+  document.getElementById("detail-faq").style.display = "flex";
   document.getElementById("explore-faq").style.display = "none";
   document.getElementById("growth-faq").style.display = "none";
   document.getElementById("button-faq-first").style.border = "solid darkgray";
@@ -29,7 +29,7 @@ function IdnetificationFAQ() {
 }
 
 function ExploreFAQ() {
-  document.getElementById("identify-faq").style.display = "none";
+  document.getElementById("detail-faq").style.display = "none";
   document.getElementById("explore-faq").style.display = "flex";
   document.getElementById("growth-faq").style.display = "none";
   document.getElementById("button-faq-second").style.border = "solid darkgray";
@@ -39,7 +39,7 @@ function ExploreFAQ() {
 }
 
 function GrowthFAQ() {
-  document.getElementById("identify-faq").style.display = "none";
+  document.getElementById("detail-faq").style.display = "none";
   document.getElementById("explore-faq").style.display = "none";
   document.getElementById("growth-faq").style.display = "flex";
   document.getElementById("button-faq-third").style.border = "solid darkgray";

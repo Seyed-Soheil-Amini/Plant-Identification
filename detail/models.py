@@ -2,12 +2,12 @@ from django.db import models
 
 
 class Plant(models.Model):
+    image = models.ImageField(upload_to='mainImages/', null=True, blank=True)
     name = models.CharField(max_length=50)
     english_name = models.CharField(max_length=50, null=True, blank=True)
     scientific_name = models.CharField(max_length=50, null=True, blank=True)
     family = models.CharField(max_length=50, null=True, blank=True)
     morphology = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to='mainImages/', null=True, blank=True)
     water_need = models.CharField(max_length=50, null=True, blank=True)
     soil_need = models.CharField(max_length=50, null=True, blank=True)
     salinity_tolerance = models.CharField(max_length=50, null=True, blank=True)

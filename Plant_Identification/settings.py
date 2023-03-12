@@ -36,8 +36,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'identify',
+    'detail',
     'explore',
+    'identify',
 ]
 
 MIDDLEWARE = [
@@ -79,7 +80,7 @@ DATABASES = {
         'NAME': 'plant_identification',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'plantide',
+        'PASSWORD': 'Sina.8125',
         'PORT': '3306'
     }
 }

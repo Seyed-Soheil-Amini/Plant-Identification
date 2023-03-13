@@ -67,12 +67,12 @@ function restored() {
 function upload_image_ajax(id_tag){
             var xhr = new XMLHttpRequest();
 //            		alert(document.getElementById(id_tag));
-            var object_plant;
+            const object_plant = new Object();
 			var img_object = document.getElementById(id_tag);
 			xhr.onreadystatechange = function()
 		{
 			if(xhr.readyState == 4 && xhr.status == 200){
-                var identified_plant = xhr.responseText;
+                const identified_plant = xhr.responseText;
                 object_plant = JSON.parse(identified_plant);
                 alert(object_plant);
 			}

@@ -35,7 +35,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap5',
+    'rest_framework',
     'home',
     'detail',
     'explore',
@@ -81,7 +81,7 @@ DATABASES = {
         'NAME': 'plant_identification',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'soheilsql2003',
+        'PASSWORD': 'plantide',
         'PORT': '3306'
     }
 }

@@ -65,19 +65,37 @@ function restored() {
     dragText.textContent = "Drag your files here.";
 }
 function upload_image_ajax(id_tag){
+            var counter = 0;
             var xhr = new XMLHttpRequest();
-//            		alert(document.getElementById(id_tag));
-            const object_plant = new Object();
 			var img_object = document.getElementById(id_tag);
+    		var upload_frame = document.getElementById('upload-box');
 			xhr.onreadystatechange = function()
 		{
 			if(xhr.readyState == 4 && xhr.status == 200){
                 const identified_plant = xhr.responseText;
-                object_plant = JSON.parse(identified_plant);
-                alert(object_plant);
+                const object_plant = JSON.parse(identified_plant);
+                while(true){
+                    if(counter==1000000000)break;
+        			counter++;
+                }
+                    document.getElementById('title_identify').innerHTML = `<h1 class="display-5 mb-5 fadeInBig font"
+                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+                    data-wow-delay="0.1s"
+                    id="title_identify">
+                    Result
+                    </h1>
+                `;
+                upload_frame.innerHTML = `
+                <div class="col h-75 w-50 align-content-center mx-auto my-auto" style="border-radius:2.5mm;border-style:hidden;">
+                    <img class="container h-50 w-100" data-wow-delay="0.1s" src="../static/Explore/Image/rose.jpeg">
+                    <div class="row container h-50 w-100">
+                        <div class="container-fluid w-25 h-75 bg-light mx-auto my-2"><span class="h-100 text-center"><b><strong>${object_plant.name}</string></b></span></div>
+                        <div class="w-75 f-3 border-3 text-center">${object_plant.morphology}</div>
+                    </div>
+                </div>
+                `;
 			}
 		}
-		var upload_frame = document.getElementById('upload-box');
         upload_frame.classList.add('align-content-center');
         document.getElementById('title_identify').innerHTML = `<h1 class="display-5 mb-5 fadeInBig"
         style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
@@ -91,11 +109,7 @@ function upload_image_ajax(id_tag){
             <img class="container h-100" data-wow-delay="0.1s" src="../static/Identify/img/gif2.gif">
         </div>
         `;
-		xhr.open("post","http://127.0.0.1:8000/randomplant/",true);
+		xhr.open("get","http://127.0.0.1:8000/randomplant/",true);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-//		xhr.send('&name');
-//		xhr.send('&wonName=' + nameW + '&wonCompany=' + companyW + '&wonStock=' + stockW + '&wonRate=' + rateW
-//			+ '&wonId=' + idW + '&lossName=' + nameL + '&lossCompany=' + companyL + '&lossStock=' + stockL +
-//			'&lossRate=' + rateL + '&lossId=' + idL + '&Ea=' + Ea);
-
+		xhr.send(img_object);
 }

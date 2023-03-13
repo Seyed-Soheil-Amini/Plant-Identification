@@ -1,24 +1,25 @@
+alert("Hello");
 document.getElementById("detail-faq").style.display = "flex";
 document.getElementById("button-faq-first").style.border = "solid darkgray";
 document.getElementById("button-faq-first").style.borderRadius = "1.2mm";
 document.getElementById("button-faq-second").style.border = "none";
 document.getElementById("button-faq-third").style.border = "none";
-var coll = document.getElementsByClassName("collapsible");
-var i;
+//var coll = document.getElementsByClassName("collapsible");
+//var i;
+//
+//for (i = 0; i < coll.length; i++) {
+//  coll[i].addEventListener("click", function() {
+//    this.classList.toggle("active");
+//    var content = this.nextElementSibling;
+//    if (content.style.display === "block") {
+//      content.style.display = "none";
+//    } else {
+//      content.style.display = "block";
+//    }
+//  });
+//}
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var content = this.nextElementSibling;
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
-
-function IdnetificationFAQ() {
+function IdentificationFAQ() {
   document.getElementById("detail-faq").style.display = "flex";
   document.getElementById("explore-faq").style.display = "none";
   document.getElementById("growth-faq").style.display = "none";
@@ -29,6 +30,7 @@ function IdnetificationFAQ() {
 }
 
 function ExploreFAQ() {
+alert("Hello");
   document.getElementById("detail-faq").style.display = "none";
   document.getElementById("explore-faq").style.display = "flex";
   document.getElementById("growth-faq").style.display = "none";

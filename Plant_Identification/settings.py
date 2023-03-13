@@ -51,7 +51,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
 ROOT_URLCONF = 'Plant_Identification.urls'
 
 TEMPLATES = [
@@ -81,7 +80,7 @@ DATABASES = {
         'NAME': 'plant_identification',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'plantide',
+        'PASSWORD': 'soheilsql2003',
         'PORT': '3306'
     }
 }

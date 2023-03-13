@@ -178,7 +178,7 @@ function search_help_ajax(keyword) {
       <h3 class="text-center">No results found  <i class=" bi-clock-history"></i> </h3>`;
   }
   responsive = responsive.concat(`
-    <form action="/HelpPage/index.html" method="get" class="align-center mx-auto my-0 px-2 w-25">
+    <form action="template/HelpPage/index.html" method="get" class="align-center mx-auto my-0 px-2 w-25">
     <button class="btn-danger my-2 mx-auto p-3 w-100" style="border-radius: 1mm;">
     Back to Help
     </button>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load bootstrap5 %}
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -11,52 +12,46 @@
     <meta content="" name="description">
 </head>
 <body>
-<div>
-    <form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br>
+<div class="col container-fluid">
+    <div class="container h-50" style="background-color:blue;">
+        <div class="h-100 w-50 float-start" style="background-color:green;">
 
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email"><br>
+        </div>
+        <div class="h-100 w-50 float-start" style="background-color:red;">
 
-        <label for="location">Location:</label><br>
-        <input type="text" id="location" name="location"><br>
-
-        <label for="bio">Bio:</label><br>
-        <textarea id="bio" name="bio"></textarea><br>
-
-        <h2>My Plants:</h2>
-
-        <label for="plant1">Plant Name:</label><br>
-        <input type="text" id="plant1" name="plant1"><br>
-
-        <label for="plant1-type">Plant Type:</label><br>
-        <input type="text" id="plant1-type" name="plant1-type"><br>
-
-        <label for="plant1-watering">Watering Schedule:</label><br>
-        <input type="text" id="plant1-watering" name="plant1-watering"><br>
-
-        <label for="plant1-photo">Plant Photo:</label><br>
-        <input type="file" id="plant1-photo" name="plant1-photo"><br>
-
-        <label for="plant2">Plant Name:</label><br>
-        <input type="text" id="plant2" name="plant2"><br>
-
-        <label for="plant2-type">Plant Type:</label><br>
-        <input type="text" id="plant2-type" name="plant2-type"><br>
-
-        <label for="plant2-watering">Watering Schedule:</label><br>
-        <input type="text" id="plant2-watering" name="plant2-watering"><br>
-
-        <label for="plant2-photo">Plant Photo:</label><br>
-        <input type="file" id="plant2-photo" name="plant2-photo"><br>
-
-        <!-- Add as many plant information fields as needed -->
-
-        <input type="submit" value="Save Changes">
-    </form>
-
+        </div>
+    </div>
+    <div class="h-25 row mx-2" style="background-color:yellow;">
+        <div class="h-100 w-25" style="background-color:gray;"></div>
+        <div class="h-100 w-25" style="background-color:black;"></div>
+        <div class="h-100 w-25" style="background-color:gray;"></div>
+        <div class="h-100 w-25" style="background-color:black;"></div>
+    </div>
+    <div class="container h-25" style="background-color:orange">
+        <div class=""></div>
+    </div>
 </div>
 </body>
+<script>
+    xhr.onreadystatechange = function()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200){
+				const responseArray = xhr.responseText.substr(1,(xhr.responseText.length-2)).split("_");
+					document.getElementById(lossName).innerHTML = responseArray[0];
+					document.getElementById(lossCompany).innerHTML = responseArray[1];
+					document.getElementById(lossStock).innerHTML = responseArray[2];
+					document.getElementById(lossRate).innerHTML = responseArray[3];
+					document.getElementById(lossId).innerHTML = responseArray[4];
+			}
+		}
+		xhr.open("post","Elo.php?",true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+		xhr.send('&wonName=' + nameW + '&wonCompany=' + companyW + '&wonStock=' + stockW + '&wonRate=' + rateW
+			+ '&wonId=' + idW + '&lossName=' + nameL + '&lossCompany=' + companyL + '&lossStock=' + stockL +
+			'&lossRate=' + rateL + '&lossId=' + idL + '&Ea=' + Ea);
+	}
+
+
+</script>
 </html>
 {% endblock content %}

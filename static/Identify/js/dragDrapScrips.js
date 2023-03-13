@@ -47,7 +47,7 @@ function showFile() {
         let fileReader = new FileReader(); //creating new FileReader object
         fileReader.onload = () => {
             let fileURL = fileReader.result; //passing user file source in fileURL variable
-            imgTag = `<img src="${fileURL}" alt="image" id="imgUp">`; //creating an img tag and passing user selected file source inside src attribute
+            imgTag = `<img src="${fileURL}" alt="image" id="imgUp" style="width:fit-content;height:fit-content;">`; //creating an img tag and passing user selected file source inside src attribute
             dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
         }
         fileReader.readAsDataURL(file);
@@ -63,4 +63,39 @@ function restored() {
     let img = document.getElementById("imgUp").remove();
     dropArea.innerHTML = tempTag;
     dragText.textContent = "Drag your files here.";
+}
+function upload_image_ajax(id_tag){
+            var xhr = new XMLHttpRequest();
+//            		alert(document.getElementById(id_tag));
+            var object_plant;
+			var img_object = document.getElementById(id_tag);
+			xhr.onreadystatechange = function()
+		{
+			if(xhr.readyState == 4 && xhr.status == 200){
+                var identified_plant = xhr.responseText;
+                object_plant = JSON.parse(identified_plant);
+                alert(object_plant);
+			}
+		}
+		var upload_frame = document.getElementById('upload-box');
+        upload_frame.classList.add('align-content-center');
+        document.getElementById('title_identify').innerHTML = `<h1 class="display-5 mb-5 fadeInBig"
+        style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
+        data-wow-delay="0.1s"
+        id="title_identify">
+        Waiting to Identify...
+        </h1>
+`;
+        upload_frame.innerHTML = `
+        <div class="h-75 w-50 align-content-center mx-auto my-auto" style="border-radius:2.5mm;border-style:hidden;">
+            <img class="container h-100" data-wow-delay="0.1s" src="../static/Identify/img/gif2.gif">
+        </div>
+        `;
+		xhr.open("post","http://127.0.0.1:8000/randomplant/",true);
+		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//		xhr.send('&name');
+//		xhr.send('&wonName=' + nameW + '&wonCompany=' + companyW + '&wonStock=' + stockW + '&wonRate=' + rateW
+//			+ '&wonId=' + idW + '&lossName=' + nameL + '&lossCompany=' + companyL + '&lossStock=' + stockL +
+//			'&lossRate=' + rateL + '&lossId=' + idL + '&Ea=' + Ea);
+
 }

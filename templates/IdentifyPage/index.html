@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Identify</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -12,143 +12,151 @@
     <meta content="" name="description">
 
     <link href="{% static 'Identify/css/styleIdentify.css' %}" rel="stylesheet">
-  </head>
+</head>
 
-  <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle w-100
+<body>
+<!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle w-100
       vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-      <div class="spinner-border text-primary" role="status" style="width: 3rem;
+    <div class="spinner-border text-primary" role="status" style="width: 3rem;
         height: 3rem;"></div>
-    </div>
+</div>
 
 
-    <div class="container-fluid page-header py-5 mb-5 wow fadeIn"
-      data-wow-delay="0.1s">
-      <div class="container text-center py-5">
+<div class="container-fluid page-header py-5 mb-5 wow fadeIn"
+     data-wow-delay="0.1s">
+    <div class="container text-center py-5">
         <h1 class="display-3 text-white mb-4 animated slideInDown">Identify</h1>
         <nav aria-label="breadcrumb animated slideInDown">
-          <ol class="breadcrumb justify-content-center mb-0">
-            <li class="breadcrumb-item">Fast</li>
-            <li class="breadcrumb-item">Trust</li>
-            <li class="breadcrumb-item active" aria-current="page">Comfortable</li>
-          </ol>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item">Fast</li>
+                <li class="breadcrumb-item">Trust</li>
+                <li class="breadcrumb-item active" aria-current="page">Comfortable</li>
+            </ol>
         </nav>
-      </div>
     </div>
-    <!-- Page Header End -->
+</div>
+<!-- Page Header End -->
 
-    <!-- Quote Start -->
-    <div class="container-fluid py-5">
-      <div class="container">
+<!-- Quote Start -->
+<div class="container-fluid py-5">
+    <div class="container">
         <!-- About Start -->
         <div class="container-xxl py-5">
-          <div class="container">
-            <div class="row g-5 align-items-end">
-              <div class="col-lg-3 col-md-5 wow fadeInUp"
-                data-wow-delay="0.1s">
-                <img class="img-fluid rounded" data-wow-delay="0.1s"
-                  src="{% static 'Identify/img/focusPhone3.jpg' %}">
-              </div>
-              <div class="col-lg-6 col-md-7 wow fadeInUp"
-                data-wow-delay="0.3s">
-                <h1 class="display-1 text-primary mb-0"></h1>
-                <h1 class="display-5 mb-4">Guides</h1>
-                <p class="mb-4"> <ol class="fw-medium">
-                    <li>Click on the "<code>Choose File</code>" button to
-                      upload image that you want.</li>
-                    <li>
-                      Select a photo. Click or tap the photo that you want
-                      to
-                      upload to website.<ul class=""
-                        style="list-style:square;">
-                        <li>If you want to upload multiple
-                          photos at once on a desktop, hold down Ctrl
-                          (Windows) or ⌘ Command (Mac) while clicking each
-                          photo you want to upload.</li>
-                      </ul></li>
-                    <li>
-                      Confirm your selection. Click Open (desktop) or tap
-                      Next
-                      twice (mobile).
-                    </li>
-                    <li>
-                      Upload the photo(s). Click Upload a Photo (or Upload
-                      some
-                      Photos) in the lower-right side of the page and then
-                      click Upload when prompted (desktop), or tap Post in
-                      the
-                      top-right corner of the screen (mobile). Your
-                      selected
-                      photo(s) will be uploaded to website.</li>
-                  </ol>
-                </p>
-                <div class="justify-content-center">
-                  <a class="btn btn-primary py-3 px-4" style="align-self:
+            <div class="container">
+                <div class="row g-5 align-items-end">
+                    <div class="col-lg-3 col-md-5 wow fadeInUp"
+                         data-wow-delay="0.1s">
+                        <img class="img-fluid rounded" data-wow-delay="0.1s"
+                             src="{% static 'Identify/img/focusPhone3.jpg' %}">
+                    </div>
+                    <div class="col-lg-6 col-md-7 wow fadeInUp"
+                         data-wow-delay="0.3s">
+                        <h1 class="display-1 text-primary mb-0"></h1>
+                        <h1 class="display-5 mb-4">Guides</h1>
+                        <p class="mb-4">
+                        <ol class="fw-medium">
+                            <li>Click on the "<code>Choose File</code>" button to
+                                upload image that you want.
+                            </li>
+                            <li>
+                                Select a photo. Click or tap the photo that you want
+                                to
+                                upload to website.
+                                <ul class=""
+                                    style="list-style:square;">
+                                    <li>If you want to upload multiple
+                                        photos at once on a desktop, hold down Ctrl
+                                        (Windows) or ⌘ Command (Mac) while clicking each
+                                        photo you want to upload.
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                Confirm your selection. Click Open (desktop) or tap
+                                Next
+                                twice (mobile).
+                            </li>
+                            <li>
+                                Upload the photo(s). Click Upload a Photo (or Upload
+                                some
+                                Photos) in the lower-right side of the page and then
+                                click Upload when prompted (desktop), or tap Post in
+                                the
+                                top-right corner of the screen (mobile). Your
+                                selected
+                                photo(s) will be uploaded to website.
+                            </li>
+                        </ol>
+                        </p>
+                        <div class="justify-content-center">
+                            <a class="btn btn-primary py-3 px-4" style="align-self:
                     center;margin-left: 35%;"
-                    href="https://giphy.com/upload">Help Me More</a>
-                </div>
-              </div>
-              <div class="col-lg-3 col-md-12 wow fadeInUp"
-                data-wow-delay="0.5s">
-                <div class="row g-5">
-                  <div class="col-12 col-sm-6 col-lg-12">
-                    <div class="border-start ps-4">
-                      <i class="fa bi-file-image-fill fa-3x text-primary
+                               href="https://giphy.com/upload">Help Me More</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-12 wow fadeInUp"
+                         data-wow-delay="0.5s">
+                        <div class="row g-5">
+                            <div class="col-12 col-sm-6 col-lg-12">
+                                <div class="border-start ps-4">
+                                    <i class="fa bi-file-image-fill fa-3x text-primary
                         mb-3"></i>
-                      <h4 class="mb-3">Get vertical</h4>
-                      <span>The image you upload should be vertical for
+                                    <h4 class="mb-3">Get vertical</h4>
+                                    <span>The image you upload should be vertical for
                         better recognition</span>
-                    </div>
-                  </div>
-                  <div class="col-12 col-sm-6 col-lg-12">
-                    <div class="border-start ps-4">
-                      <i class="fa bi-bookmark-plus-fill fa-3x text-primary
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6 col-lg-12">
+                                <div class="border-start ps-4">
+                                    <i class="fa bi-bookmark-plus-fill fa-3x text-primary
                         mb-3"></i>
-                      <h4 class="mb-3">Add to database</h4>
-                      <span>Your photo will be added to our database if you
+                                    <h4 class="mb-3">Add to database</h4>
+                                    <span>Your photo will be added to our database if you
                         allow it</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
         <!-- About End -->
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s"
-          style="max-width: 500px;">
-          <h1 class="display-5 mb-5">Upload Your Picture</h1>
+             style="max-width: 500px;">
+            <h1 class="display-5 mb-5 fadeInBig" data-wow-delay="0.1s" id="title_identify">Upload Your Picture</h1>
         </div>
         <div class="row justify-content-md-center" id="form-upload">
-          <div style=" flex : 0 0 auto;
-            ">
-            <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
-              data-wow-delay="0.1s" style="align-self: center;">
-              <form action="result/" method="POST" name="ImageUp" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="drag-area">
-                  <button type="button" class="btn-outline-success fas
-                    fa-cloud-upload-alt">Browse files</button>
-                  <p>Drag your files here.</p>
-                  <input type="file" hidden />
-                </div>
-                <div class="container-button mx-auto my-auto">
-                  <button type="submit" class="btn-primary px-lg-4 py-lg-2" style="border-radius: 2mm;"
-                    >Upload</button>
-                  <input type="reset" class="btn-danger px-lg-4 py-lg-2"
-                    style="margin-top:
+            <div style=" flex : 0 0 auto;" id="upload-box">
+                <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
+                     data-wow-delay="0.1s" style="align-self: center;">
+                    <form action="result/" method="POST" onsubmit="FALSE" name="ImageUp" id="imgUp" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="drag-area">
+                            <button type="button" class="btn-outline-success fas
+                    fa-cloud-upload-alt">Browse files
+                            </button>
+                            <p>Drag your files here.</p>
+                            <input type="file" hidden/>
+                        </div>
+                        <div class="container-button mx-auto my-auto">
+                            <button type="submit" class="btn-primary px-lg-4 py-lg-2" style="border-radius: 2mm;"
+                                    onclick="upload_image_ajax('imgUp')"
+                            >Upload
+                            </button>
+                            <input type="reset" class="btn-danger px-lg-4 py-lg-2"
+                                   style="margin-top:
                     0.5cm;border-radius: 2mm;" value="Reset"
-                    onclick='restored()'/>
+                                   onclick='restored()'/>
+                        </div>
+                    </form>
                 </div>
-              </form>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-    <!-- Quote End -->
-  </body>
+</div>
+<!-- Quote End -->
+</body>
 <script src="{% static 'Identify/js/dragDrapScrips.js' %}"></script>
 </html>
 {% endblock content %}

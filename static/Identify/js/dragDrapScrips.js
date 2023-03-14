@@ -85,15 +85,24 @@ function upload_image_ajax(id_tag){
                     Result
                     </h1>
                 `;
-                upload_frame.innerHTML = `
-                <div class="col h-75 w-50 align-content-center mx-auto my-auto" style="border-radius:2.5mm;border-style:hidden;">
-                    <img class="container h-50 w-100" data-wow-delay="0.1s" src="../static/Explore/Image/rose.jpeg">
-                    <div class="row container h-50 w-100">
-                        <div class="container-fluid w-25 h-75 bg-light mx-auto my-2"><span class="h-100 text-center"><b><strong>${object_plant.name}</string></b></span></div>
-                        <div class="w-75 f-3 border-3 text-center">${object_plant.morphology}</div>
+                  var image_address = "http://127.0.0.1:8000/" + object_plant.image;
+//                  upload_frame.classList.add("");
+                  upload_frame.innerHTML = `
+                    <div class="row g-5 align-items-end mb-lg-5 my-2 p-4"
+                     style="background-image:url('../static/Identify/img/backR2esults.jpg');border-radius:2.5mm;">
+                    <div class="col-lg-3 col-md-5 wow fadeInLeft my-auto w-50"
+                        data-wow-delay="0.1s">
+                        <img class="img-fluid rounded mx-auto my-2"
+                            data-wow-delay="0.1s" src=${image_address}>
+                    </div>
+                    <div class="col-lg-5 col-md-7 w-50 wow fadeInUp text-center mx-auto my-auto" data-wow-delay="0.3s">
+                        <h1 class="display-5 mb-4 text-white">${object_plant.name}</h1>
+                        <p class="mb-4 text-white">${object_plant.morphology}</p>
+                        <a class="btn btn-primary py-3 px-4"
+                            href="#">Know more</a>
                     </div>
                 </div>
-                `;
+                  `;
 			}
 		}
         upload_frame.classList.add('align-content-center');

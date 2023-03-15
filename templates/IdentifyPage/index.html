@@ -125,19 +125,33 @@
         <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s"
              style="max-width: 500px;">
             <h1 class="display-5 mb-5 fadeInBig" data-wow-delay="0.1s" id="title_identify">Upload Your Picture</h1>
+            <h1 class="display-5 mb-5 fadeInBig"
+                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;display:none;"
+                data-wow-delay="0.1s"
+                id="title-waiting">
+                Waiting to Identify...
+            </h1>
+            <h1 class="display-5 mb-5 fadeInBig font"
+                style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;display:none;"
+                data-wow-delay="0.1s"
+                id="title-detected">
+                Result
+            </h1>
         </div>
-        <div class="row justify-content-md-center" id="form-up">
-            <div class="mx-0" style="flex : 0 0 auto;" id="upload-box">
-                <div class="bg-light rounded p-4 p-sm-5 wow fadeInUp"
-                     data-wow-delay="0.1s" style="align-self: center;">
-                    <form action="result/" method="POST" onsubmit="FALSE" name="ImageUp" id="imgUp" enctype="multipart/form-data">
+        <div class="justify-content-md-center" id="form-up">
+            <div class="mx-0 h-75" style="flex : 0 0 auto;" id="upload-box">
+                <!--               start upload image box-->
+                <div class="h-75 bg-light rounded p-4 p-sm-5 wow fadeInUp"
+                     data-wow-delay="0.1s" style="align-self: center;" id="upload-image">
+                    <form action="#" method="GET" name="ImageUp" id="imgUp" onsubmit="event.preventDefault();"
+                          enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="drag-area">
                             <button type="button" class="btn-outline-success fas
-                    fa-cloud-upload-alt">Browse files
+                    fa-cloud-upload-alt" id="btn-upload">Browse files
                             </button>
                             <p>Drag your files here.</p>
-                            <input type="file" hidden/>
+                            <input type="file" id="input-image" hidden/>
                         </div>
                         <div class="container-button mx-auto my-auto">
                             <button type="submit" class="btn-primary px-lg-4 py-lg-2" style="border-radius: 2mm;"
@@ -147,10 +161,39 @@
                             <input type="reset" class="btn-danger px-lg-4 py-lg-2"
                                    style="margin-top:
                     0.5cm;border-radius: 2mm;" value="Reset"
-                                   onclick='restored()'/>
+                                   onclick="restored('imgUp')"/>
                         </div>
                     </form>
                 </div>
+                <!--               end upload image box-->
+                <!--                start waiting gif -->
+                <div class="h-75 w-50 align-content-center mx-auto my-auto my-3" id="waiting-gif"
+                     style="border-radius:2.5mm;border-style:hidden;display:none;">
+                    <img class="container h-100 my-5 mx-auto my-auto" data-wow-delay="0.1s" src="{% static 'Identify/img/gif2.gif' %}">
+                </div>
+                <!--                end waiting git-->
+                <!--                start show result-->
+                <div class="h-100 row align-items-start my-3 p-4" id="result"
+                     style="background-image:url('../static/Identify/img/backR2esults.jpg');border-radius:2.5mm;display:none;">
+                    <div class="w-50 wow fadeInLeft my-auto"
+                         data-wow-delay="0.1s">
+                        <img class="img-fluid rounded mx-auto my-2" id="result-image"
+                             data-wow-delay="0.1s" src="">
+                    </div>
+                    <div class="w-50 wow fadeInUp text-center mx-auto my-auto" data-wow-delay="0.3s">
+                        <h1 class="display-5 mb-4 text-white" id="result-name"></h1>
+                        <p class="mb-4 text-white" id="result-morph"></p>
+                        <a class="btn btn-primary py-3 px-4"
+                           href="#">Know more</a>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" class="btn-danger mx-auto my-auto px-lg-5 py-lg-3"
+                            style="display:none;border-radius:3.5mm" id="btn-back" onclick="back_to_upload()">
+                        Back
+                    </button>
+                </div>
+                <!--                end show result-->
             </div>
         </div>
     </div>

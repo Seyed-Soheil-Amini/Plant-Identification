@@ -6,7 +6,7 @@ const dropArea = document.querySelector(".drag-area"),
 let file; //this is a global variable and we'll use it inside multiple functions
 let imgTag;//this is a global variable to save image html tag
 let tempTag = dropArea.innerHTML;//this is a global variable that has been declared to save base html format of form (for reseting)
-
+alert(tempTag);
 button.onclick = () => {
     input.click(); //if user click on the button then the input also clicked
 }
@@ -58,17 +58,22 @@ function showFile() {
     }
 }
 //this function for reset picture data 
-function restored() {
+function restored(id_tag) {
+//    alert("HEllo");
+//    alert(document.getElementById(id_tag).value);
     dropArea.classList.remove("active");
-    let img = document.getElementById("imgUp").remove();
+    document.getElementById("imgUp").setAttribute("src", "");
+    document.getElementById("imgUp").setAttribute("alt", "");
     dropArea.innerHTML = tempTag;
     dragText.textContent = "Drag your files here.";
 }
+
+let upload_frame = document.getElementById('upload-box');
+
 function upload_image_ajax(id_tag){
             var counter = 0;
             var xhr = new XMLHttpRequest();
 			var img_object = document.getElementById(id_tag);
-    		var upload_frame = document.getElementById('upload-box');
 			xhr.onreadystatechange = function()
 		{
 			if(xhr.readyState == 4 && xhr.status == 200){
@@ -78,47 +83,42 @@ function upload_image_ajax(id_tag){
                     if(counter==1000000000)break;
         			counter++;
                 }
-                    document.getElementById('title_identify').innerHTML = `<h1 class="display-5 mb-5 fadeInBig font"
-                    style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
-                    data-wow-delay="0.1s"
-                    id="title_identify">
-                    Result
-                    </h1>
-                `;
-                  var image_address = "http://127.0.0.1:8000/" + object_plant.image;
-//                  upload_frame.classList.add("");
-                  upload_frame.innerHTML = `
-                    <div class="row g-5 align-items-end mb-lg-5 my-2 p-4"
-                     style="background-image:url('../static/Identify/img/backR2esults.jpg');border-radius:2.5mm;">
-                    <div class="col-lg-3 col-md-5 wow fadeInLeft my-auto w-50"
-                        data-wow-delay="0.1s">
-                        <img class="img-fluid rounded mx-auto my-2"
-                            data-wow-delay="0.1s" src=${image_address}>
-                    </div>
-                    <div class="col-lg-5 col-md-7 w-50 wow fadeInUp text-center mx-auto my-auto" data-wow-delay="0.3s">
-                        <h1 class="display-5 mb-4 text-white">${object_plant.name}</h1>
-                        <p class="mb-4 text-white">${object_plant.morphology}</p>
-                        <a class="btn btn-primary py-3 px-4"
-                            href="#">Know more</a>
-                    </div>
-                </div>
-                  `;
+                show_result(object_plant);
 			}
 		}
         upload_frame.classList.add('align-content-center');
-        document.getElementById('title_identify').innerHTML = `<h1 class="display-5 mb-5 fadeInBig"
-        style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif"
-        data-wow-delay="0.1s"
-        id="title_identify">
-        Waiting to Identify...
-        </h1>
-`;
-        upload_frame.innerHTML = `
-        <div class="h-75 w-50 align-content-center mx-auto my-auto" style="border-radius:2.5mm;border-style:hidden;">
-            <img class="container h-100" data-wow-delay="0.1s" src="../static/Identify/img/gif2.gif">
-        </div>
-        `;
+        waiting();
 		xhr.open("get","http://127.0.0.1:8000/randomplant/",true);
 		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		xhr.send(img_object);
+}
+
+
+function show_result(object){
+        var image_address = "http://127.0.0.1:8000/" + object.image;
+        document.getElementById('title_identify').style.display = "none";
+        document.getElementById('title-waiting').style.display = "none";
+        document.getElementById('title-detected').style.display = "inline";
+        document.getElementById('waiting-gif').style.display = "none";
+        document.getElementById('result').style.display = "flex";
+        document.getElementById('result-image').src = image_address;
+        document.getElementById('result-name').innerHTML = object.name;
+        document.getElementById('result-morph').innerHTML = object.morphology;
+        document.getElementById('btn-back').style.display = "block";
+}
+
+function waiting(){
+        document.getElementById('title_identify').style.display = "none";
+        document.getElementById('title-waiting').style.display = "inline";
+        document.getElementById('title-detected').style.display = "none";
+        document.getElementById('upload-image').style.display = "none";
+        document.getElementById('waiting-gif').style.display = "flex";
+}
+
+function back_to_upload(){
+        document.getElementById('title_identify').style.display = "inline";
+        document.getElementById('title-detected').style.display = "none";
+        document.getElementById('upload-image').style.display = "grid";
+        document.getElementById('result').style.display = "none";
+        document.getElementById('btn-back').style.display = "none";
 }

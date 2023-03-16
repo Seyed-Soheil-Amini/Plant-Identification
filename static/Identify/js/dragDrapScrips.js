@@ -11,20 +11,15 @@ let tempTag = dropArea.innerHTML;//this is a global variable that has been decla
 //}
 
 function simultaneously_clicked(){
-//    alert("Test");
-//    alert(input.files[0]);
     input.click();
-//    input.change();
 }
 
 input.addEventListener("change", function () {
     //getting user select file and [0] this means if user select multiple files then we'll select only the first one
-//    alert("change input");
     file = this.files[0];
     dropArea.classList.add("active");
     showFile(); //calling function
 });
-
 
 //If user Drag File Over DropArea
 dropArea.addEventListener("dragover", (event) => {
@@ -76,26 +71,31 @@ function restored(id_tag) {
 let upload_frame = document.getElementById('upload-box');
 
 function upload_image_ajax(id_tag){
-            var counter = 0;
-            var xhr = new XMLHttpRequest();
-			var img_object = document.getElementById(id_tag);
-			xhr.onreadystatechange = function()
-		{
-			if(xhr.readyState == 4 && xhr.status == 200){
-                const identified_plant = xhr.responseText;
-                const object_plant = JSON.parse(identified_plant);
-                while(true){
-                    if(counter==1000000000)break;
-        			counter++;
-                }
-                show_result(object_plant);
-			}
-		}
-        upload_frame.classList.add('align-content-center');
-        waiting();
-		xhr.open("get","http://127.0.0.1:8000/randomplant/",true);
-		xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-		xhr.send(img_object);
+        if(document.getElementById('drag-area').children.length==1){
+        var counter = 0;
+        var xhr = new XMLHttpRequest();
+        var img_object = document.getElementById(id_tag);
+        xhr.onreadystatechange = function()
+    {
+        if(xhr.readyState == 4 && xhr.status == 200){
+            const identified_plant = xhr.responseText;
+            const object_plant = JSON.parse(identified_plant);
+            while(true){
+                if(counter==1000000000)break;
+                counter++;
+            }
+            show_result(object_plant);
+        }
+    }
+    upload_frame.classList.add('align-content-center');
+    waiting();
+    xhr.open("get","http://127.0.0.1:8000/randomplant/",true);
+    xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhr.send(img_object);
+    }else{
+        alert("Please enter an image!");
+//        popup_caution();
+    }
 }
 
 
@@ -127,3 +127,21 @@ function back_to_upload(){
         document.getElementById('result').style.display = "none";
         document.getElementById('btn-back').style.display = "none";
 }
+
+//function popup_caution(){
+//    document.getElementById('body-part').blur();
+//    document.getElementById('popup').style.display = "flex";
+//}
+//
+//function popup_caution(){
+//
+//    alert("test");
+//    document.getElementById('popup-box').classList.toggle('fadeIn');
+//    document.getElementById('popup-box').removeClass('transform-out').addClass('transform-in');
+//    document.getElementById('popup-close').addEventListener("click", (event) => {
+//        document.getElementById('popup-wrap').classList.toggle('fadeOut');
+//        document.getElementById('popup-box').removeClass('transform-in').addClass('transform-out');
+//        event.preventDefault();
+//    }
+//}
+

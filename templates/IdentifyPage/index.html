@@ -12,6 +12,7 @@
     <meta content="" name="description">
 
     <link href="{% static 'Identify/css/styleIdentify.css' %}" rel="stylesheet">
+    <link href="{% static 'Identify/css/popupStyle.scss' %}" rel="stylesheet">
 </head>
 
 <body>
@@ -143,20 +144,22 @@
                 <!--               start upload image box-->
                 <div class="h-75 bg-light rounded p-4 p-sm-5 wow fadeInUp"
                      data-wow-delay="0.1s" style="align-self: center;" id="upload-image">
-                    <form action="#" class="form-upload-image mx-auto" method="GET" name="ImageUp" onsubmit="event.preventDefault();"
+                    <form action="#" class="form-upload-image mx-auto" method="GET" name="ImageUp"
+                          onsubmit="event.preventDefault();"
                           enctype="multipart/form-data">
                         {% csrf_token %}
-                        <div class="drag-area">
+                        <div class="drag-area" id="drag-area">
                             <button type="button" class="btn-outline-success fas
                     fa-cloud-upload-alt" id="btn-upload" onclick="simultaneously_clicked()">Browse files
                             </button>
-                            <p>Drag your files here.</p>
+                            <p class="col justify-content-center">
+                                <i class="fas fa-file"></i>
+                                Drag your files here.</p>
                             <input type="file" id="input-image" hidden/>
                         </div>
                         <div class="container-button mx-auto my-auto">
                             <button type="submit" class="btn-primary px-lg-4 py-lg-2" style="border-radius: 2mm;"
-                                    onclick="upload_image_ajax('imgUp')"
-                            >Upload
+                                    onclick="upload_image_ajax('imgUp');">Upload
                             </button>
                             <input type="reset" class="btn-danger px-lg-4 py-lg-2"
                                    style="margin-top:
@@ -169,12 +172,13 @@
                 <!--                start waiting gif -->
                 <div class="h-75 w-50 align-content-center mx-auto my-auto my-3" id="waiting-gif"
                      style="border-radius:2.5mm;border-style:hidden;display:none;">
-                    <img class="container h-100 my-5 mx-auto my-auto" data-wow-delay="0.1s" src="{% static 'Identify/img/gif2.gif' %}">
+                    <img class="container h-100 my-5 mx-auto my-auto" data-wow-delay="0.1s"
+                         src="{% static 'Identify/img/gif2.gif' %}">
                 </div>
                 <!--                end waiting git-->
                 <!--                start show result-->
                 <div class="h-100 row align-items-start my-3 p-4" id="result"
-                     style="background-image:url('../static/Identify/img/backR2esults.jpg');border-radius:2.5mm;display:none;">
+                     style="background:url('../static/Identify/img/backR2esults.jpg') fixed;border-radius:2.5mm;display:none;">
                     <div class="w-50 wow fadeInLeft my-auto"
                          data-wow-delay="0.1s">
                         <img class="img-fluid rounded mx-auto my-2" id="result-image"
@@ -193,6 +197,13 @@
                         Back
                     </button>
                 </div>
+<!--                <div class="popup-wrap">-->
+<!--                    <div class="popup-box">-->
+<!--                        <h2>Title of Popup</h2>-->
+<!--                        <h3>A sub-heading for the popup with a little description.</h3>-->
+<!--                        <a class="close-btn popup-close" href="#">x</a>-->
+<!--                    </div>-->
+<!--                </div>-->
                 <!--                end show result-->
             </div>
         </div>

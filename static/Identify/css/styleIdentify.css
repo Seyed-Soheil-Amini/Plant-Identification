@@ -28,8 +28,10 @@ form p {
     flex-direction : column;
 }
 
-.drag-area.active {
+.drag-area:active {
     border: 2px solid #348E38;
+    height:100%;
+    width:100%;
 }
 
 .drag-area .icon {
@@ -56,8 +58,8 @@ form p {
 }
 
 .drag-area img {
-    height       : 100%;
-    width        : 100%;
+    width:6cm;
+    height:6cm;
     object-fit   : cover;
     border-radius: 5px;
 }
@@ -89,4 +91,9 @@ form p {
 .col-lg-3-up {
     flex : 0 0 auto;
     width: 25%
+}
+
+.form-upload-image{
+    width:50%;
+    height:100%;
 }

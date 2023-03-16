@@ -6,13 +6,20 @@ const dropArea = document.querySelector(".drag-area"),
 let file; //this is a global variable and we'll use it inside multiple functions
 let imgTag;//this is a global variable to save image html tag
 let tempTag = dropArea.innerHTML;//this is a global variable that has been declared to save base html format of form (for reseting)
-alert(tempTag);
-button.onclick = () => {
-    input.click(); //if user click on the button then the input also clicked
+//button.onclick = () => {
+//    input.click(); //if user click on the button then the input also clicked
+//}
+
+function simultaneously_clicked(){
+//    alert("Test");
+//    alert(input.files[0]);
+    input.click();
+//    input.change();
 }
 
 input.addEventListener("change", function () {
     //getting user select file and [0] this means if user select multiple files then we'll select only the first one
+//    alert("change input");
     file = this.files[0];
     dropArea.classList.add("active");
     showFile(); //calling function
@@ -47,7 +54,7 @@ function showFile() {
         let fileReader = new FileReader(); //creating new FileReader object
         fileReader.onload = () => {
             let fileURL = fileReader.result; //passing user file source in fileURL variable
-            imgTag = `<img src="${fileURL}" alt="image" id="imgUp" style="width:fit-content;height:fit-content;">`; //creating an img tag and passing user selected file source inside src attribute
+            imgTag = `<img src="${fileURL}" class="mx-auto my-auto"  alt="image" id="imgUp">`; //creating an img tag and passing user selected file source inside src attribute
             dropArea.innerHTML = imgTag; //adding that created img tag inside dropArea container
         }
         fileReader.readAsDataURL(file);
@@ -59,8 +66,6 @@ function showFile() {
 }
 //this function for reset picture data 
 function restored(id_tag) {
-//    alert("HEllo");
-//    alert(document.getElementById(id_tag).value);
     dropArea.classList.remove("active");
     document.getElementById("imgUp").setAttribute("src", "");
     document.getElementById("imgUp").setAttribute("alt", "");

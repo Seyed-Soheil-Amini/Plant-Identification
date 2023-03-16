@@ -143,12 +143,12 @@
                 <!--               start upload image box-->
                 <div class="h-75 bg-light rounded p-4 p-sm-5 wow fadeInUp"
                      data-wow-delay="0.1s" style="align-self: center;" id="upload-image">
-                    <form action="#" method="GET" name="ImageUp" id="imgUp" onsubmit="event.preventDefault();"
+                    <form action="#" class="form-upload-image mx-auto" method="GET" name="ImageUp" onsubmit="event.preventDefault();"
                           enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="drag-area">
                             <button type="button" class="btn-outline-success fas
-                    fa-cloud-upload-alt" id="btn-upload">Browse files
+                    fa-cloud-upload-alt" id="btn-upload" onclick="simultaneously_clicked()">Browse files
                             </button>
                             <p>Drag your files here.</p>
                             <input type="file" id="input-image" hidden/>

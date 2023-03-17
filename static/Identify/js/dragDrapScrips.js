@@ -80,6 +80,7 @@ function upload_image_ajax(id_tag){
         if(xhr.readyState == 4 && xhr.status == 200){
             const identified_plant = xhr.responseText;
             const object_plant = JSON.parse(identified_plant);
+            console.log(object_plant);
             while(true){
                 if(counter==1000000000)break;
                 counter++;
@@ -100,7 +101,8 @@ function upload_image_ajax(id_tag){
 
 
 function show_result(object){
-        var image_address = "http://127.0.0.1:8000/" + object.image;
+
+        var image_address = "http://127.0.0.1:8000" + object.main_image;
         document.getElementById('title_identify').style.display = "none";
         document.getElementById('title-waiting').style.display = "none";
         document.getElementById('title-detected').style.display = "inline";

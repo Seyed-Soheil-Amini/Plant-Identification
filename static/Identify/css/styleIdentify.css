@@ -30,7 +30,6 @@ form p {
 
 .drag-area:active {
     border: 2px solid #348E38;
-    height:100%;
     width:100%;
 }
 

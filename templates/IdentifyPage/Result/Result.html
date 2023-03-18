@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <title>Document</title>
+</head>
+<body>
+<div class="w-100 h-25 bg-secondary" id="image-little-info">
+    <div class="w-100 h-75" id="img-info">
+        <div class="w-25 h-100" id="image">
+            <img src="{{$object.main_image}}">
+        </div>
+        <div class="w-75 h-100" id="little-info">
+            <!--                grid with row->2 fractions and column->2 fractions-->
+        </div>
+    </div>
+    <div class="w-100 h-25" id="items-info">
+        <div class="w-25"></div>
+        <div class="w-25"></div>
+        <div class="w-25"></div>
+        <div class="w-25"></div>
+    </div>
+</div>
+<div class="h-25 bg-warning" id="scientific-info">
+<!--    grid with 6 rows and 2 columns fractions-->
+</div>
+<div class="h-25 bg-danger" id="video">
+    <div class="w-100" style="height:90%;">
+        <video>
+
+        </video>
+    </div>
+    <div class="w-100" id="video-options" style="height:10%;">
+
+    </div>
+</div>
+<div class="h-25 bg-primary" id="more-images">
+    <div class="w-100 h-25">
+        <section class="float-content-end"></section>
+    </div>
+    <div class="" id="images">
+        <button id="left"></button>
+        <button id="right"></button>
+    </div>
+</div>
+</body>
+</html>
+{% endblock content %}

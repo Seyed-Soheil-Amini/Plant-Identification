@@ -90,7 +90,7 @@ function upload_image_ajax(id_tag){
     }
     upload_frame.classList.add('align-content-center');
     waiting();
-    xhr.open("get","http://127.0.0.1:8000/randomplant/",true);
+    xhr.open("get","http://127.0.0.1:8000/plants/randomplant/",true);
     xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xhr.send(img_object);
     }else{

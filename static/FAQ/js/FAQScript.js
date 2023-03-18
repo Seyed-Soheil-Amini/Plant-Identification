@@ -1,5 +1,4 @@
-alert("Hello");
-document.getElementById("detail-faq").style.display = "flex";
+document.getElementById("identify-faq").style.display = "flex";
 document.getElementById("button-faq-first").style.border = "solid darkgray";
 document.getElementById("button-faq-first").style.borderRadius = "1.2mm";
 document.getElementById("button-faq-second").style.border = "none";
@@ -20,7 +19,7 @@ document.getElementById("button-faq-third").style.border = "none";
 //}
 
 function IdentificationFAQ() {
-  document.getElementById("detail-faq").style.display = "flex";
+  document.getElementById("identify-faq").style.display = "flex";
   document.getElementById("explore-faq").style.display = "none";
   document.getElementById("growth-faq").style.display = "none";
   document.getElementById("button-faq-first").style.border = "solid darkgray";
@@ -30,8 +29,7 @@ function IdentificationFAQ() {
 }
 
 function ExploreFAQ() {
-alert("Hello");
-  document.getElementById("detail-faq").style.display = "none";
+  document.getElementById("identify-faq").style.display = "none";
   document.getElementById("explore-faq").style.display = "flex";
   document.getElementById("growth-faq").style.display = "none";
   document.getElementById("button-faq-second").style.border = "solid darkgray";
@@ -41,18 +39,13 @@ alert("Hello");
 }
 
 function GrowthFAQ() {
-  document.getElementById("detail-faq").style.display = "none";
+  document.getElementById("identify-faq").style.display = "none";
   document.getElementById("explore-faq").style.display = "none";
   document.getElementById("growth-faq").style.display = "flex";
   document.getElementById("button-faq-third").style.border = "solid darkgray";
   document.getElementById("button-faq-third").style.borderRadius = "1.2mm";
   document.getElementById("button-faq-first").style.border = "none";
   document.getElementById("button-faq-second").style.border = "none";
-}
-
-function answer_identify(part_name) {
-  if (part_name == `i-a-1`) {
-  }
 }
 
 // function hideBorder() {

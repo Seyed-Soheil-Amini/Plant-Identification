@@ -1,5 +1,7 @@
 from django.db import models
 
+from Plant_Identification import settings
+
 
 class Plant(models.Model):
     main_image = models.ImageField(upload_to='mainImages/', null=True, blank=True)
@@ -32,7 +34,7 @@ class Plant(models.Model):
 
 
 def get_file_path(instance, filename):
-    return '{0}/{1}'.format(instance.plant.name, filename)
+    return '{0}/{1}'.format(instance.plant.id, filename)
 
 
 class Image(models.Model):
@@ -43,6 +45,10 @@ class Image(models.Model):
         db_table = 'images'
         verbose_name = 'Image'
         verbose_name_plural = 'Images'
+
+    @property
+    def image_url(self):
+        return "{0}{1}".format(settings.MEDIA_URL, self.image.url)
 
 
 class Video(models.Model):

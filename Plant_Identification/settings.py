@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': 'plant_identification',
         'HOST': 'localhost',
         'USER': 'root',
-        'PASSWORD': 'soheilsql2003',
-        'PORT': '3306'
+        'PASSWORD': 'plantide',
+        'PORT': '3306',
     }
 }
 

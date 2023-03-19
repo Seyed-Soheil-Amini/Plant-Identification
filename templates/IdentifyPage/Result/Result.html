@@ -8,8 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="{% static 'Identify/css/styleIdentify.css' %}" rel="stylesheet">
-    <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-    <title>Document</title>
+    <title>Result</title>
 </head>
 <body>
 <div class="w-100 justify-content-center py-4" id="image-little-info">
@@ -31,7 +30,7 @@
                     <div class="cell-little-content">info 4</div>
                 </div>
                 <svg class="my-3" height="3" width="100%">
-                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
                 </svg>
                 <div class="grid-container-morph px-3">
                     <div class="cell-title-little py-2">morphology</div>
@@ -39,7 +38,7 @@
                 </div>
             </div>
             <svg class="my-3" height="3" width="100%">
-                <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+                <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
             </svg>
         </div>
         <div>
@@ -55,7 +54,7 @@
             </div>
         </div>
         <svg class="my-4" height="3" width="100%">
-            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
         </svg>
     </div>
 </div>
@@ -75,26 +74,63 @@
         <div class="cell-little-content py-3">item 11</div>
         <div class="cell-title">item 12</div>
     </div>
+    <svg class="mx-auto my-3" height="3" width="100%">
+        <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+    </svg>
 </div>
-<div class="h-25 bg-danger" id="video">
-    <div class="w-100" style="height:90%;">
-        <video>
-
-        </video>
+<div class="w-75-first-part mx-auto" id="video">
+    <div class="w-100 my-0" style="height:90%;">
+        <div class="my-auto mx-auto h-100 justify-content-center" style="width:85%;">
+            <video class="container-fluid h-100 p-3" style="width:100%;" controls>
+                <source src="{% static 'Identify/img/testVideo.mp4' %}" type="video/mp4">
+            </video>
+        </div>
     </div>
-    <div class="w-100" id="video-options" style="height:10%;">
-
+    <div class="w-100 my-4" id="video-caption">
+        <div style="height:15%">
+            <div class="h-100 grid-container-vid-cap px-4 my-auto">
+                <div class="cell-title py-3 px-2 text-center">CAPTION</div>
+                <div class="py-3 justify-content-between text-center align-items-center my-auto"
+                     style="border-width:5px;border-radius:3.5mm;background-color:silver;">
+                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-share"></i></a>
+                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-download"></i></a>
+                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-file"></i></a>
+                </div>
+            </div>
+        </div>
     </div>
+    <svg class="my-4" height="3" width="100%">
+        <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+    </svg>
 </div>
-<div class="h-25 bg-primary" id="more-images">
-    <div class="w-100 h-25">
-        <section class="float-content-end"></section>
+<div class="w-75-first-part mx-auto" id="more-images">
+    <div class="slideshow-container">
+        <div class="mySlides">
+<!--            <div class="numbertext">1 / 3</div>-->
+            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose1.jpg' %}" style="width:100%">
+            <div class="text">Caption Text</div>
+        </div>
+        <div class="mySlides">
+<!--            <div class="numbertext">2 / 3</div>-->
+            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose2.jpg' %}" style="width:100%">
+            <div class="text">Caption Two</div>
+        </div>
+        <div class="mySlides">
+<!--            <div class="numbertext">3 / 3</div>-->
+            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose3.jpg' %}" style="width:100%">
+            <div class="text">Caption Three</div>
+        </div>
+        <a class="prev btn-primary" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next btn-primary" onclick="plusSlides(1)">&#10095;</a>
     </div>
-    <div class="" id="images">
-        <button id="left"></button>
-        <button id="right"></button>
+    <br>
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 </div>
 </body>
+<script src="{% static 'Identify/js/slideShow.js' %}"></script>
 </html>
 {% endblock content %}

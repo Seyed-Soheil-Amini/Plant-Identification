@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load bootstrap5 %}
 {% block content %}
 <!DOCTYPE html>
 <html>
@@ -8,28 +7,74 @@
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="{% static 'Identify/css/styleIdentify.css' %}" rel="stylesheet">
     <!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
     <title>Document</title>
 </head>
 <body>
-<div class="w-100 h-25 bg-secondary" id="image-little-info">
-    <div class="w-100 h-75" id="img-info">
-        <div class="w-25 h-100" id="image">
-            <img src="{{$object.main_image}}">
+<div class="w-100 justify-content-center py-4" id="image-little-info">
+    <div class="w-75-first-part mx-auto" id="img-info">
+        <div class="row">
+            <div class="w-25 h-75 justify-content-center my-auto" id="image">
+                <img class="img-fluid image-result px-2 py-2 h-100 bg-secondary"
+                     src="{% static 'Explore/Image/rose.jpeg' %}">
+            </div>
+            <div class="w-75 my-3 h-50" id="little-info">
+                <div class="grid-container-little-info">
+                    <div class="cell-title-little py-1">title 1</div>
+                    <div class="cell-title-little py-1">title 2</div>
+                    <div class="cell-little-content">info 1</div>
+                    <div class="cell-little-content">info 2</div>
+                    <div class="cell-title-little py-1">title 3</div>
+                    <div class="cell-title-little py-1">title 4</div>
+                    <div class="cell-little-content">info 3</div>
+                    <div class="cell-little-content">info 4</div>
+                </div>
+                <svg class="my-3" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+                </svg>
+                <div class="grid-container-morph px-3">
+                    <div class="cell-title-little py-2">morphology</div>
+                    <div class="cell-little-content">information</div>
+                </div>
+            </div>
+            <svg class="my-3" height="3" width="100%">
+                <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+            </svg>
         </div>
-        <div class="w-75 h-100" id="little-info">
-            <!--                grid with row->2 fractions and column->2 fractions-->
+        <div>
+            <div class="grid-container-need">
+                <div class="cell-title-need">need 1</div>
+                <div class="cell-title-need">need 2</div>
+                <div class="cell-title-need">need 3</div>
+                <div class="cell-title-need">need 4</div>
+                <div class="cell-little-content">plant need 1</div>
+                <div class="cell-little-content">plant need 2</div>
+                <div class="cell-little-content">plant need 3</div>
+                <div class="cell-little-content">plant need 4</div>
+            </div>
         </div>
-    </div>
-    <div class="w-100 h-25" id="items-info">
-        <div class="w-25"></div>
-        <div class="w-25"></div>
-        <div class="w-25"></div>
-        <div class="w-25"></div>
+        <svg class="my-4" height="3" width="100%">
+            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:2"/>
+        </svg>
     </div>
 </div>
-<div class="h-25 bg-warning" id="scientific-info">
-<!--    grid with 6 rows and 2 columns fractions-->
+<div class="w-75-first-part mx-auto px-3 my-3 py-2"
+     id="scientific-info">
+    <div class="grid-container-items">
+        <div class="cell-little-content py-3">item 1</div>
+        <div class="cell-title">item 2</div>
+        <div class="cell-little-content py-3">item 3</div>
+        <div class="cell-title">item 4</div>
+        <div class="cell-little-content py-3">item 5</div>
+        <div class="cell-title">item 6</div>
+        <div class="cell-little-content py-3">item 7</div>
+        <div class="cell-title">item 8</div>
+        <div class="cell-little-content py-3">item 9</div>
+        <div class="cell-title">item 10</div>
+        <div class="cell-little-content py-3">item 11</div>
+        <div class="cell-title">item 12</div>
+    </div>
 </div>
 <div class="h-25 bg-danger" id="video">
     <div class="w-100" style="height:90%;">

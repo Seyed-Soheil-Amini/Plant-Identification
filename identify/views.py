@@ -7,3 +7,6 @@ class IdentifyView(TemplateView):
 
 def FirstResult(request):
     return render(request,'IdentifyPage/Result/FirstResult.html')
+
+class ResultWithDetail(TemplateView):
+    template_name = 'IdentifyPage/Result/Result.html'

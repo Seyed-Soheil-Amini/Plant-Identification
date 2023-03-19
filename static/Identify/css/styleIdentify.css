@@ -97,4 +97,80 @@ form p {
     height:100%;
 }
 
+.w-75-first-part{
+    width:90%;
+}
 
+.image-result{
+    border-style: solid;
+    border-width: 5px;
+    border-radius:2.5mm;
+}
+
+.grid-container-items{
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 1.0rem;
+}
+
+.cell-title{
+    direction:rtl;
+    color:white;
+    border: 3px black;
+    padding-top   : 1rem !important;
+    padding-bottom: 1rem !important;
+    border-radius: 3.5mm;
+    background-color:	rgb(45, 152, 27);
+}
+
+.grid-container-little-info{
+    direction:rtl;
+    display : grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr 1fr 1.5fr;
+    grid-gap: 0.95rem;
+}
+
+.cell-title-little{
+    direction:rtl;
+    width:60%;
+    color:white;
+    border: 3px black;
+    border-radius: 3.5mm;
+    background-color: green;
+}
+
+.cell-little-content{
+    direction:rtl;
+    color:dark;
+    border: 3px black;
+    border-radius: 3.5mm;
+    background-color: silver;
+}
+
+.grid-container-morph{
+    direction:rtl;
+    display : grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+    grid-gap: 0.95rem;
+}
+
+.grid-container-need{
+    direction:rtl;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 4fr;
+    grid-gap: 0.80rem;
+    grid-column-gap : 2rem;
+
+}
+
+.cell-title-need{
+    direction:rtl;
+    color:white;
+    border: 3px black;
+    border-radius: 3.5mm;
+    background-color: green;
+}

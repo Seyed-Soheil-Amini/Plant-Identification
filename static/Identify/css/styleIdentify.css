@@ -121,7 +121,7 @@ form p {
     padding-top   : 1rem !important;
     padding-bottom: 1rem !important;
     border-radius: 3.5mm;
-    background-color:	rgb(45, 152, 27);
+    background-color: #0F4229;
 }
 
 .grid-container-little-info{
@@ -138,7 +138,7 @@ form p {
     color:white;
     border: 3px black;
     border-radius: 3.5mm;
-    background-color: green;
+    background-color: #0F4229;
 }
 
 .cell-little-content{
@@ -146,7 +146,7 @@ form p {
     color:dark;
     border: 3px black;
     border-radius: 3.5mm;
-    background-color: silver;
+    background-color: white;
 }
 
 .grid-container-morph{
@@ -164,7 +164,6 @@ form p {
     grid-template-rows: 1fr 4fr;
     grid-gap: 0.80rem;
     grid-column-gap : 2rem;
-
 }
 
 .cell-title-need{
@@ -172,7 +171,7 @@ form p {
     color:white;
     border: 3px black;
     border-radius: 3.5mm;
-    background-color: green;
+    background-color: #0F4229;
 }
 
 .grid-container-vid-cap{

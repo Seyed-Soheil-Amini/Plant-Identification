@@ -8,126 +8,135 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <link href="{% static 'Identify/css/styleIdentify.css' %}" rel="stylesheet">
-    <title>Result</title>
+    <title>{{ plant_obj.name }}</title>
 </head>
 <body>
-<div class="w-100 justify-content-center py-4" id="image-little-info">
-    <div class="w-75-first-part mx-auto" id="img-info">
-        <div class="row">
-            <div class="w-25 h-75 justify-content-center my-auto" id="image">
-                <img class="img-fluid image-result px-2 py-2 h-100 bg-secondary"
-                     src="{% static 'Explore/Image/rose.jpeg' %}">
-            </div>
-            <div class="w-75 my-3 h-50" id="little-info">
-                <div class="grid-container-little-info">
-                    <div class="cell-title-little py-1">title 1</div>
-                    <div class="cell-title-little py-1">title 2</div>
-                    <div class="cell-little-content">info 1</div>
-                    <div class="cell-little-content">info 2</div>
-                    <div class="cell-title-little py-1">title 3</div>
-                    <div class="cell-title-little py-1">title 4</div>
-                    <div class="cell-little-content">info 3</div>
-                    <div class="cell-little-content">info 4</div>
+<div class="w-75-first-part mx-auto my-2" style="background-color:silver;">
+    <div class="w-100 justify-content-center py-4" id="image-little-info">
+        <div class="w-75-first-part mx-auto" id="img-info">
+            <div class="row">
+                <div class="w-25 h-75 justify-content-center my-auto" id="image">
+                    <img class="img-fluid image-result px-2 py-2 h-100 bg-secondary"
+                         src="http://127.0.0.1:8000/media/{{ plant_obj.main_image }}">
+                </div>
+                <div class="w-75 my-3 h-50" id="little-info">
+                    <div class="grid-container-little-info">
+                        <div class="px-3 cell-title-little py-1">Name</div>
+                        <div class="px-3 cell-title-little py-1">English name</div>
+                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.name }}</b></div>
+                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.english_name }}</b>
+                        </div>
+                        <div class="px-3 cell-title-little py-1">Scientific name</div>
+                        <div class="px-3 cell-title-little py-1">Family</div>
+                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.scientific_name }}</b></div>
+                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.family }}</b></div>
+                    </div>
+                    <svg class="my-3" height="3" width="100%">
+                        <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+                    </svg>
+                    <div class="grid-container-morph px-3">
+                        <div class="px-3 cell-title-little py-2">morphology</div>
+                        <div class="text-center text-dark cell-little-content py-3"><b>{{ plant_obj.morphology }}</b>
+                        </div>
+                    </div>
                 </div>
                 <svg class="my-3" height="3" width="100%">
-                    <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+                    <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
                 </svg>
-                <div class="grid-container-morph px-3">
-                    <div class="cell-title-little py-2">morphology</div>
-                    <div class="cell-little-content">information</div>
+            </div>
+            <div>
+                <div class="grid-container-need">
+                    <div class="text-center cell-title-need">Water needs</div>
+                    <div class="text-center cell-title-need">Soil needs</div>
+                    <div class="text-center cell-title-need">Salinity tolerance</div>
+                    <div class="text-center cell-title-need">Temperature tolerance</div>
+                    <div class="text-center text-dark cell-little-content"><b>{{ plant_obj.water_need }}</b></div>
+                    <div class="text-center text-dark cell-little-content"><b>{{ plant_obj.soil_need }}</b></div>
+                    <div class="text-center text-dark cell-little-content"><b>{{ plant_obj.salinity_tolerance }}</b>
+                    </div>
+                    <div class="text-center text-dark cell-little-content"><b>{{ plant_obj.temperature_tolerance }}</b>
+                    </div>
                 </div>
             </div>
-            <svg class="my-3" height="3" width="100%">
-                <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+            <svg class="my-4" height="3" width="100%">
+                <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
             </svg>
         </div>
-        <div>
-            <div class="grid-container-need">
-                <div class="cell-title-need">need 1</div>
-                <div class="cell-title-need">need 2</div>
-                <div class="cell-title-need">need 3</div>
-                <div class="cell-title-need">need 4</div>
-                <div class="cell-little-content">plant need 1</div>
-                <div class="cell-little-content">plant need 2</div>
-                <div class="cell-little-content">plant need 3</div>
-                <div class="cell-little-content">plant need 4</div>
+    </div>
+    <div class="w-75-first-part mx-auto px-3 my-3 py-2"
+         id="scientific-info">
+        <div class="grid-container-items">
+            <div class="cell-little-content py-3 text-center text-dark">item 1</div>
+            <div class="text-center cell-title">item 2</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.suitable_planting_location }}</strong></b></div>
+            <div class="text-center cell-title">Suitable Planting Location</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.suitable_planting_combination }}</strong></b></div>
+            <div class="text-center cell-title">Suitable Planting Combination</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.specific_characteristic }}</strong></b></div>
+            <div class="text-center cell-title">Specific Characteristic</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.more_information }}</strong></b></div>
+            <div class="text-center cell-title">More Information</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.references }}</strong></b></div>
+            <div class="text-center cell-title">References</div>
+        </div>
+        <svg class="mx-auto my-3" height="3" width="100%">
+            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+        </svg>
+    </div>
+    <div class="w-75-first-part mx-auto" id="video">
+        <div class="w-100 my-0" style="height:90%;">
+            <div class="my-auto mx-auto h-100 justify-content-center" style="width:85%;">
+                <video class="container-fluid h-100 p-3" style="width:100%;" controls>
+                    <source src="{% static 'Identify/img/testVideo.mp4' %}" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="w-100 my-4" id="video-caption">
+            <div style="height:15%">
+                <div class="h-100 grid-container-vid-cap px-4 my-auto">
+                    <div class="cell-title py-3 px-2 text-center">CAPTION</div>
+                    <div class="py-3 justify-content-between text-center align-items-center my-auto"
+                         style="border-width:5px;border-radius:3.5mm;background-color:white;">
+                        <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-share"></i></a>
+                        <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-download"></i></a>
+                        <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-file"></i></a>
+                    </div>
+                </div>
             </div>
         </div>
         <svg class="my-4" height="3" width="100%">
             <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
         </svg>
     </div>
-</div>
-<div class="w-75-first-part mx-auto px-3 my-3 py-2"
-     id="scientific-info">
-    <div class="grid-container-items">
-        <div class="cell-little-content py-3">item 1</div>
-        <div class="cell-title">item 2</div>
-        <div class="cell-little-content py-3">item 3</div>
-        <div class="cell-title">item 4</div>
-        <div class="cell-little-content py-3">item 5</div>
-        <div class="cell-title">item 6</div>
-        <div class="cell-little-content py-3">item 7</div>
-        <div class="cell-title">item 8</div>
-        <div class="cell-little-content py-3">item 9</div>
-        <div class="cell-title">item 10</div>
-        <div class="cell-little-content py-3">item 11</div>
-        <div class="cell-title">item 12</div>
-    </div>
-    <svg class="mx-auto my-3" height="3" width="100%">
-        <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
-    </svg>
-</div>
-<div class="w-75-first-part mx-auto" id="video">
-    <div class="w-100 my-0" style="height:90%;">
-        <div class="my-auto mx-auto h-100 justify-content-center" style="width:85%;">
-            <video class="container-fluid h-100 p-3" style="width:100%;" controls>
-                <source src="{% static 'Identify/img/testVideo.mp4' %}" type="video/mp4">
-            </video>
-        </div>
-    </div>
-    <div class="w-100 my-4" id="video-caption">
-        <div style="height:15%">
-            <div class="h-100 grid-container-vid-cap px-4 my-auto">
-                <div class="cell-title py-3 px-2 text-center">CAPTION</div>
-                <div class="py-3 justify-content-between text-center align-items-center my-auto"
-                     style="border-width:5px;border-radius:3.5mm;background-color:silver;">
-                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-share"></i></a>
-                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-download"></i></a>
-                    <a class="btn btn-link text-primary rounded" href=""><i class="fas fa-file"></i></a>
-                </div>
+    <div class="w-75-first-part mx-auto" id="more-images">
+        <div class="slideshow-container">
+            <div class="mySlides">
+                <!--            <div class="numbertext">1 / 3</div>-->
+                <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose1.jpg' %}"
+                     style="width:100%">
+                <div class="text">Caption Text</div>
             </div>
+            <div class="mySlides">
+                <!--            <div class="numbertext">2 / 3</div>-->
+                <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose2.jpg' %}"
+                     style="width:100%">
+                <div class="text">Caption Two</div>
+            </div>
+            <div class="mySlides">
+                <!--            <div class="numbertext">3 / 3</div>-->
+                <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose3.jpg' %}"
+                     style="width:100%">
+                <div class="text">Caption Three</div>
+            </div>
+            <a class="prev btn-primary" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next btn-primary" onclick="plusSlides(1)">&#10095;</a>
         </div>
-    </div>
-    <svg class="my-4" height="3" width="100%">
-        <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
-    </svg>
-</div>
-<div class="w-75-first-part mx-auto" id="more-images">
-    <div class="slideshow-container">
-        <div class="mySlides">
-<!--            <div class="numbertext">1 / 3</div>-->
-            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose1.jpg' %}" style="width:100%">
-            <div class="text">Caption Text</div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
         </div>
-        <div class="mySlides">
-<!--            <div class="numbertext">2 / 3</div>-->
-            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose2.jpg' %}" style="width:100%">
-            <div class="text">Caption Two</div>
-        </div>
-        <div class="mySlides">
-<!--            <div class="numbertext">3 / 3</div>-->
-            <img class="img-fluid h-75 my-auto pt-3" src="{% static 'Explore/Image/rose3.jpg' %}" style="width:100%">
-            <div class="text">Caption Three</div>
-        </div>
-        <a class="prev btn-primary" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next btn-primary" onclick="plusSlides(1)">&#10095;</a>
-    </div>
-    <br>
-    <div style="text-align:center">
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 </div>
 </body>

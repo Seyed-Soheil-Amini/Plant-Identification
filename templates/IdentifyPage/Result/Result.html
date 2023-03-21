@@ -15,33 +15,40 @@
     <div class="w-100 justify-content-center py-4" id="image-little-info">
         <div class="w-75-first-part mx-auto" id="img-info">
             <div class="row">
-                <div class="w-25 h-75 justify-content-center my-auto" id="image">
+                <div class="w-50 mx-auto justify-content-center my-auto " id="image">
                     <img class="img-fluid image-result px-2 py-2 h-100 bg-secondary"
                          src="http://127.0.0.1:8000/media/{{ plant_obj.main_image }}">
                 </div>
-                <div class="w-75 my-3 h-50" id="little-info">
-                    <div class="grid-container-little-info">
-                        <div class="px-3 cell-title-little py-1">Name</div>
-                        <div class="px-3 cell-title-little py-1">English name</div>
-                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.name }}</b></div>
-                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.english_name }}</b>
+                <div class="w-75 my-3 h-50 mx-auto" id="little-info">
+                    <div class="grid-container-little-info py-5 my-auto">
+                        <div class="w-100 column mx-auto my-auto justify-content-middle">
+                            <div class="cell-title-little w-75 text-center px-3 my-2 py-1">Name</div>
+                            <div class="text-center cell-little-content text-dark"><b>{{ plant_obj.name }}</b></div>
                         </div>
-                        <div class="px-3 cell-title-little py-1">Scientific name</div>
-                        <div class="px-3 cell-title-little py-1">Family</div>
-                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.scientific_name }}</b></div>
-                        <div class="text-center cell-little-content text-dark bold"><b>{{ plant_obj.family }}</b></div>
+                        <div class="w-100 column mx-auto my-auto justify-content-middle">
+                            <div class="cell-title-little w-75 text-center px-3 my-2 py-1">English name</div>
+                            <div class="text-center cell-little-content text-dark"><b>{{ plant_obj.english_name }}</b></div>
+                        </div>
+                        <div class="w-100 column mx-auto my-auto justify-content-middle">
+                            <div class="cell-title-little w-75 text-center px-3 my-2 py-1">Scientific name</div>
+                            <div class="text-center cell-little-content text-dark"><b>{{ plant_obj.scientific_name }}</b></div>
+                        </div>
+                        <div class="w-100 column mx-auto my-auto justify-content-middle">
+                            <div class="cell-title-little w-75 text-center px-3 my-2 py-1">Family</div>
+                            <div class="text-center cell-little-content text-dark"><b>{{ plant_obj.family }}</b></div>
+                        </div>
                     </div>
                     <svg class="my-3" height="3" width="100%">
-                        <line x1="0" y1="0" x2="1000" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+                        <line x1="0" y1="0" x2="1000" y2="0" style="stroke:white;stroke-width:5"/>
                     </svg>
-                    <div class="grid-container-morph px-3">
-                        <div class="px-3 cell-title-little py-2">morphology</div>
-                        <div class="text-center text-dark cell-little-content py-3"><b>{{ plant_obj.morphology }}</b>
+                    <div class="col px-3">
+                        <div class="px-3 cell-title-morph py-2 my-3">morphology</div>
+                        <div class="text-center text-dark cell-morph-content py-3"><b>{{ plant_obj.morphology }}</b>
                         </div>
                     </div>
                 </div>
                 <svg class="my-3" height="3" width="100%">
-                    <line x1="0" y1="0" x2="1200" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+                    <line x1="0" y1="0" x2="1200" y2="0" style="stroke:white;stroke-width:5"/>
                 </svg>
             </div>
             <div>
@@ -59,34 +66,46 @@
                 </div>
             </div>
             <svg class="my-4" height="3" width="100%">
-                <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+                <line x1="0" y1="0" x2="1500" y2="0" style="stroke:white;stroke-width:5"/>
             </svg>
         </div>
     </div>
     <div class="w-75-first-part mx-auto px-3 my-3 py-2"
          id="scientific-info">
         <div class="grid-container-items">
-            <div class="cell-little-content py-3 text-center text-dark">item 1</div>
-            <div class="text-center cell-title">item 2</div>
-            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.suitable_planting_location }}</strong></b></div>
+            <div class="grid-container-priority cell-little-content py-3 text-center text-dark mx-1 px-3">
+                <div class="w-100 text-center text-light mx-auto my-auto bg-dark grid-cell-priority"> First Priority </div>
+                <div class="w-100 text-center text-light mx-auto my-auto bg-dark grid-cell-priority">Second Priority </div>
+                <div class="w-100 text-center text-light mx-auto my-auto bg-dark grid-cell-priority">Third Priority</div>
+                <div class=""><b>{{ plant_obj.first_planting_priority }}</b></div>
+                <div><b>{{ plant_obj.second_planting_priority }}</b></div>
+                <div><b>{{ plant_obj.third_planting_priority }}</b></div>
+            </div>
+            <div class="text-center cell-title">Planting Priority</div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>
+                {{ plant_obj.suitable_planting_location }}</strong></b></div>
             <div class="text-center cell-title">Suitable Planting Location</div>
-            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.suitable_planting_combination }}</strong></b></div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>
+                {{ plant_obj.suitable_planting_combination }}</strong></b></div>
             <div class="text-center cell-title">Suitable Planting Combination</div>
-            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.specific_characteristic }}</strong></b></div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>
+                {{ plant_obj.specific_characteristic }}</strong></b></div>
             <div class="text-center cell-title">Specific Characteristic</div>
-            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.more_information }}</strong></b></div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>
+                {{ plant_obj.more_information }}</strong></b></div>
             <div class="text-center cell-title">More Information</div>
-            <div class="cell-little-content py-3 text-center text-dark"><b><strong>{{ plant_obj.references }}</strong></b></div>
+            <div class="cell-little-content py-3 text-center text-dark"><b><strong>
+                {{ plant_obj.references }}</strong></b></div>
             <div class="text-center cell-title">References</div>
         </div>
         <svg class="mx-auto my-3" height="3" width="100%">
-            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:white;stroke-width:5"/>
         </svg>
     </div>
     <div class="w-75-first-part mx-auto" id="video">
-        <div class="w-100 my-0" style="height:90%;">
-            <div class="my-auto mx-auto h-100 justify-content-center" style="width:85%;">
-                <video class="container-fluid h-100 p-3" style="width:100%;" controls>
+        <div class="w-100 my-0" style="height:fit-content;">
+            <div class="my-auto mx-auto justify-content-center" style="width:85%;">
+                <video class="container-fluid h-100 p-3 my-auto" style="width:100%;" controls>
                     <source src="{% static 'Identify/img/testVideo.mp4' %}" type="video/mp4">
                 </video>
             </div>
@@ -105,7 +124,7 @@
             </div>
         </div>
         <svg class="my-4" height="3" width="100%">
-            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:rgb(192,192,192);stroke-width:5"/>
+            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:white;stroke-width:5"/>
         </svg>
     </div>
     <div class="w-75-first-part mx-auto" id="more-images">

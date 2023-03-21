@@ -128,17 +128,23 @@ form p {
     direction:rtl;
     display : grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1.5fr 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr;
     grid-gap: 0.95rem;
+    grid-row-gap:2.5rem;
 }
 
 .cell-title-little{
     direction:rtl;
-    width:60%;
+    margin-right:auto;
+    margin-left:auto;
+    font-size:0.9rem;
+    width:100%;
+    max-width:100%;
     color:white;
     border: 3px black;
     border-radius: 3.5mm;
     background-color: #0F4229;
+    text-align:center;
 }
 
 .cell-little-content{
@@ -147,6 +153,64 @@ form p {
     border: 3px black;
     border-radius: 3.5mm;
     background-color: white;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    height:80%;
+    text-align: center;
+}
+
+.cell-title-morph{
+    direction:rtl;
+    margin-right:auto;
+    margin-left:auto;
+    font-size:0.9rem;
+    width:50%;
+    max-width:100%;
+    height:fit-content;
+    color:white;
+    border: 3px black;
+    border-radius: 3.5mm;
+    background-color: #0F4229;
+    text-align:center;
+}
+
+.cell-morph-content{
+    direction:rtl;
+    color:dark;
+    border: 3px black;
+    border-radius: 3.5mm;
+    background-color: white;
+    width:100%;
+    margin-right:auto;
+    margin-left:auto;
+    height:auto;
+    text-align: center;
+}
+
+@media (max-width:500px){
+     .cell-little-content{
+        direction:rtl;
+        color:dark;
+        border: 3px black;
+        border-radius: 3.5mm;
+        background-color: white;
+        width:100%;
+        margin-right:auto;
+        margin-left:auto;
+        height:80%;
+        max-height:100%;
+        display:flex;
+        flex-direction:column;
+    }
+    .grid-container-little-info{
+        display:flex;
+        flex-direction:column;
+    }
+    .cell-title-little{
+        display:flex;
+        flex-direction:column;
+    }
 }
 
 .grid-container-morph{
@@ -155,6 +219,7 @@ form p {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
     grid-gap: 0.95rem;
+    grid-row-gap:0.1rem;
 }
 
 .grid-container-need{
@@ -181,6 +246,20 @@ form p {
     grid-template-rows: 1fr;
     grid-gap: 0.80rem;
     grid-column-gap : 2.5rem;
+}
+
+.grid-container-priority{
+    direction : rtl;
+    display : grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 0.90rem;
+}
+
+.grid-cell-priority{
+    border-style : hidden;
+    border-width : 5px;
+    border-radius: 2mm;
 }
 
 * {box-sizing:border-box}

@@ -377,6 +377,13 @@ h-80-more-images{
     column-gap: 1.5vw;
 }
 
+.image-width{
+    width: 60%;
+}
+
+.div-back-btn{
+    width:25%;
+}
 @media (max-width:800px){
      .cell-little-content{
         direction:rtl;
@@ -453,5 +460,8 @@ h-80-more-images{
 
     .cell-title{
         font-size:2.4vw;
+    }
+    .image-width{
+        width: 75%;
     }
 }

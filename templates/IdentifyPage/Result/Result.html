@@ -15,7 +15,7 @@
     <div class="w-100 justify-content-center py-4" id="image-little-info">
         <div class="w-75-first-part mx-auto" id="img-info">
             <div class="row">
-                <div class="w-50 mx-auto justify-content-center my-auto " id="image">
+                <div class="image-width mx-auto justify-content-center my-auto" id="image">
                     <img class="img-fluid image-result px-2 py-2 h-100 bg-secondary"
                          src="http://127.0.0.1:8000/media/{{ plant_obj.main_image }}">
                 </div>
@@ -81,7 +81,7 @@
         </div>
         <div class="w-75-first-part mx-auto px-3 my-3 py-2"
              id="scientific-info">
-            <div class="grid-container-items">
+            <div class="grid-container-items mb-5">
                 <div class="grid-container-items-no-res">
                     <div class="inner-div-items-title bg-dark cell-little-content">
                         <div class="h-50 cell-title my-3">
@@ -104,9 +104,9 @@
                             </div>
                         </div>
                         <div class="row-items-before-res justify-content-around mb-4" >
-                            <div class="py-3"><b>{{ plant_obj.first_planting_priority }}</b></div>
-                            <div class="py-3"><b>{{ plant_obj.second_planting_priority }}</b></div>
-                            <div class="py-3"><b>{{ plant_obj.third_planting_priority }}</b></div>
+                            <div class="py-3 w-100"><b>{{ plant_obj.first_planting_priority }}</b></div>
+                            <div class="py-3 w-100"><b>{{ plant_obj.second_planting_priority }}</b></div>
+                            <div class="py-3 w-100"><b>{{ plant_obj.third_planting_priority }}</b></div>
                         </div>
                     </div>
                 </div>
@@ -227,6 +227,12 @@
             </div>
         </div>
     </div>
+    <div class="w-100 mx-auto my-auto">
+        <div class="div-back-btn mx-auto my-auto" style="width:fit-content;">
+            <button class="btn btn-success text-light my-2 py-2 px-4" onclick="history.back();">Back</button>
+        </div>
+    </div>
+</div>
 </body>
 <script src="{% static 'Identify/js/slideShow.js' %}"></script>
 </html>

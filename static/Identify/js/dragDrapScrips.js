@@ -101,7 +101,7 @@ function upload_image_ajax(id_tag){
 
 
 function show_result(object){
-
+        var link_detail = "http://127.0.0.1:8000/identify/detailResult/" + object.id;
         var image_address = "http://127.0.0.1:8000" + object.main_image;
         document.getElementById('title_identify').style.display = "none";
         document.getElementById('title-waiting').style.display = "none";
@@ -111,6 +111,7 @@ function show_result(object){
         document.getElementById('result-image').src = image_address;
         document.getElementById('result-name').innerHTML = object.name;
         document.getElementById('result-morph').innerHTML = object.morphology;
+        document.getElementById('link-know-more').setAttribute("href", link_detail);
         document.getElementById('btn-back').style.display = "block";
 }
 

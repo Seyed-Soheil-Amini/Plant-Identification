@@ -3,3 +3,4 @@ venv/
 media/
 **/__pycache__/
 *.pyc
+Plant_Identification/local_settings.py

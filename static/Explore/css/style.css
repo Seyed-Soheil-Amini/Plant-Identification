@@ -1,9 +1,17 @@
+@font-face {
+    font-family: sahel;
+    src: url("../../font/Sahel.woff");
+}
+
 body {
     background: url(../Image/bg.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: sahel, serif;
+    /*height: 100vh;*/
+    /*width: 100vw;*/
 }
 
 
@@ -126,8 +134,8 @@ body {
 }
 
 .myCard {
-    height: 300px;
-    backdrop-filter: blur(10px);
+    /*height: auto;*/
+    backdrop-filter: blur(13px);
     -webkit-backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 5px;
@@ -141,30 +149,40 @@ body {
     box-shadow: 0px 0px 8px 0.003mm rgba(255, 255, 255, 0.7);
 }
 
-@media (max-width: 992px){
-    .myCard {
-        height: 350px;
-    }
-}
-
 
 
 .myImg{
-    width: auto;
-    height: 50%;
+    max-width: 90%;
+    max-height: 50%;
     box-shadow: 0px 0px 5px 0.002mm #000000;
     border-radius: 3px;
 }
 
 .flower-name{
-    font-size: 2rem;
-    color: #fafdfb;
+    font-size: 1.6rem;
+    text-align: center;
+    height: fit-content;
+    font-family: sahel;
+    color: #FFFFFF;
+    text-shadow: 0px 2px 4px #000000;
+    margin: 0;
+    /*max-height: 2.5rem;*/
 }
 .flower-info{
-    font-size: 1rem;
-    color: #fafdfb;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    direction: rtl;
+    line-height: normal;
+    text-shadow: 0px 0px 5px #000000;
+
 }
 
+@media (max-width: 768px) and (min-width: 576px){
+    .myPx-sm {
+        padding-right: 7rem !important;
+        padding-left : 7rem !important
+    }
+}
 
 
 

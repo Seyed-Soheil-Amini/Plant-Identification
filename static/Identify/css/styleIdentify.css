@@ -1,3 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+@font-face {
+    font-family: sahel;
+    src: url("../../font/Sahel.woff");
+}
+body {
+    font-family: sahel;
+}
 .page-header {
     background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/focusPhone2.jpg) center center no-repeat;
     background-size: cover;
@@ -14,10 +23,9 @@ form p {
     height     : 100%;
     text-align : center;
     line-height: 170px;
-    color      : rgba(15, 66, 41, .6) font-family: Arial;
+    color      : rgba(15, 66, 41, .6);
+    font-family: Arial;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
 .drag-area {
     border         : 2px dashed #072A19;
@@ -196,7 +204,6 @@ form p {
 
 .cell-morph-content{
     direction:rtl;
-    color:dark;
     border: 3px black;
     border-radius: 3.5mm;
     background-color: white;

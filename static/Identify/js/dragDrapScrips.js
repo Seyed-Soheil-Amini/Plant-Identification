@@ -1,5 +1,5 @@
 //selecting all required elements
-const dropArea = document.querySelector(".drag-area"),
+let dropArea = document.querySelector(".drag-area"),
     dragText = dropArea.querySelector("p"),
     button = dropArea.querySelector("button"),
     input = dropArea.querySelector("input");

@@ -50,7 +50,7 @@ fetch(location.origin + "/plants/explore").then((res) => {
 function createCards() {
     for (let i = 0; i < plants.length; i++) {
         let p = plants[i]
-        cards[i] = createCard(p.name, p.english_name, p.scientific_name, p.family, p.main_image)
+        cards[i] = createCard(p.id ,p.name, p.english_name, p.scientific_name, p.family, p.main_image)
     }
 }
 
@@ -60,14 +60,14 @@ function scrollCheck() {
     }
 }
 
-function createCard(name, enName, sciName, family, img) {
+function createCard(id , name, enName, sciName, family, img) {
     if (enName.includes(",")) {
         enName = enName.substring(0, enName.indexOf(","))
     }
     const col = document.createElement("div");
     col.className = "col myCol"
     col.innerHTML = `
-         <div onclick="location.href=''" class="py-2 px-3 myCard h-100">
+         <div onclick="location.href='${location.origin + "/identify/detailResult/" + id}'" class="py-2 px-3 myCard h-100">
             <div class="container-fluid mt-2 h-100">
 <!--            <div class="row h-50 mt-2" style="width: fit-content">-->
             <img src="${location.origin + img}" class="myImg mx-auto px-0">

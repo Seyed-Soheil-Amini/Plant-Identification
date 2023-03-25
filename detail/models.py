@@ -3,8 +3,13 @@ from django.db import models
 from Plant_Identification import settings
 
 
+def get_file_path(instance, filename):
+    return '{0}/{1}'.format(instance.plant.id, filename)
+
+
 class Plant(models.Model):
     main_image = models.ImageField(upload_to='mainImages/', null=True, blank=True)
+    video = models.FileField(upload_to=get_file_path, null=True, blank=True)
     name = models.CharField(max_length=100)
     english_name = models.CharField(max_length=100, null=True, blank=True)
     scientific_name = models.CharField(max_length=100, null=True, blank=True)
@@ -33,10 +38,6 @@ class Plant(models.Model):
         return self.name
 
 
-def get_file_path(instance, filename):
-    return '{0}/{1}'.format(instance.plant.id, filename)
-
-
 class Image(models.Model):
     image = models.ImageField(upload_to=get_file_path)
     plant = models.ForeignKey('Plant', on_delete=models.CASCADE)
@@ -49,13 +50,3 @@ class Image(models.Model):
     @property
     def image_url(self):
         return "{0}{1}".format(settings.MEDIA_URL, self.image.url)
-
-
-class Video(models.Model):
-    video = models.FileField(upload_to=get_file_path)
-    plant = models.ForeignKey('Plant', on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'videos'
-        verbose_name = 'Video'
-        verbose_name_plural = 'Videos'

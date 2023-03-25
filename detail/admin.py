@@ -1,15 +1,10 @@
 from django.contrib import admin
 
-from .models import Plant, Image, Video
+from .models import Plant, Image
 
 
 class ImageInlineAdmin(admin.StackedInline):
     model = Image
-    extra = 0
-
-
-class VideoInlineAdmin(admin.StackedInline):
-    model = Video
     extra = 0
 
 
@@ -19,4 +14,4 @@ class PlantAdmin(admin.ModelAdmin):
     list_filter = ['name', 'scientific_name']
     list_editable = ['english_name', 'scientific_name', 'family']
     search_fields = ('name', 'english_name', 'family', 'scientific_name', 'morphology')
-    inlines = [ImageInlineAdmin, VideoInlineAdmin]
+    inlines = [ImageInlineAdmin]

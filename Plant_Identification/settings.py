@@ -11,12 +11,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
-<<<<<<< HEAD
+
 from .local_setting import *
 
-=======
-from .local_settings import *
->>>>>>> 15f09b244406f2665f9f940e6f7f96b0134ffcd1
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,11 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 15f09b244406f2665f9f940e6f7f96b0134ffcd1
 
 # Application definition
 
@@ -77,7 +69,6 @@ WSGI_APPLICATION = 'Plant_Identification.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
 
 
 # Password validation

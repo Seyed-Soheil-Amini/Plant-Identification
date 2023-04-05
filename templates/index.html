@@ -2,50 +2,49 @@
 {% load static %}
 {% block content %}
 
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Plant Check</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Plant Check</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+</head>
 
-    <body>
-    <!-- Spinner Start -->
-    <div id="spinner" class="show bg-white position-fixed translate-middle
+<body>
+<!-- Spinner Start -->
+<div id="spinner" class="show bg-white position-fixed translate-middle
             w-100 vh-100 top-50 start-50 d-flex align-items-center
             justify-content-center">
-        <div class="spinner-border text-primary" role="status" style="width:
+    <div class="spinner-border text-primary" role="status" style="width:
                 3rem; height: 3rem;"></div>
-    </div>
-    <!-- Spinner End -->
+</div>
+<!-- Spinner End -->
 
 
-    <!-- Carousel Start -->
-    <div class="container-fluid p-0 wow fadeIn"
-         data-wow-delay="0.1s">
-        <div id="header-carousel" class="carousel slide"
-             data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="w-100" src="{% static 'img/HomeBack.webp' %}"
-                         alt="Image">
-                    <div class="carousel-caption">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <h1 class="display-1 text-white
+<!-- Carousel Start -->
+<div class="container-fluid p-0 wow fadeIn"
+     data-wow-delay="0.1s">
+    <div id="header-carousel" class="carousel slide"
+         data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="w-100" src="{% static 'img/HomeBack.webp' %}"
+                     alt="Image">
+                <div class="carousel-caption">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-8">
+                                <h1 class="display-1 text-white
                                             mb-5 animated slideInDown"
-                                        style="font-family:'Lucida
+                                    style="font-family:'Lucida
                                             Sans', 'Lucida Sans
                                             Regular'">Identify plants
-                                        easily and quickly</h1>
-                                    <a href="" class="btn
+                                    easily and quickly</h1>
+                                <a href="" class="btn
                                             btn-primary py-sm-3
                                             px-sm-4">Explore More</a>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -53,495 +52,566 @@
             </div>
         </div>
     </div>
-    <!-- Carousel End; -->
+</div>
+<!-- Carousel End; -->
 
 
-    <!-- Top Feature Start -->
-    <div class="container-fluid top-feature py-5 pt-lg-0">
-        <div class="container py-5 pt-lg-0">
-            <div class="row gx-0">
-                <div class="col-lg-4 wow fadeIn"
-                     data-wow-delay="0.1s">
-                    <div class="bg-white shadow d-flex
+<!-- Top Feature Start -->
+<div class="container-fluid top-feature py-5 pt-lg-0">
+    <div class="container py-5 pt-lg-0">
+        <div class="row gx-0">
+            <div class="col-lg-4 wow fadeIn"
+                 data-wow-delay="0.1s">
+                <div class="bg-white shadow d-flex
                             align-items-center h-100 px-5"
-                         style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square
+                     style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square
                                     rounded-circle bg-light">
-                                <i class="fa fa-check text-primary"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h4>Easily</h4>
-                                <span>You can quickly identify the
+                            <i class="fa fa-check text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Easily</h4>
+                            <span>You can quickly identify the
                                         plant you want</span>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 wow fadeIn"
-                     data-wow-delay="0.3s">
-                    <div class="bg-white shadow d-flex
+            </div>
+            <div class="col-lg-4 wow fadeIn"
+                 data-wow-delay="0.3s">
+                <div class="bg-white shadow d-flex
                             align-items-center h-100 px-5"
-                         style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square
+                     style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square
                                     rounded-circle bg-light">
-                                <i class="fa fa-eye text-primary"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h4>Comprehensiveness</h4>
-                                <span>Identifying all kinds of
+                            <i class="fa fa-eye text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Comprehensiveness</h4>
+                            <span>Identifying all kinds of
                                         flowers and plants </span>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 wow fadeIn"
-                     data-wow-delay="0.5s">
-                    <div class="bg-white shadow d-flex
+            </div>
+            <div class="col-lg-4 wow fadeIn"
+                 data-wow-delay="0.5s">
+                <div class="bg-white shadow d-flex
                             align-items-center h-100 px-5"
-                         style="min-height: 160px;">
-                        <div class="d-flex">
-                            <div class="flex-shrink-0 btn-lg-square
+                     style="min-height: 160px;">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 btn-lg-square
                                     rounded-circle bg-light">
-                                <i class="fa fa-users text-primary"></i>
-                            </div>
-                            <div class="ps-3">
-                                <h4>Help in growing</h4>
-                                <span>Online support and guidance in
+                            <i class="fa fa-users text-primary"></i>
+                        </div>
+                        <div class="ps-3">
+                            <h4>Help in growing</h4>
+                            <span>Online support and guidance in
                                         growing and maintaining</span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Top Feature End -->
+</div>
+<!-- Top Feature End -->
 
 
-    <!-- About Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-3 col-md-5 wow fadeInUp"
-                     data-wow-delay="0.1s">
-                    <img class="img-fluid rounded"
-                         data-wow-delay="0.1s"
-                         src="{% static 'img/focusPhone.jpg' %}">
-                </div>
-                <div class="col-lg-6 col-md-7 wow fadeInUp"
-                     data-wow-delay="0.3s">
-                    <!-- <h1 class="display-1 text-primary mb-0">25</h1> -->
-                    <!-- <p class="text-primary mb-4">Year of Experience</p> -->
-                    <h1 class="display-5 mb-4">We Identify Your
-                        Plant In A Flash</h1>
-                    <p class="mb-4">Just send us the photo of the
-                        plant you don't know and get all its
-                        information as quickly as possible</p>
-                    <!-- <a class="btn btn-primary py-3 px-4" href="">Explore More</a> -->
-                </div>
-                <div class="col-lg-3 col-md-12 wow fadeInUp"
-                     data-wow-delay="0.5s">
-                    <div class="row g-5 position-relative top-0">
-                        <div class="col-12 col-sm-6 col-lg-12">
-                            <div class="border-start ps-5
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-3 col-md-5 wow fadeInUp"
+                 data-wow-delay="0.1s">
+                <img class="img-fluid rounded"
+                     data-wow-delay="0.1s"
+                     src="{% static 'img/focusPhone.jpg' %}">
+            </div>
+            <div class="col-lg-6 col-md-7 wow fadeInUp"
+                 data-wow-delay="0.3s">
+                <!-- <h1 class="display-1 text-primary mb-0">25</h1> -->
+                <!-- <p class="text-primary mb-4">Year of Experience</p> -->
+                <h1 class="display-5 mb-4">We Identify Your
+                    Plant In A Flash</h1>
+                <p class="mb-4">Just send us the photo of the
+                    plant you don't know and get all its
+                    information as quickly as possible</p>
+                <!-- <a class="btn btn-primary py-3 px-4" href="">Explore More</a> -->
+            </div>
+            <div class="col-lg-3 col-md-12 wow fadeInUp"
+                 data-wow-delay="0.5s">
+                <div class="row g-5 position-relative top-0">
+                    <div class="col-12 col-sm-6 col-lg-12">
+                        <div class="border-start ps-5
                                     position-relative top-0">
-                                <i class="fa fa-map-marker-alt fa-3x
+                            <i class="fa fa-map-marker-alt fa-3x
                                         text-primary mb-3"></i>
-                                <h4 class="mb-3">For All Users</h4>
-                                <span>Can be used by everyone around
+                            <h4 class="mb-3">For All Users</h4>
+                            <span>Can be used by everyone around
                                         the world</span>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- About End -->
+</div>
+<!-- About End -->
 
-    <!-- Features Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="row g-5 align-items-center">
-                <div class="col-lg-6 wow fadeInUp"
-                     data-wow-delay="0.1s">
-                    <p class="fs-5 fw-bold text-primary">Why
-                        Choosing Us!</p>
-                    <h1 class="display-5 mb-4">Few Reasons Why
-                        People Choosing Us!</h1>
-                    <p class="mb-4">
-                    <ul>
-                        <li>Updating the website and
-                            applicationsa
-                        </li>
-                        <li>Using the most modern applied
-                            algorithms in industry and
-                            artificial intelligence
-                        </li>
-                        <li>Using the most secure encryption
-                            algorithms
-                        </li>
-                        <li>Young yet experienced developers</li>
-                    </ul>
-                    </p>
-                    <a class="btn btn-primary py-3 px-4" href="">Explore
-                        More</a>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row g-4 align-items-center">
-                        <div class="col-md-6">
-                            <div class="row g-4">
-                                <div class="col-12 wow fadeIn"
-                                     data-wow-delay="0.3s">
-                                    <div class="text-center rounded
+<!-- Features Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeInUp"
+                 data-wow-delay="0.1s">
+                <p class="fs-5 fw-bold text-primary">Why
+                    Choosing Us!</p>
+                <h1 class="display-5 mb-4">Few Reasons Why
+                    People Choosing Us!</h1>
+                <p class="mb-4">
+                <ul>
+                    <li>Updating the website and
+                        applicationsa
+                    </li>
+                    <li>Using the most modern applied
+                        algorithms in industry and
+                        artificial intelligence
+                    </li>
+                    <li>Using the most secure encryption
+                        algorithms
+                    </li>
+                    <li>Young yet experienced developers</li>
+                </ul>
+                </p>
+                <a class="btn btn-primary py-3 px-4" href="">Explore
+                    More</a>
+            </div>
+            <div class="col-lg-6">
+                <div class="row g-4 align-items-center">
+                    <div class="col-md-6">
+                        <div class="row g-4">
+                            <div class="col-12 wow fadeIn"
+                                 data-wow-delay="0.3s">
+                                <div class="text-center rounded
                                             py-5 px-4"
-                                         style="box-shadow: 0 0 45px
+                                     style="box-shadow: 0 0 45px
                                             rgba(0,0,0,.08);">
-                                        <div class="btn-square
+                                    <div class="btn-square
                                                 bg-light rounded-circle
                                                 mx-auto mb-4"
-                                             style="width: 90px;
+                                         style="width: 90px;
                                                 height: 90px;">
-                                            <i class="fa fa-check
+                                        <i class="fa fa-check
                                                     fa-3x text-primary"></i>
-                                        </div>
-                                        <h4 class="mb-0">100%
-                                            Satisfaction</h4>
                                     </div>
+                                    <h4 class="mb-0">100%
+                                        Satisfaction</h4>
                                 </div>
-                                <div class="col-12 wow fadeIn"
-                                     data-wow-delay="0.5s">
-                                    <div class="text-center rounded
+                            </div>
+                            <div class="col-12 wow fadeIn"
+                                 data-wow-delay="0.5s">
+                                <div class="text-center rounded
                                             py-5 px-4"
-                                         style="box-shadow: 0 0 45px
+                                     style="box-shadow: 0 0 45px
                                             rgba(0,0,0,.08);">
-                                        <div class="btn-square
+                                    <div class="btn-square
                                                 bg-light rounded-circle
                                                 mx-auto mb-4"
-                                             style="width: 90px;
+                                         style="width: 90px;
                                                 height: 90px;">
-                                            <i class="fa fa-users
+                                        <i class="fa fa-users
                                                     fa-3x text-primary"></i>
-                                        </div>
-                                        <h4 class="mb-0">Dedicated
-                                            Team</h4>
                                     </div>
+                                    <h4 class="mb-0">Dedicated
+                                        Team</h4>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6 wow fadeIn"
-                             data-wow-delay="0.7s">
-                            <div class="text-center rounded py-5
+                    </div>
+                    <div class="col-md-6 wow fadeIn"
+                         data-wow-delay="0.7s">
+                        <div class="text-center rounded py-5
                                     px-4" style="box-shadow: 0 0 45px
                                     rgba(0,0,0,.08);">
-                                <div class="btn-square bg-light
+                            <div class="btn-square bg-light
                                         rounded-circle mx-auto mb-4"
-                                     style="width: 90px; height:
+                                 style="width: 90px; height:
                                         90px;">
-                                    <i class="fa fa-tools fa-3x
+                                <i class="fa fa-tools fa-3x
                                             text-primary"></i>
-                                </div>
-                                <h4 class="mb-0">Modern Algorithm</h4>
                             </div>
+                            <h4 class="mb-0">Modern Algorithm</h4>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Features End -->
+</div>
+<!-- Features End -->
 
 
-    <!-- Service Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeInUp"
-                 data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Our Services</p>
-                <h1 class="display-5 mb-5">Services That We Offer
-                    For You</h1>
-            </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.1s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid"
-                                 src="{% static 'img/serviceIden.webp' %}" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp"
+             data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-bold text-primary">Our Services</p>
+            <h1 class="display-5 mb-5">Services That We Offer
+                For You</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.1s">
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'img/serviceIden.webp' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
                                     mx-auto mb-3">
-                                <img class="img-fluid
+                            <img class="img-fluid
                                         rounded-circle"
-                                     src="{% static 'img/icon/iconIden.jpg'  %}"
-                                     alt="Icon">
-                            </div>
-                            <h4 class="mb-3">Identification</h4>
-                            <p class="mb-4">Online detection of
-                                flowers and plants using <i><b>artificial
-                                    intelligence</b></i></p>
-                            <a class="btn btn-sm" href=""><i
-                                    class="fa fa-plus text-primary
-                                        me-2"></i>Read More</a>
+                                 src="{% static 'img/icon/iconIden.jpg'  %}"
+                                 alt="Icon">
                         </div>
+                        <h4 class="mb-3">Identification</h4>
+                        <p class="mb-4">Online detection of
+                            flowers and plants using <i><b>artificial
+                                intelligence</b></i></p>
+                        <a class="btn btn-sm" href="{% url 'identify_url' %}"><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.3s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid"
-                                 src="{% static 'img/serviceExp.jpg' %}" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.3s">
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'img/serviceExp.jpg' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
                                     mx-auto mb-3">
-                                <img class="img-fluid rounded-circle
+                            <img class="img-fluid rounded-circle
                                         bootstrap-icons"
-                                     src="{% static 'img/icon/iconSearch.jpg' %}"
-                                     alt="Icon">
-                            </div>
-                            <h4 class="mb-3">Explore about plants</h4>
-                            <p class="mb-4">Search for different
-                                plants and flowers and provide
-                                information about them</p>
-                            <a class="btn btn-sm" href=""><i
-                                    class="fa fa-plus text-primary
-                                        me-2"></i>Read More</a>
+                                 src="{% static 'img/icon/iconSearch.jpg' %}"
+                                 alt="Icon">
                         </div>
+                        <h4 class="mb-3">Explore about plants</h4>
+                        <p class="mb-4">Search for different
+                            plants and flowers and provide
+                            information about them</p>
+                        <a class="btn btn-sm" href="{% url 'explore_url' %}"><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.5s">
-                    <div class="service-item rounded d-flex h-100">
-                        <div class="service-img rounded">
-                            <img class="img-fluid"
-                                 src="{% static 'img/serviceSup.jpg' %}" alt="">
-                        </div>
-                        <div class="service-text rounded p-5">
-                            <div class="btn-square rounded-circle
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.5s">
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'img/serviceSup.jpg' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
                                     mx-auto mb-3">
-                                <img class="img-fluid"
-                                     src="{% static 'img/icon/icon-1.png' %}"
-                                     alt="Icon">
-                            </div>
-                            <h4 class="mb-3">Support in growth</h4>
-                            <p class="mb-4">Online support by expert
-                                consultants in all stages of plant
-                                growth and interaction with them</p>
-                            <a class="btn btn-sm" href=""><i
-                                    class="fa fa-plus text-primary
-                                        me-2"></i>Read More</a>
+                            <img class="img-fluid"
+                                 src="{% static 'img/icon/icon-1.png' %}"
+                                 alt="Icon">
                         </div>
+                        <h4 class="mb-3">Support in growth</h4>
+                        <p class="mb-4">Online support by expert
+                            consultants in all stages of plant
+                            growth and interaction with them</p>
+                        <a class="btn btn-sm" href=""><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp">
+
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/midBack.jpg' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                    mx-auto mb-3">
+                            <img class="img-fluid
+                                        rounded-circle"
+                                 src="{% static 'Help/img/midcineIcon4.png'  %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Medicinal Properties</h4>
+                        <p class="mb-4">You can know application of each plant based on medicinal properties</p>
+                        <a class="btn btn-sm" href=""><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+            >
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/growBack.jpg' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                    mx-auto mb-3">
+                            <img class="img-fluid
+                                        rounded-circle"
+                                 src="{% static 'Help/img/growIcon4.png'  %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Help in Growth</h4>
+                        <p class="mb-4">Help you to growth step by step growth process</p>
+                        <a class="btn btn-sm" href=""><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+            >
+                <div class="service-item rounded d-flex h-100">
+                    <div class="service-img rounded">
+                        <img class="img-fluid"
+                             src="{% static 'Help/img/blogBack.jpg' %}" alt="">
+                    </div>
+                    <div class="service-text rounded p-5">
+                        <div class="btn-square rounded-circle
+                                    mx-auto mb-3">
+                            <img class="img-fluid
+                                        rounded-circle"
+                                 src="{% static 'Help/img/blog.png'  %}"
+                                 alt="Icon">
+                        </div>
+                        <h4 class="mb-3">Blog</h4>
+                        <p class="mb-4">Articles and documents about plants that present with experts</p>
+                        <a class="btn btn-sm" href=""><i
+                                class="fa fa-plus text-primary
+                                        me-2"></i>Use Service</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Service End -->
+</div>
+<!-- Service End -->
 
 
-    <!-- Quote Start -->
-    <div class="container-fluid quote my-5 py-5" style="font-family:
-            cursive;background-image:url('{% static 'img/carousel-2.jpg' %}');background-size: contain;)" data-parallax="scroll"
-         data-image-src="">
-        <div class="container py-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-7">
-                    <div class="bg-white rounded p-4 p-sm-5 wow
+<!-- Quote Start -->
+<div class="container-fluid quote my-5 py-5" style="font-family:
+            cursive;background-image:url('{% static 'img/carousel-2.jpg' %}');background-size: contain;)"
+     data-parallax="scroll"
+     data-image-src="">
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
+                <div class="bg-white rounded p-4 p-sm-5 wow
                             fadeIn" data-wow-delay="0.5s">
-                        <h1 class="display-5 text-center mb-5">Suggestion
-                            about a service</h1>
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control bg-light
+                    <h1 class="display-5 text-center mb-5">Suggestion
+                        about a service</h1>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <div class="form-floating">
+                                <input type="text"
+                                       class="form-control bg-light
                                             border-0" id="gname"
-                                           placeholder="Gurdian Name">
-                                    <label for="gname">Your Name</label>
-                                </div>
+                                       placeholder="Gurdian Name">
+                                <label for="gname">Your Name</label>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="email"
-                                           class="form-control bg-light
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating">
+                                <input type="email"
+                                       class="form-control bg-light
                                             border-0" id="gmail"
-                                           placeholder="Gurdian Email">
-                                    <label for="gmail">Your Email</label>
-                                </div>
+                                       placeholder="Gurdian Email">
+                                <label for="gmail">Your Email</label>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control bg-light
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating">
+                                <input type="text"
+                                       class="form-control bg-light
                                             border-0" id="cname"
-                                           placeholder="Child Name">
-                                    <label for="cname">Your Mobile</label>
-                                </div>
+                                       placeholder="Child Name">
+                                <label for="cname">Your Mobile</label>
                             </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input type="text"
-                                           class="form-control bg-light
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-floating">
+                                <input type="text"
+                                       class="form-control bg-light
                                             border-0" id="cage"
-                                           placeholder="Child Age">
-                                    <label for="cage">Service Type</label>
-                                </div>
+                                       placeholder="Child Age">
+                                <label for="cage">Service Type</label>
                             </div>
-                            <div class="col-12">
-                                <div class="form-floating">
+                        </div>
+                        <div class="col-12">
+                            <div class="form-floating">
                                         <textarea class="form-control
                                             bg-light border-0"
                                                   placeholder="Leave a message
                                             here" id="message"
                                                   style="height: 100px"></textarea>
-                                    <label for="message">Message</label>
-                                </div>
+                                <label for="message">Message</label>
                             </div>
-                            <div class="col-12 text-center">
-                                <button class="btn btn-primary py-3
+                        </div>
+                        <div class="col-12 text-center">
+                            <button class="btn btn-primary py-3
                                         px-4" type="submit">Submit
-                                </button>
-                            </div>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Quote End -->
+</div>
+<!-- Quote End -->
 
-    <!-- Team Start -->
-    <div class="container-xxl py-5">
-        <div class="container">
-            <div class="text-center mx-auto wow fadeInUp"
-                 data-wow-delay="0.1s" style="max-width: 500px;">
-                <p class="fs-5 fw-bold text-primary">Semicolon</p>
-                <h1 class="display-5 mb-5">Dedicated & Experienced
-                    Team Members</h1>
+<!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto wow fadeInUp"
+             data-wow-delay="0.1s" style="max-width: 500px;">
+            <p class="fs-5 fw-bold text-primary">Semicolon</p>
+            <h1 class="display-5 mb-5">Dedicated & Experienced
+                Team Members</h1>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.1s">
+                <div class="team-item rounded">
+                    <img class="img-fluid"
+                         src="{% static 'img/soheilPro3.png' %}" alt="">
+                    <div class="team-text">
+                        <h4 class="mb-0">Soheil Amini</h4>
+                        <p class="text-primary">Full stack
+                            Designer</p>
+                        <div class="team-social d-flex">
+                            <a class="btn btn-square
+                                        rounded-circle me-2" href=""><i
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square
+                                        rounded-circle me-2" href=""><i
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square
+                                        rounded-circle me-2" href=""><i
+                                    class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.1s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid"
-                             src="{% static 'img/soheilPro3.png' %}" alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Soheil Amini</h4>
-                            <p class="text-primary">Full stack
-                                Designer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.3s">
+                <div class="team-item rounded">
+                    <img class="img-fluid" src="{% static 'img/sinaPro.jpg' %}"
+                         alt="">
+                    <div class="team-text">
+                        <h4 class="mb-0">Sina Rahimi</h4>
+                        <p class="text-primary">Backend
+                            Developer</p>
+                        <div class="team-social d-flex">
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
+                                    class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="{% static 'img/sinaPro.jpg' %}"
-                             alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Sina Rahimi</h4>
-                            <p class="text-primary">Backend
-                                Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.5s">
+                <div class="team-item rounded">
+                    <img class="img-fluid"
+                         src="{% static 'img/TayebPro.jpg' %}"
+                         alt="">
+                    <div class="team-text">
+                        <h4 class="mb-0">Mohammad Mahdi Tayebnia</h4>
+                        <p class="text-primary">Backend
+                            Developer</p>
+                        <div class="team-social d-flex">
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
+                                    class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.5s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid"
-                             src="{% static 'img/TayebPro.jpg' %}"
-                             alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Mohammad Mahdi Tayebnia</h4>
-                            <p class="text-primary">Backend
-                                Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp"
+                 data-wow-delay="0.3s">
+                <div class="team-item rounded">
+                    <img class="img-fluid" src="{% static 'img/AbolfazlPro2.jpg' %}"
+                         alt="">
+                    <div class="team-text">
+                        <h4 class="mb-0">Abolfazl Motazeri</h4>
+                        <p class="text-primary">Full Stack
+                            Developer</p>
+                        <div class="team-social d-flex">
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square
+                                    class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square
                                         rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 wow fadeInUp"
-                     data-wow-delay="0.3s">
-                    <div class="team-item rounded">
-                        <img class="img-fluid" src="{% static 'img/AbolfazlPro2.jpg' %}"
-                             alt="">
-                        <div class="team-text">
-                            <h4 class="mb-0">Abolfazl Motazeri</h4>
-                            <p class="text-primary">Full Stack
-                                Developer</p>
-                            <div class="team-social d-flex">
-                                <a class="btn btn-square
-                                        rounded-circle me-2" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square
-                                        rounded-circle me-2" href=""><i
-                                        class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square
-                                        rounded-circle me-2" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
+                                    class="fab fa-instagram"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Team End -->
+</div>
+<!-- Team End -->
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square
+<!-- Back to Top -->
+<a href="#" class="btn btn-lg btn-primary btn-lg-square
             rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
-    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
-    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
-    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
-    <script src="{% static 'lib/parallax/parallax.min.js' %}"></script>
-    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
-    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+<script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+<script src="{% static 'lib/parallax/parallax.min.js' %}"></script>
+<script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+<script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
 
-    <!-- Template Javascript -->
-    </body>
+<!-- Template Javascript -->
+</body>
 
-    </html>
+</html>
 {% endblock content %}
 

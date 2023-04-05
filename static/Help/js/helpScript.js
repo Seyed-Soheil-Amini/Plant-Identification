@@ -1,5 +1,8 @@
 var coll = document.getElementsByClassName("collapsible");
 var i;
+const guidesBackup = document.getElementById('display-guides').innerHTML;
+
+document.getElementById("keyword").addEventListener("input", check_state_search_box);
 
 for (i = 0; i < coll.length; i++) {
   coll[i].addEventListener("click", function() {
@@ -143,7 +146,7 @@ function search_in_text(text, keyword, subject, num_search) {
     </div>`);
   }
   if (result == ``) return ``;
-  let result_topic = `<button class="btn-outline-success py-2 my-2" style="border-radius: 1.5mm;border-color : darkgreen;
+  let result_topic = `<button class="wow fadeInLeft btn-outline-success py-2 my-2"  data-wow-delay="0.05s" style="border-radius: 1.5mm;border-color : darkgreen;
   text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
   "
   data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
@@ -178,11 +181,15 @@ function search_help_ajax(keyword) {
       <h3 class="text-center">No results found  <i class=" bi-clock-history"></i> </h3>`;
   }
   responsive = responsive.concat(`
-    <form action="#" method="get" class="align-center mx-auto my-0 px-2 w-25">
-    <button class="btn-danger my-2 mx-auto p-3 w-100" style="border-radius: 1mm;">
+    <form action="" method="get" class="align-center mx-auto my-0 px-2 w-25">
+    <button class="btn-dark my-2 mx-auto p-3 w-100" style="border-radius: 1mm;" onclick="
+        document.getElementById('keyword').innerHTML = "";
+        check_state_search_box();
+    ">
     Back to Help
     </button>
-    <form>`);
+    </form>
+    `);
     responsive = responsive.replaceAll(`${keyword}`,`<b style="background-color: chartreuse;">${keyword}</b>`);
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function() {
@@ -197,4 +204,11 @@ function search_help_ajax(keyword) {
   xhr.open("get", "#", true);
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xhr.send();
+}
+
+function check_state_search_box(){
+    const input = document.getElementById("keyword").value;
+    if(input === ""){
+        document.getElementById('display-guides').innerHTML = guidesBackup;
+    }else return
 }

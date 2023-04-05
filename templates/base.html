@@ -48,7 +48,8 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm" style="box-shadow:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);">
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm"
+     style="box-shadow:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);">
     <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
         <h1 class="m-0" style="font-family:Georgia, 'Times New Roman', Times, serif, oblique;">Detector plants</h1>
     </a>
@@ -58,19 +59,32 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="{% url 'home_url' %}" class="nav-item nav-link">Home</a>
-            <a href="{% url 'identify_url' %}" class="nav-item nav-link">Identify</a>
-            <a href="{% url 'explore_url' %}" class="nav-item nav-link">Explore</a>
-            <a href="{% url 'about_us_url' %}" class="nav-item nav-link">About us</a>
-            <a href="{% url 'help_url' %}" class="nav-item nav-link">Help</a>
-            <a href="{% url 'faq_url' %}" class="nav-item nav-link">FAQ</a>
+            <a href="{% url 'home_url' %}" class="nav-item nav-link" id="home-link">Home</a>
+            <a href="{% url 'identify_url' %}" class="nav-item nav-link" id="identify-link">Identify</a>
+            <a href="{% url 'explore_url' %}" class="nav-item nav-link" id="explore-link">Explore</a>
+            <div class="dropdown-c" id="services-links">
+                <a class="dropbtn nav-item nav-link">Services
+                    <i class="fa fa-caret-down" id="icon-services-link"></i>
+                </a>
+                <div class="dropdown-content">
+                    <div class="wow fadeInLeft" data-wow-delay="0.1s">
+                        <a href="">Online Supporting</a>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.5s">
+                        <a href="">Medicinal Properties</a>
+                    </div>
+                    <div class="wow fadeInLeft" data-wow-delay="0.9s">
+                        <a href="">Specialized Blogs</a>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url 'help_url' %}" class="nav-item nav-link" id="help-link">Help</a>
         </div>
     </div>
 </nav>
 
 
 {% block content %}
-
 
 {% endblock content %}
 
@@ -98,18 +112,18 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4">Services</h4>
-                <a class="btn btn-link" href="">Identification</a>
-                <a class="btn btn-link" href="">Explore about plants</a>
+                <a class="btn btn-link" href="{% url 'identify_url' %}">Identification</a>
+                <a class="btn btn-link" href="{% url 'explore_url' %}">Explore about plants</a>
                 <a class="btn btn-link" href="">Support in growth</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4">Quick Links</h4>
-                <a class="btn btn-link" href="">Home</a>
-                <a class="btn btn-link" href="">Identify</a>
-                <a class="btn btn-link" href="">Explore</a>
-                <a class="btn btn-link" href="">About us</a>
-                <a class="btn btn-link" href="">Help</a>
-                <a class="btn btn-link" href="">FAQ</a>
+                <a class="btn btn-link" href="{% url 'home_url' %}">Home</a>
+                <a class="btn btn-link" href="{% url 'identify_url' %}">Identify</a>
+                <a class="btn btn-link" href="{% url 'explore_url' %}">Explore</a>
+                <a class="btn btn-link" href="{% url 'about_us_url' %}">About us</a>
+                <a class="btn btn-link" href="{% url 'help_url' %}">Help</a>
+                <a class="btn btn-link" href="{% url 'faq_url' %}">FAQ</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4 btn-sm align-items-center"

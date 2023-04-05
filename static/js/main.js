@@ -187,3 +187,38 @@ class myFooter extends HTMLElement {
 }
 
 customElements.define("plant-footer", myFooter);
+
+//make active nav bar's links
+var url =  window.location.href;
+if((url.search("identify"))!=-1){
+            document.getElementById("identify-link").classList.toggle("text-primary");
+            document.getElementById("identify-link").style.fontWeight = "bolder";
+        }
+else if((url.search("explore"))!=-1){
+            document.getElementById("explore-link").classList.toggle("text-primary");
+            document.getElementById("explore-link").style.fontWeight = "bolder";
+        }
+else if((url.search("aboutus"))!=-1){
+            document.getElementById("aboutus-link").classList.toggle("text-primary");
+            document.getElementById("aboutus-link").style.fontWeight = "bolder";
+        }
+else if((url.search("help"))!=-1){
+            document.getElementById("help-link").classList.toggle("text-primary");
+            document.getElementById("help-link").style.fontWeight = "bolder";
+        }
+else if((url.search("faq"))!=-1){
+            document.getElementById("faq-link").classList.toggle("text-primary");
+            document.getElementById("faq-link").style.fontWeight = "bolder";
+        }
+else{
+            document.getElementById("home-link").classList.toggle("text-primary");
+            document.getElementById("home-link").style.fontWeight = "bolder";
+        }
+
+document.getElementById("services-links").addEventListener("mouseenter", change_icon_services);
+document.getElementById("services-links").addEventListener("mouseleave", change_icon_services);
+
+function change_icon_services(){
+    document.getElementById("icon-services-link").classList.toggle("fa-caret-down");
+    document.getElementById("icon-services-link").classList.toggle("fa-caret-up");
+}

@@ -4,10 +4,14 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="icon" href="{% static 'img/icon/iconTit3.jpg' %}">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--    Language Selector -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="{% static 'js/lang/languageSelector.js' %}"></script>
+    <script src="{% static 'js/lang/locale.js' %}"></script>
 
     <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
             href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
             rel="stylesheet">
@@ -25,12 +29,14 @@
           rel="stylesheet">
     <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
 </head>
-<div class="container-fluid bg-dark text-light px-0 py-2 shadow-sm">
+
+<div class="container-fluid bg-dark text-light px-0 py-2 shadow-sm" style="direction:ltr;">
     <div class="row gx-0 d-none d-lg-flex">
         <div class="col-lg-7 px-5 text-start">
+
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <span class="fa fa-phone-alt me-2"></span>
-                <span>+98 910 384 5418</span>
+                <span>phone-no</span>
             </div>
             <div class="h-100 d-inline-flex align-items-center">
                 <span class="far fa-envelope me-2"></span>
@@ -39,7 +45,7 @@
         </div>
         <div class="col-lg-5 px-5 text-end">
             <div class="h-100 d-inline-flex align-items-center mx-n2">
-                <span>Follow Us:</span>
+                <span>follow</span>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
@@ -48,10 +54,10 @@
         </div>
     </div>
 </div>
-<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm"
+<nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0 shadow-sm" style="direction:ltr;"
      style="box-shadow:0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);">
     <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-        <h1 class="m-0" style="font-family:Georgia, 'Times New Roman', Times, serif, oblique;">Detector plants</h1>
+        <h1 class="m-0" style="font-family:Georgia, 'Times New Roman', Times, serif, oblique;">hdr-lft-tit</h1>
     </a>
     <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
@@ -59,26 +65,34 @@
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav ms-auto p-4 p-lg-0">
-            <a href="{% url 'home_url' %}" class="nav-item nav-link" id="home-link">Home</a>
-            <a href="{% url 'identify_url' %}" class="nav-item nav-link" id="identify-link">Identify</a>
-            <a href="{% url 'explore_url' %}" class="nav-item nav-link" id="explore-link">Explore</a>
-            <div class="dropdown-c" id="services-links">
-                <a class="dropbtn nav-item nav-link">Services
-                    <i class="fa fa-caret-down" id="icon-services-link"></i>
-                </a>
-                <div class="dropdown-content">
-                    <div class="wow fadeInLeft" data-wow-delay="0.1s">
-                        <a href="">Online Supporting</a>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.5s">
-                        <a href="">Medicinal Properties</a>
-                    </div>
-                    <div class="wow fadeInLeft" data-wow-delay="0.9s">
-                        <a href="">Specialized Blogs</a>
-                    </div>
-                </div>
+            <a href="{% url 'home_url' %}" class="nav-item nav-link" id="home-link">nv-it-hom</a>
+            <a href="{% url 'identify_url' %}" class="nav-item nav-link" id="identify-link">nv-it-idn</a>
+            <a href="{% url 'explore_url' %}" class="nav-item nav-link" id="explore-link">nv-it-exp</a>
+            <!--            <div class="dropdown-c" id="services-links">-->
+            <!--                <a class="dropbtn nav-item nav-link">Services-->
+            <!--                    <i class="fa fa-caret-down" id="icon-services-link"></i>-->
+            <!--                </a>-->
+            <!--                <div class="wow fadeIn dropdown-content" data-wow-delay="0.03s">-->
+            <!--                    <div class="wow fadeInLeft" data-wow-delay="0.1s">-->
+            <!--                        <a href="">Online Supporting</a>-->
+            <!--                    </div>-->
+            <!--                    <div class="wow fadeInLeft" data-wow-delay="0.5s">-->
+            <!--                        <a href="{% url 'medicinal_url' %}">Medicinal Properties</a>-->
+            <!--                    </div>-->
+            <!--                    <div class="wow fadeInLeft" data-wow-delay="0.9s">-->
+            <!--                        <a href="">Help in Growth</a>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <a href="{% url 'home_url' %}" class="nav-item nav-link" id="blog-link">nv-it-blg</a>
+            <a href="{% url 'help_url' %}" class="nav-item nav-link" id="help-link">nv-it-hlp</a>
+            <div class="nav-item nav-link">
+                <select id="langSelector">
+                    <option>cho-lng</option>
+                    <option value="en">English</option>
+                    <option value="fa">فارسی</option>
+                </select>
             </div>
-            <a href="{% url 'help_url' %}" class="nav-item nav-link" id="help-link">Help</a>
         </div>
     </div>
 </nav>
@@ -88,17 +102,16 @@
 
 {% endblock content %}
 
+
 <div class="container-fluid align-items-center bg-dark text-light footer
-          mt-5 py-3 wow fadeIn" data-wow-delay="0.1s">
+          mt-5 py-3 wow fadeIn" style="direction:ltr;" id="footer-main" data-wow-delay="0.1s">
     <div class="container py-5">
         <div class="row g-5">
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Our Office</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Yazd
-                    Uni, Yazd,Iran</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+98 910 384
-                    5418</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@semicolon.com</p>
+            <div class="col-lg-3 col-md-6" style="direction:ltr;">
+                <h4 class="text-white mb-4">foot-our-off</h4>
+                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i><span>foot-off-adr</span></p>
+                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i><span>phone-no</span></p>
+                <p class="mb-2"><i class="fa fa-envelope me-3"></i><span>info@semicolon.com</span></p>
                 <div class="d-flex pt-2">
                     <a class="btn btn-square btn-outline-light rounded-circle
                     me-2" href=""><i class="fab fa-twitter"></i></a>
@@ -110,20 +123,21 @@
                     me-2" href=""><i class="fab fa-linkedin-in"></i></a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Services</h4>
-                <a class="btn btn-link" href="{% url 'identify_url' %}">Identification</a>
-                <a class="btn btn-link" href="{% url 'explore_url' %}">Explore about plants</a>
-                <a class="btn btn-link" href="">Support in growth</a>
+            <div class="col-lg-3 col-md-6" style="direction:ltr;">
+                <h4 class="text-white mb-4">foot-ser-tit</h4>
+                <a class="btn btn-link" href="{% url 'identify_url' %}" id="except-change-language">foot-ser-sub-idn</a>
+                <a class="btn btn-link" href="{% url 'explore_url' %}" id="except-change-language">foot-ser-sub-exp</a>
+                <a class="btn btn-link" href="" id="except-change-language">foot-ser-sub-sup</a>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <h4 class="text-white mb-4">Quick Links</h4>
-                <a class="btn btn-link" href="{% url 'home_url' %}">Home</a>
-                <a class="btn btn-link" href="{% url 'identify_url' %}">Identify</a>
-                <a class="btn btn-link" href="{% url 'explore_url' %}">Explore</a>
-                <a class="btn btn-link" href="{% url 'about_us_url' %}">About us</a>
-                <a class="btn btn-link" href="{% url 'help_url' %}">Help</a>
-                <a class="btn btn-link" href="{% url 'faq_url' %}">FAQ</a>
+            <div class="col-lg-3 col-md-6" style="direction:ltr;">
+                <h4 class="text-white mb-4">foot-pg-lnk-tit</h4>
+                <a class="btn btn-link" href="{% url 'home_url' %}" id="except-change-language">foot-q-lnk-hom</a>
+                <a class="btn btn-link" href="{% url 'identify_url' %}" id="except-change-language"><span>foot-q-lnk-idn</span></a>
+                <a class="btn btn-link" href="{% url 'explore_url' %}" id="except-change-language"><span>foot-q-lnk-exp</span></a>
+                <a class="btn btn-link" href="{% url 'about_us_url' %}" id="except-change-language"><span>foot-q-lnk-abo</span></a>
+                <a class="btn btn-link" href="{% url 'home_url' %}" id="except-change-language"><span>foot-q-lnk-blg</span></a>
+                <a class="btn btn-link" href="{% url 'help_url' %}" id="except-change-language"><span>foot-q-lnk-hlp</span></a>
+                <a class="btn btn-link" href="{% url 'faq_url' %}" id="except-change-language"><span>foot-q-lnk-faq</span></a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4 btn-sm align-items-center"
@@ -141,7 +155,7 @@
 <!-- Footer End -->
 
 <!-- Copyright Start -->
-<div class="container-fluid copyright py-4">
+<div class="container-fluid copyright py-4" style="direction:ltr;">
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
@@ -155,6 +169,8 @@
         </div>
     </div>
 </div>
+
+<!--<script src="{% static 'js/lang/functionChangeLang.js' %}"></script>-->
 
 
 <!-- Back to Top -->
@@ -178,3 +194,12 @@
         src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/main.js' %}"></script>
 
+<script>
+    var l = new LanguageSelector();
+    $(document).on("change", "#langSelector", function () {
+      var s = $(this).children("option:selected").val();
+      l.setLang(s);
+      location.reload();
+    });
+    l.dfsTraversal(document.documentElement);
+</script>

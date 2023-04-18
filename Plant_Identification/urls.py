@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -25,6 +26,10 @@ urlpatterns = [
     path('plants/', include('detail.urls')),
     path('identify/', include('identify.urls')),
     path('explore/', include('explore.urls')),
+    path('services/medicinal/',include('medicinal_properties.urls'
+        # url('medicinal/',include('medicinal_properties.urls')),
+        # Add Other urls of services
+    )),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

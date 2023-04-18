@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'detail',
     'explore',
     'identify',
+    'medicinal_properties',
 ]
 
 MIDDLEWARE = [

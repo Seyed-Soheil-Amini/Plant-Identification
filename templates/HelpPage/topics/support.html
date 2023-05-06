@@ -1,115 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Help Support</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
+<head>
+    <meta charset="utf-8">
+    <title>Support Guides</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+     <link href="{% static 'Help/css/topicsStyle.css' %}" rel="stylesheet">
 
-        <link rel="icon" href="../../img/icon/iconTit3.jpg">
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
-            rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-            rel="stylesheet">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-            rel="stylesheet">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-
-
-        <!-- Libraries Stylesheet -->
-        <link href="../../lib/animate/animate.min.css" rel="stylesheet">
-        <link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
-            rel="stylesheet">
-        <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="../../css/bootstrap.css" rel="stylesheet">
-
-        <!-- Template Stylesheet -->
-        <link href="../../css/style.css" rel="stylesheet">
-        <link href="../css/helpStyle.css" rel="stylesheet">
-    </head>
-
-    <body>
-        <plant-header></plant-header>
-        <other-header></other-header>
-        <div class="container-fluid">
-            <span class="text-center">
-                <p class="text-center">
-                    Online support is becoming increasingly important in today’s
-                    world.
-                    With the advent of the internet, people are now able to
-                    access support from all over the world,
-                    no matter where they are. Online support can come in the
-                    form of online forums,
-                    chat rooms, and other online communities.
-                    These online communities provide a safe space for people to
-                    talk about their problems,
-                    share their experiences, and get advice from others. With
-                    online support, people can find the help they need without
-                    having to leave
-                    the comfort of their own homes.
-                    Online support can be a great tool for those struggling with
-                    mental health issues,
-                    addiction, or any other issue they may be facing
-                    Email is the defacto way of connecting with customers.
-                    But email exchanges can take forever and inboxes are getting
-                    overwhelmed.
-                    But text messages are more user-friendly and they only have
-                    a 3% spam rate.
-                    Plus, 74% of consumers respond to texts from a business
-                    within an hour. Compare that to only 41% for email.
-                    So text messaging can be the better way to message
-                    customers.
-                    Especially when you need to deliver real-time updates and
-                    timely responses.
-                    Paying someone to answer phones gets costly. The average
-                    customer service phone call costs about $16.
-                    This is where SMS support is far cheaper and more scalable
-                    than answering phone calls.
-                    Keep in mind, there will always be a place for voice calls
-                    in your customer support process. A human voice can also
-                    make a world of difference when it comes to customer
-                    engagement.
-                    But text messaging can insulate your customer support staff
-                    or front desk from having to answer every phone call.
-                    You get to reserve the most valuable customer service
-                    requests for real-life employees and team members.
+</head>
+<body>
+<div class="container-fluid">
+    <span class="">
+        <div class="col container-fluid mx-2">
+            <div class="px-1 py-2"
+                 style="font-size : 25pt;font-weight:500;font-family:Fantasy;">
+                <span>hlp-tcp-sup-ben-tit</span>
+            </div>
+               <svg class="my-2" style="" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+               </svg>
+            <div class="left-frame-topic px-3">
+                <p>
+                    hlp-tcp-sup-ben-txt
                 </p>
-            </span>
+            </div>
         </div>
-        <plant-footer></plant-footer>
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square
-            rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../lib/wow/wow.min.js"></script>
-        <script src="../../lib/easing/easing.min.js"></script>
-        <script src="../../lib/waypoints/waypoints.min.js"></script>
-        <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="../../lib/counterup/counterup.min.js"></script>
-        <script src="../../lib/parallax/parallax.min.js"></script>
-        <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="../../lib/lightbox/js/lightbox.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Template Javascript -->
-        <script src="../../js/main.js"></script>
-        <script src="../../js/headerHome.js"></script>
-    </body>
+    </span>
+    <span class="">
+        <div class="col container-fluid mx-2">
+            <div class="px-1 py-2"
+                style="font-size : 25pt;font-weight:500;font-family:Fantasy;">
+                <span>hlp-tcp-sup-ucs-tit</span>
+            </div>
+                <svg class="my-2" style="" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                </svg>
+            <div class="px-3">
+                <ul>
+                    <li>
+                        <h3>hlp-tcp-sup-idf-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-idn-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-idn-txt2
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-idn-txt3
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-idn-txt4
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-sup-exp-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-exp-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-exp-txt2
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-sup-hlg-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-hlp-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-hlp-txt2
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-hlp-txt3
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-sup-med-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-med-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-med-txt2
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-med-txt3
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-med-txt4
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-sup-blg-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-blg-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-sup-blg-txt2
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </span>
+    <span class="">
+        <div class="col container-fluid mx-2">
+            <div class="px-1 py-2"
+                style="font-size : 25pt;font-weight:500;font-family:Fantasy;"><span>hlp-tcp-sup-htu-tit</span>
+            </div>
+                <svg class="my-2" style="" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                </svg>
+            <div class="px-3">
+                <ol class="left-frame-topic">
+                    <li>
+                        <p class="px-3">
+                            hlp-tcp-sup-htu-txt1
+                        </p>
+                    </li>
+                    <li>
+                        <p class="px-3">
+                            hlp-tcp-sup-htu-txt2
+                        </p>
+                    </li>
+                    <li>
+                        <p class="px-3">
+                            hlp-tcp-sup-htu-txt3
+                        </p>
+                    </li>
+                    <li>
+                        <p class="px-3">
+                            hlp-tcp-sup-htu-txt4
+                        </p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </span>
+</div>
+
+<div class="align-content-center">
+    <div class="w-50 mx-auto">
+        <div class="mx-auto" style="width:fit-content;">
+            <button class="btn-success" type="submit" onsubmit="event.preventDefault();"
+                    style="border : solid 5px;border-radius : 2.5mm;">
+                <a class="text-light" href="{% url 'help_url' %}">back-btn</a>
+            </button>
+        </div>
+    </div>
+</div>
+</body>
 </html>
+{% endblock content %}

@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Identify Guides</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+     <link href="{% static 'Help/css/topicsStyle.css' %}" rel="stylesheet">
+</head>
+
+<body>
+<div class="container-fluid my-4">
+            <span class="">
+                <div class="col container-fluid mx-2">
+                    <div class=" text-left px-1 py-2"
+                         style="font-size : 25pt;font-weight:500;font-family:Fantasy;"><span>hlp-tpc-idn-int-tit</span></div>
+                    <svg class="my-2" style="" height="3" width="100%">
+                            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                    </svg>
+                    <div class="left-frame-topic px-3">
+                        <p>
+                            hlp-tpc-idn-int-txt
+                        </p>
+                    </div>
+                </div>
+            </span>
+    <span class="">
+                <div class="col container-fluid mx-2">
+                    <div class="text-left px-1 py-2"
+                         style="font-size : 25pt;font-weight:500;font-family:Fantasy;"><span>hlp-tpc-idn-stp-tit</span></div>
+                    <svg class="my-2" style="" height="3" width="100%">
+                            <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                    </svg>
+                    <div class="bg-white px-3">
+                            <ul>
+                                <li>
+                                    <h3>hlp-tpc-idn-stp1-tit</h3>
+                                    <ol class="left-frame-topic">
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li1
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li2
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li3
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li4
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li5
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li6
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp1-li7
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <h3>hlp-tpc-idn-stp2-tit</h3>
+                                    <ol class="left-frame-topic">
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp2-li1
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp2-li2
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp2-li3
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp2-li4
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <h3>hlp-tpc-idn-stp3-tit</h3>
+                                    <ol class="left-frame-topic">
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp3-li1
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp3-li2
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tpc-idn-stp3-li3
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+            </span>
+    <span class="">
+        <div class="col container-fluid mx-2">
+            <div class=" text-left px-1 py-2"
+                 style="font-size : 25pt;font-weight:500;font-family:Fantasy;"><span>hlp-tcp-idn-epd-tit</span></div>
+            <svg class="my-2" style="" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+            </svg>
+            <div class="left-frame-topic px-3">
+                <p>
+                    hlp-tcp-idn-epd-txt1
+                </p>
+                <p>
+                    hlp-tcp-idn-epd-txt2
+                </p>
+                <p>
+                    hlp-tcp-idn-epd-txt3
+                </p>
+                <p>
+                    hlp-tcp-idn-epd-txt3
+                </p>
+            </div>
+        </div>
+    </span>
+</div>
+<div class="align-content-center">
+    <div class="w-50 mx-auto">
+        <div class="mx-auto" style="width:fit-content;">
+            <button class="btn-success" type="submit" onsubmit="event.preventDefault();"
+                    style="border : solid 5px;border-radius : 2.5mm;">
+                <a class="text-light" href="{% url 'help_url' %}">back-btn</a>
+            </button>
+        </div>
+    </div>
+</div>
+<a href="#" class="btn btn-lg btn-primary btn-lg-square
+            rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+</body>
+</html>
+{% endblock content %}

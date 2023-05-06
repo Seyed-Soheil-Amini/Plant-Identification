@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.views.generic import TemplateView
 
 
@@ -15,3 +16,27 @@ class HelpView(TemplateView):
 
 class FAQView(TemplateView):
     template_name = 'FAQPage/index.html'
+
+
+def identify_guides(request):
+    return render(request=request, template_name='HelpPage/topics/identify.html')
+
+
+def explore_guides(request):
+    return render(request=request, template_name='HelpPage/topics/explore.html')
+
+
+def support_guides(request):
+    return render(request=request, template_name='HelpPage/topics/support.html')
+
+
+def blog_guides(request):
+    return render(request=request, template_name='HelpPage/topics/blog.html')
+
+
+def medicine_guides(request):
+    return render(request=request, template_name='HelpPage/topics/midcine.html')
+
+
+def growth_guides(request):
+    return render(request=request, template_name='HelpPage/topics/growth.html')

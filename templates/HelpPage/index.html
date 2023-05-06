@@ -59,10 +59,10 @@
             <p class="fs-5 fw-bold text-primary">hlp-topics-tit</p>
             <h1 class="display-5 mb-5">hlp-topics-subtit</h1>
         </div>
-        <div class="row g-1" id="width-topics-m">
+        <div class="row gx-1 gy-3" id="width-topics-m">
             <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.1s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img">
                         <img class="img-fluid rounded"
                              src="{% static 'Help/img/idenBack.jpg' %}"
@@ -78,16 +78,15 @@
                         </div>
                         <h4 class="mb-3">hlp-ser1-tit</h4>
                         <p class="mb-4">hlp-ser1-txt</p>
-                        <a href="/HelpPage/topics/identifiy.html"
+                        <a href="{% url 'identify_guides_url' %}" style="direction:ltr;"
                            class="btn btn-sm"><i class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.3s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img rounded">
                         <img class="img-fluid"
                              src="{% static 'Help/img/exploreBack.jpg' %}"
@@ -103,17 +102,16 @@
                         </div>
                         <h4 class="mb-3">hlp-ser2-tit</h4>
                         <p class="mb-4">hlp-ser2-txt</p>
-                        <a class="btn btn-sm"
-                           href="/HelpPage/topics/explore.html"><i
+                        <a class="btn btn-sm" style="direction:ltr;"
+                           href="{% url 'explore_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.5s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img rounded">
                         <img class="img-fluid"
                              src="{% static 'Help/img/supportBack.jpg' %}"
@@ -129,17 +127,16 @@
                         </div>
                         <h4 class="mb-3">hlp-ser3-tit</h4>
                         <p class="mb-4">hlp-ser3-txt</p>
-                        <a class="btn btn-sm"
-                           href="/HelpPage/topics/support.html"><i
+                        <a class="btn btn-sm" style="direction:ltr;"
+                           href="{% url 'support_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp"
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.1s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img rounded">
                         <img class="img-fluid"
                              src="{% static 'Help/img/habiBack.jpg' %}"
@@ -155,17 +152,16 @@
                         </div>
                         <h4 class="mb-3">hlp-ser4-tit</h4>
                         <p class="mb-4">hlp-ser4-txt</p>
-                        <a class="btn btn-sm"
-                           href="/HelpPage/topics/habitat.html"><i
+                        <a class="btn btn-sm" style="direction:ltr;"
+                           href="{% url 'blog_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp"
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.3s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img rounded">
                         <img class="img-fluid"
                              src="{% static 'Help/img/midBack.jpg' %}"
@@ -181,17 +177,16 @@
                         </div>
                         <h4 class="mb-0">hlp-ser5-tit</h4>
                         <p class="mb-4">hlp-ser5-txt</p>
-                        <a class="btn btn-sm"
-                           href="/HelpPage/topics/midcine.html"><i
+                        <a class="btn btn-sm" style="direction:ltr;"
+                           href="{% url 'medicine_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp"
+            <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
                  data-wow-delay="0.5s">
-                <div class="service-item rounded d-flex">
+                <div class="service-item rounded d-flex" style="height:62vh;">
                     <div class="service-img rounded">
                         <img class="img-fluid"
                              src="{% static 'Help/img/growBack.jpg' %}"
@@ -207,11 +202,9 @@
                         </div>
                         <h4 class="mb-3">hlp-ser6-tit</h4>
                         <p class="mb-4">hlp-ser6-txt</p>
-                        <a class="btn btn-sm"
-                           href="/HelpPage/topics/growth.html"><i
-                                class="fa
-                                            fa-plus text-primary me-2"></i>Read
-                            More</a>
+                        <a class="btn btn-sm" style="direction:ltr;"
+                           href="{% url 'growth_guides_url' %}"><i
+                                class="fa fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
                     </div>
                 </div>
             </div>
@@ -236,9 +229,9 @@
                 </ul>
             </div>
             <div class="w-100 h-50 my-auto py-5 text-center">
-                            <span>
-                                hlp-guides-txt
-                            </span>
+                <span>
+                    hlp-guides-txt
+                </span>
             </div>
             <div class="w-100 p-4 bg-light mt-4 h-25
                             justify-content-center"

@@ -1,14 +1,12 @@
 //selecting all required elements
 let dropArea = document.querySelector(".drag-area"),
-    dragText = dropArea.querySelector("p"),
+    dragPar = dropArea.querySelector("p"),
+    dragText = dragPar.querySelector("span"),
     button = dropArea.querySelector("button"),
     input = dropArea.querySelector("input");
 let file; //this is a global variable and we'll use it inside multiple functions
-let imgTag;//this is a global variable to save image html tag
-let tempTag = dropArea.innerHTML;//this is a global variable that has been declared to save base html format of form (for reseting)
-//button.onclick = () => {
-//    input.click(); //if user click on the button then the input also clicked
-//}
+let imgTag, tempTag = dropArea.innerHTML;;//this is a global variable to save image html tag
+//this is a global variable that has been declared to save base html format of form (for reseting)
 
 function simultaneously_clicked(){
     input.click();
@@ -25,13 +23,11 @@ input.addEventListener("change", function () {
 dropArea.addEventListener("dragover", (event) => {
     event.preventDefault(); //preventing from default behaviour
     dropArea.classList.add("active");
-    dragText.textContent = "Release to Upload File";
 });
 
 //If user leave dragged File from DropArea
 dropArea.addEventListener("dragleave", () => {
     dropArea.classList.remove("active");
-    dragText.textContent = "Drag your files here.";
 });
 
 //If user drop File on DropArea
@@ -43,6 +39,7 @@ dropArea.addEventListener("drop", (event) => {
 });
 
 function showFile() {
+//    tempTag = dropArea.innerHTML;
     let fileType = file.type; //getting selected file type
     let validExtensions = ["image/png", "image/jpg", "image/jpeg"]; //adding some valid image extensions in array
     if (validExtensions.includes(fileType)) { //if user selected file is an image file
@@ -61,11 +58,12 @@ function showFile() {
 }
 //this function for reset picture data 
 function restored(id_tag) {
-    dropArea.classList.remove("active");
-    document.getElementById("imgUp").setAttribute("src", "");
-    document.getElementById("imgUp").setAttribute("alt", "");
-    dropArea.innerHTML = tempTag;
-    dragText.textContent = "Drag your files here.";
+    if(input.value != ''){
+        dropArea.classList.remove("active");
+        dropArea.innerHTML = tempTag;
+        input.value = '';
+        dragText.textContent = "Drag your files here.";
+    }
 }
 
 let upload_frame = document.getElementById('upload-box');

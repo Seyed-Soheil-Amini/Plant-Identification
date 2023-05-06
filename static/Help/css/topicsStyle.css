@@ -1,0 +1,9 @@
+.left-frame-topic{
+    border-left : solid;
+    border-color:green;
+}
+
+.left-frame-topic-war{
+    border-left : solid;
+    border-color:red;
+}

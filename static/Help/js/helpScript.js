@@ -1,6 +1,9 @@
 var coll = document.getElementsByClassName("collapsible");
 var i;
-const guidesBackup = document.getElementById('display-guides').innerHTML;
+let guidesBackup;
+
+if( localStorage.getItem('lang') == 'en') document.getElementById('keyword').setAttribute('placeholder' , 'Search keywords');
+else document.getElementById('keyword').setAttribute('placeholder' , 'کلمات کلیدی را جست و جو کنید');
 
 document.getElementById("keyword").addEventListener("input", check_state_search_box);
 
@@ -119,6 +122,7 @@ Finally, the environment in which a plant is grown can also affect its growth.
 For example, certain plants may require specific temperatures or humidity levels in order to thrive.`;
 
 function search_in_text(text, keyword, subject, num_search) {
+  guidesBackup = document.getElementById('display-guides').innerHTML;
   let result = ``;
   let first_index_of_dot = text.indexOf(".");
   let first_index = 0,
@@ -146,13 +150,21 @@ function search_in_text(text, keyword, subject, num_search) {
     </div>`);
   }
   if (result == ``) return ``;
-  let result_topic = `<button class="wow fadeInLeft btn-outline-success py-2 my-2"  data-wow-delay="0.05s" style="border-radius: 1.5mm;border-color : darkgreen;
-  text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';
-  "
-  data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
-  <i class=" bi-arrow-down-circle fa-2x float-end"></i>
-  </button>
-  <div id="${num_search}demo" class="collapse">${result}</div>`;
+  var result_topic = '';
+  if(localStorage.getItem('lang') == 'en'){
+//  alert("test");
+      result_topic = `<button class="wow fadeInLeft btn-outline-success py-2 my-2"  data-wow-delay="0.05s" style="border-radius: 1.5mm;border-color : darkgreen;text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';"
+      data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
+      <i class=" bi-arrow-down-circle fa-2x float-end"></i>
+      </button>
+      <div id="${num_search}demo" class="collapse">${result}</div>`;
+  }else{
+      result_topic = `<button class="wow fadeInRight btn-outline-success py-2 my-2"  data-wow-delay="0.05s" style="border-radius: 1.5mm;border-color : darkgreen;text-align: left;font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode';"
+      data-toggle="collapse" data-target="#${num_search}demo"><b>Topic </b>: ${subject}
+      <i class=" bi-arrow-down-circle fa-2x float-end"></i>
+      </button>
+      <div id="${num_search}demo" class="collapse">${result}</div>`;
+  }
   return result_topic;
 }
 

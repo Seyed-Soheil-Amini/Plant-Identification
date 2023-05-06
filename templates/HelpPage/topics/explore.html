@@ -1,120 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Help Explore</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
-        <link rel="icon" href="../../img/icon/iconTit3.jpg">
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap"
-            rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-        <link
-            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
-            rel="stylesheet">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
-            rel="stylesheet">
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
-
-
-        <!-- Libraries Stylesheet -->
-        <link href="../../lib/animate/animate.min.css" rel="stylesheet">
-        <link href="../../lib/owlcarousel/assets/owl.carousel.min.css"
-            rel="stylesheet">
-        <link href="../../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="../../css/bootstrap.css" rel="stylesheet">
-
-        <!-- Template Stylesheet -->
-        <link href="../../css/style.css" rel="stylesheet">
-        <link href="../css/helpStyle.css" rel="stylesheet">
-    </head>
-
-    <body>
-        <plant-header></plant-header>
-        <other-header></other-header>
-        <div class="container-fluid">
-            <span class="text-center">
-                <p class="text-center">
-                    You can combine elements in the Simple search, for example,
-                    surname and significant word from the title, e.g.:
-                    Austen Pride Prejudice
-                    There is no need to include AND as this is assumed.
-                    If you want to narrow your search down, use NOT and OR
-                    (enter these in capital letters), e.g.:
-                    Pride NOT prejudice
-                    Pride OR prejudice
-                    Shakespeare (tragedy OR sonnet)
-                    NB: Use lower case letters for your search terms and
-                    uppercase for (AND, OR, NOT).
-                    If you use upper case, e.g ORANGES ARE NOT THE ONLY FRUIT
-                    the catalolgue will search for (oranges AND are) NOT (the
-                    AND only AND fruit)
-                    To search for a phrase, enclose your search terms in
-                    quotation marks, for example:
-                    “pride and prejudice”
-                    “global warming”
-                    NB: Use phrase searching to search for one word titles
-                    prefixed with ‘the’, e.g. “the Adelphi”, “the Lancet”.
-                    You can use wildcards to replace one or more characters:
-                    Use ? to replace one character, e.g. wom?n will search for
-                    woman and women
-                    Use * to replace more than one character, e.g. cultur* will
-                    search for culture, cultural and culturally
-                    To search for an ISBN enter the number without hyphens.
-                    To search for an ISSN enter the number with the hyphen. If
-                    you omit the hyphen you will find journal records that match
-                    the ISSN but you will not find matching article records.
-                    If you are searching for records in non-Roman scripts, it is
-                    recommended that you search both in the non-Roman script and
-                    Romanisation, for example, 香港 and Xianggang. (In a case such
-                    as this when a name has a form by which it is commonly
-                    known, also use that - in this case, Hong Kong.)
-                    Some, especially older, records lack non-Roman script and so
-                    they can only be found by searching using a standardised
-                    form in the Roman alphabet. To discover which
-                    transliteration system is in use, see
-                    www.loc.gov/catdir/cpso/roman.
-                    html or do a search for the name of your language in its
-                    non-Roman script, e.g., Русский for Russian.
-                    That should display many records and you will be able to see
-                    how they are Romanised,
-                    for example how any long vowels are represented.
-                </p>
-            </span>
+<head>
+    <meta charset="utf-8">
+    <title>Explore Guides</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+     <link href="{% static 'Help/css/topicsStyle.css' %}" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid my-4">
+    <span class="">
+            <div class="col container-fluid mx-2">
+                <div class="px-1 py-2"
+                     style="font-size : 25pt;font-weight:500;font-family:Fantasy;"><span>hlp-tcp-exp-int-tit</span>
+                </div>
+                <svg class="my-2" style="" height="3" width="100%">
+                        <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                </svg>
+                <div class="left-frame-topic px-3">
+                    <p>
+                        hlp-tcp-exp-int-txt
+                    </p>
+                </div>
+            </div>
+    </span>
+    <span class="">
+        <div class="col container-fluid mx-2">
+            <div class="px-1 py-2" style="font-size : 25pt;font-weight:500;font-family:Fantasy;">
+                <span>hlp-tcp-exp-des-tit</span>
+            </div>
+                <svg class="my-2" style="" height="3" width="100%">
+                    <line x1="0" y1="0" x2="1500" y2="0" style="stroke:black;stroke-width:2.5"/>
+                </svg>
+            <div class="px-3">
+                <ul>
+                    <li>
+                        <h3>hlp-tcp-exp-beu-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                   hlp-tcp-exp-des-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-des-txt2
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-des-txt3
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-des-txt4
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-des-txt5
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-exp-tou-tit</h3>
+                        <ol class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-tou-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    <span>hlp-tcp-exp-tou-txt2-tit</span>
+                                    <ol type="I">
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tcp-exp-tou-txt2-txt1
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <p class="px-3">
+                                                hlp-tcp-exp-tou-txt2-txt2
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-tou-txt3
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-tou-txt4
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-tou-txt5
+                                </p>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <h3>hlp-tcp-exp-ovw-tit</h3>
+                        <ul class="left-frame-topic">
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-ovw-txt1
+                                </p>
+                            </li>
+                            <li>
+                                <p class="px-3">
+                                    hlp-tcp-exp-ovw-txt2
+                                </p>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <plant-footer></plant-footer>
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square
-            rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="../../lib/wow/wow.min.js"></script>
-        <script src="../../lib/easing/easing.min.js"></script>
-        <script src="../../lib/waypoints/waypoints.min.js"></script>
-        <script src="../../lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="../../lib/counterup/counterup.min.js"></script>
-        <script src="../../lib/parallax/parallax.min.js"></script>
-        <script src="../../lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="../../lib/lightbox/js/lightbox.min.js"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Template Javascript -->
-        <script src="../../js/main.js"></script>
-        <script src="../../js/headerHome.js"></script>
-    </body>
+    </span>
+</div>
+
+<div class="align-content-center">
+    <div class="w-50 mx-auto">
+        <div class="mx-auto" style="width:fit-content;">
+            <button class="btn-success" type="submit" onsubmit="event.preventDefault();"
+                    style="border : solid 5px;border-radius : 2.5mm;">
+                <a class="text-light" href="{% url 'help_url' %}">back-btn</a>
+            </button>
+        </div>
+    </div>
+</div>
+</body>
 </html>
+{% endblock content %}

@@ -144,10 +144,10 @@
                             <button type="submit" class="btn-primary px-lg-4 py-lg-2" style="border-radius: 2mm;"
                                     onclick="upload_image_ajax('imgUp')">idn-upload-btn
                             </button>
-                            <input type="reset" class="btn-danger px-lg-4 py-lg-2"
+                            <button type="reset" class="btn-danger px-lg-4 py-lg-2"
                                    style="margin-top:
                     0.5cm;border-radius: 2mm;" value="Reset"
-                                   onclick="restored('imgUp')"/>
+                                    onclick="restored('imgUp')">idn-reset-btn</button>
                         </div>
                     </form>
                 </div>
@@ -196,6 +196,14 @@
 </div>
 <!-- Quote End -->
 </body>
-<script id="supernoode" src="{% static 'Identify/js/dragDrapScrips.js' %}"></script>
+<script id="supernoode">
+    setTimeout(function() {
+    var head_ID = document.getElementsByTagName("head")[0];
+    var script_element = document.createElement('script');
+    script_element.type = 'text/javascript';
+    script_element.src = '{% static 'Identify/js/dragDrapScrips.js' %}';
+    head_ID.appendChild(script_element);
+}, 2000);
+</script>
 </html>
 {% endblock content %}

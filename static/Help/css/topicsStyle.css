@@ -7,3 +7,13 @@
     border-left : solid;
     border-color:red;
 }
+
+.right-frame-topic{
+    border-right : solid;
+    border-color:green;
+}
+
+.right-frame-topic-war{
+    border-right : solid;
+    border-color:red;
+}

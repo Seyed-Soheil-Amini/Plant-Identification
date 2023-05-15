@@ -1,5 +1,6 @@
 from rest_framework import status
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
@@ -20,7 +21,7 @@ def explorePlantList(request):
 
 
 class PlantList(APIView):
-
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)

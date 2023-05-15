@@ -18,7 +18,9 @@ from django.template.defaulttags import url
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+# from rest_framework_simplejwt.views import TokenVerifyView, TokenObtainPairView, TokenRefreshView
 
+# from auth_api.views import ObtainJWTWithCookie, RefreshJWTWithCookie, VerifyJWTWithCookie
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +32,10 @@ urlpatterns = [
         # url('medicinal/',include('medicinal_properties.urls')),
         # Add Other urls of services
     )),
+    # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    # path('api/token/refresh/',  TokenRefreshView.as_view(), name='token_refresh'),
+    # path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    path('', include('auth_api.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

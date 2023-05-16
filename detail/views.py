@@ -4,6 +4,8 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
+
+from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant
 from .serializers import PlantSerializer, PartialPlantSerializer
 
@@ -21,6 +23,9 @@ def explorePlantList(request):
 
 
 class PlantList(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
     def get(self, request):
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)
@@ -35,6 +40,8 @@ class PlantList(APIView):
 
 
 class PlantDetail(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, pk):
         try:

@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 
+
 from .local_setting import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -55,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
 ROOT_URLCONF = 'Plant_Identification.urls'
 
 CORS_ALLOWED_ORIGINS = [

@@ -10,7 +10,6 @@ from django.conf import settings
 from rest_framework_simplejwt.views import TokenVerifyView
 
 
-
 class ObtainJWTWithCookie(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
 
@@ -42,7 +41,7 @@ class RefreshJWTWithCookie(TokenRefreshView):
             # Set new access token in a cookie
             mainResponse = Response('New Token is created.')
             mainResponse.set_cookie('access_token', new_access_token, expires=timedelta(minutes=5),
-                                secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
+                                    secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
         return super().finalize_response(request, mainResponse, *args, **kwargs)
 
 
@@ -56,4 +55,3 @@ class VerifyJWTWithCookie(TokenVerifyView):
             return access_token.strip('\"')
 
         return None
-

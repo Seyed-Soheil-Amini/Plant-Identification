@@ -1,7 +1,6 @@
 from jwt import exceptions
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.utils.translation import gettext_lazy as _
-from rest_framework import HTTP_HEADER_ENCODING
 
 class CustomJWTAuthentication(JWTAuthentication):
     def authenticate(self, request):

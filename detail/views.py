@@ -21,7 +21,6 @@ def explorePlantList(request):
 
 
 class PlantList(APIView):
-    permission_classes = [IsAuthenticated]
     def get(self, request):
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)

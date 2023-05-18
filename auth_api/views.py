@@ -1,11 +1,14 @@
+import json
 from datetime import timedelta
+from tokenize import TokenError
 
 from django.shortcuts import render
 from rest_framework.response import Response
+from rest_framework_simplejwt.exceptions import InvalidToken
 
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .serializers import CustomTokenObtainPairSerializer
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpRequest
 from django.conf import settings
 from rest_framework_simplejwt.views import TokenVerifyView
 
@@ -26,23 +29,37 @@ class ObtainJWTWithCookie(TokenObtainPairView):
         refresh_token_expiration = tempResponse.data['refresh_token_expiration']
 
         # Set access token in a cookie
-        response = Response('Successfully')
+        response = JsonResponse({'username':f'{request.data.get("username")}'})
         response.set_cookie('access_token', access_token, expires=access_token_expiration,
                             secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
 
         # Set refresh token in a cookie
         response.set_cookie('refresh_token', refresh_token, expires=refresh_token_expiration,
                             secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
-
         return response
 
 
 class RefreshJWTWithCookie(TokenRefreshView):
+    def post(self, request, *args, **kwargs):
+        dic_cookie = {
+            "refresh": str(request.COOKIES.get('refresh_token'))
+        }
+        serializer = self.get_serializer(data=dic_cookie)
+
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception as e:
+            raise InvalidToken(e.args[0])
+
+        return Response(serializer.validated_data, status=status.HTTP_200_OK)
+
+    def __init__(self):
+        super().__init__()
+
     def finalize_response(self, request, response, *args, **kwargs):
         # Response.data is a forEach that saves header's data in response's object
         new_access_token = response.data.get('access')
 
-        # mainResponse = Response().setdefault('default' ,'HttpOnly')
         if new_access_token:
             # Set new access token in a cookie
             mainResponse = Response('New Token is created.')
@@ -54,6 +71,17 @@ class RefreshJWTWithCookie(TokenRefreshView):
 
 
 class VerifyJWTWithCookie(TokenVerifyView):
+    def get(self, request, *args, **kwargs):
+        dic_cookie = {
+            "token": str(request.COOKIES.get('access_token'))
+        }
+        serializer = self.get_serializer(data=dic_cookie)
+        try:
+            serializer.is_valid(raise_exception=True)
+        except Exception:
+            return Response(status=status.HTTP_401_UNAUTHORIZED)
+        return Response(status=status.HTTP_200_OK)
+
     def __init__(self):
         super().__init__()
 

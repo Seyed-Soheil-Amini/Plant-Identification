@@ -1,4 +1,5 @@
 from jwt import exceptions
+from rest_framework.exceptions import AuthenticationFailed
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.utils.translation import gettext_lazy as _
 
@@ -25,3 +26,21 @@ class CustomJWTAuthentication(JWTAuthentication):
             raise exceptions.AuthenticationFailed(_('Invalid token.'))
 
         return user, validated_token
+
+    def get_raw_token(self, header):
+        """
+        Extracts an unvalidated JSON web token from the given "Authorization"
+        header value.
+        """
+        parts = header.split()
+
+        if len(parts) == 0:
+            return None
+
+        if len(parts) != 2:
+            raise AuthenticationFailed(
+                _("Authorization header must contain two space-delimited values"),
+                code="bad_authorization_header",
+            )
+
+        return parts[1]

@@ -7,8 +7,8 @@ class IdentifyView(TemplateView):
     template_name = 'IdentifyPage/index.html'
 
 
-# class ResultWithDetail(TemplateView):
-#     template_name = 'IdentifyPage/Result/Result.html'
+class ResultWithDetail(TemplateView):
+    template_name = 'IdentifyPage/Result/Result.html'
 
 def ResultWithDetail(request, pk):
     context = {'plant_obj': Plant.objects.get(pk=pk)}

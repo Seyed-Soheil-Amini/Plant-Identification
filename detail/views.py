@@ -7,26 +7,26 @@ from django.http import Http404
 
 from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant
-from .serializers import PlantSerializer, PartialPlantSerializer
+from .serializers import PlantSerializer
 
 
-@api_view(['GET'])
-def randomPlant(request):
-    p = Plant.objects.order_by('?')[0]
-    return Response(PlantSerializer(p).data)
+# @api_view(['POST'])
+# def randomPlant(request):
+#     p = Plant.objects.order_by('?')[0]
+#     return Response(PlantSerializer(p).data)
 
 
-@api_view(['GET'])
-def explorePlantList(request):
-    p = Plant.objects.order_by('?')
-    return Response(PartialPlantSerializer(p, many=True).data)
+# @api_view(['GET'])
+# def explorePlantList(request):
+#     p = Plant.objects.order_by('?')
+#     return Response(PartialPlantSerializer(p, many=True).data)
 
 
 class PlantList(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self, request):
+    def get(self,request):
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)
         return Response(serializer.data)

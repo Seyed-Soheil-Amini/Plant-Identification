@@ -5,10 +5,10 @@ from detail import views
 from detail.views import *
 
 urlpatterns = [
-    path('list/', views.PlantList.as_view()),
+    path('data/', views.PlantList.as_view()),
     path('<int:pk>/', views.PlantDetail.as_view()),
-    path("randomplant/", randomPlant),
-    path("explore/", explorePlantList)
+    # path("randomplant/", randomPlant),
+    # path("explore/", explorePlantList)
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

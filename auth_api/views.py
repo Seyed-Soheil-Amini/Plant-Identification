@@ -31,11 +31,11 @@ class ObtainJWTWithCookie(TokenObtainPairView):
         # Set access token in a cookie
         response = JsonResponse({'username':f'{request.data.get("username")}'})
         response.set_cookie('access_token', access_token, expires=access_token_expiration,
-                            secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
+                            secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax',max_age=90*24*60*60)
 
         # Set refresh token in a cookie
         response.set_cookie('refresh_token', refresh_token, expires=refresh_token_expiration,
-                            secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
+                            secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax',max_age=90*24*60*60)
         return response
 
 
@@ -64,7 +64,7 @@ class RefreshJWTWithCookie(TokenRefreshView):
             # Set new access token in a cookie
             mainResponse = Response('New Token is created.')
             mainResponse.set_cookie('access_token', new_access_token, expires=timedelta(minutes=5),
-                                    secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax')
+                                    secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax',max_age=90*24*60*60)
         else:
             return HttpResponse(status=status.HTTP_401_UNAUTHORIZED)
         return super().finalize_response(request, mainResponse, *args, **kwargs)

@@ -1,17 +1,18 @@
 from django.db import models
-
 from django.utils.translation import gettext_lazy as _
 
 from Plant_Identification import settings
 
+import uuid
+
 IMAGE_DIR = 'mainImages/'
 
 
-# def get_file_path(instance, filename):
-#     return '{0}/{1}'.format(instance.id, filename)
-
+# file name can change by name of each plants
 def set_model_path(instance, filename):
-    return IMAGE_DIR + '{0}/{1}'.format(instance.scientific_name, filename)
+    string_filename = str(filename)
+    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    return IMAGE_DIR + '{0}/{1}'.format(instance.scientific_name, instance.scientific_name + ext)
 
 
 class Plant(models.Model):
@@ -31,6 +32,7 @@ class Plant(models.Model):
     soil_characteristics = models.CharField(max_length=200, blank=False, null=True,
                                             verbose_name=_("Soil Characteristics"))
     more_info = models.TextField(blank=True, null=True, verbose_name=_("More Information"))
+    video_iframe_link = models.URLField(null=True, blank=True)
 
     class Meta:
         db_table = 'plants'
@@ -42,12 +44,15 @@ class Plant(models.Model):
 
 
 def set_leaf_image_path(instance, filename):
-    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'leaf', filename)
+    string_filename = str(filename)
+    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'leaf',
+                                            instance.plant.scientific_name + '_L_' + uuid.uuid4().__str__()[0:7] + ext)
 
 
 class Leaf(models.Model):
-    image = models.ImageField(blank=False,null=False, upload_to=set_leaf_image_path)
-    plant = models.ForeignKey('Plant', related_name="leaf_image_set", on_delete=models.CASCADE)
+    image = models.ImageField(blank=False, null=False, upload_to=set_leaf_image_path)
+    plant = models.ForeignKey('Plant', related_name="leaf_image_set",on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'leaf_images'
@@ -56,11 +61,14 @@ class Leaf(models.Model):
 
 
 def set_stem_image_path(instance, filename):
-    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'stem', filename)
+    string_filename = str(filename)
+    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'stem',
+                                            instance.plant.scientific_name + '_S_' + uuid.uuid4().__str__()[0:7] + ext)
 
 
 class Stem(models.Model):
-    image = models.ImageField(blank=False,null=False, upload_to=set_stem_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_stem_image_path)
     plant = models.ForeignKey('Plant', related_name="stem_image_set", on_delete=models.CASCADE)
 
     class Meta:
@@ -70,7 +78,10 @@ class Stem(models.Model):
 
 
 def set_flower_image_path(instance, filename):
-    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'flower', filename)
+    string_filename = str(filename)
+    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.scientific_name, 'flower',
+                                            instance.plant.scientific_name + '_F_' + uuid.uuid4().__str__()[0:7] + ext)
 
 
 class Flower(models.Model):

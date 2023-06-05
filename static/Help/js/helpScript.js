@@ -1,3 +1,5 @@
+import {lang} from '{%}';
+
 var coll = document.getElementsByClassName("collapsible");
 var i;
 let guidesBackup;
@@ -19,107 +21,131 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 
-var idetify_guides = `The ability to properly identify plants is critical to proper environmental analysis and management. 
-In this course, designed for entry-level field biologists, botanists
-, environmental management professionals and ecologists,
- you will be introduced to the methods and best practices by which California plants are classified,
- specifically using The Jepson Manual –
- Vascular Plants of California. 
-Through lecture, discussions and hands-on activities,
-you will learn how to overcome common challenges in plant identification by practicing the utilization of appropriate resources,
-tools and scientific language. You will learn terminology, abbreviations,
-use of dichotomous keys and use of dissection microscopes.
-You will also be trained to recognize the characteristics that identify major vascular plant groups,
-including characteristics at the Family, Genera and Species-level.
-By the end of this course, you will be able to independently identify major taxa of California vascular
- plants and successfully key out to Family and Genus.
-You will be equipped to identify and properly use the online resources, tools, abbreviations,
-and terminology necessary to accurately identify California plants in your day-to-day work.`;
+let identify_guides ,explore_guides ,support_guides ,medicines_guides ,blog_guides ,growth_guides;
 
-var explore_guides = `You can combine elements in the Simple search, for example, surname and significant word from the title, e.g.:
-Austen Pride Prejudice
-There is no need to include AND as this is assumed.
-If you want to narrow your search down, use NOT and OR (enter these in capital letters), e.g.:
-Pride NOT prejudice
-Pride OR prejudice
-Shakespeare (tragedy OR sonnet)
-NB: Use lower case letters for your search terms and uppercase for (AND, OR, NOT).
-If you use upper case, e.g ORANGES ARE NOT THE ONLY FRUIT the catalolgue will search for (oranges AND are) NOT (the AND only AND fruit)
-To search for a phrase, enclose your search terms in quotation marks, for example:
-“pride and prejudice”
-“global warming”
-NB: Use phrase searching to search for one word titles prefixed with ‘the’, e.g. “the Adelphi”, “the Lancet”. 
-You can use wildcards to replace one or more characters:
-Use ? to replace one character, e.g. wom?n will search for woman and women
-Use * to replace more than one character, e.g. cultur* will search for culture, cultural and culturally
-To search for an ISBN enter the number without hyphens.
-To search for an ISSN enter the number with the hyphen. If you omit the hyphen you will find journal records that match the ISSN but you will not find matching article records.
-If you are searching for records in non-Roman scripts, it is recommended that you search both in the non-Roman script and Romanisation, for example, 香港 and Xianggang. (In a case such as this when a name has a form by which it is commonly known, also use that - in this case, Hong Kong.)
-Some, especially older, records lack non-Roman script and so they can only be found by searching using a standardised form in the Roman alphabet. To discover which transliteration system is in use, see www.loc.gov/catdir/cpso/roman.
-html or do a search for the name of your language in its non-Roman script, e.g., Русский for Russian.
-That should display many records and you will be able to see how they are Romanised,
-for example how any long vowels are represented.`;
+function make_text(){
+	var lang = localStorage.getItem('lang');
+	alert(lang);
+    var len = lang.length - 1;
+    var keys = Object.keys(lang)
+    var values = Object.values(lang);
+    alert(keys);
+    alert(values);
+    for(var i = 0; i <= keys.length - 1; i++){
+        switch(keys[i]){
+            case('hlp-tpc-idn'): identify_guides = identify_guides + values[i];break;
+            case('hlp-tpc-exp'): explore_guides = explore_guides + values[i];break;
+            case('hlp-tpc-sup'): support_guides = support_guides + values[i];break;
+            case('hlp-tpc-med'): medicines_guides = medicines_guides + values[i];break;
+            case('hlp-tpc-blg'): blog_guides = blog_guides + values[i];break;
+            case('hlp-tpc-grw'): growth_guides = growth_guides + values[i];break;
+            default:continue;
+        }
+    }
+}
 
-var support_guides = `Online support is becoming increasingly important in today’s world.
-With the advent of the internet, people are now able to access support from all over the world,
-no matter where they are. Online support can come in the form of online forums,
-chat rooms, and other online communities.
-These online communities provide a safe space for people to talk about their problems,
-share their experiences, and get advice from others. With online support, people can find the help they need without having to leave
-the comfort of their own homes.
-Online support can be a great tool for those struggling with mental health issues,
-addiction, or any other issue they may be facing
-Email is the defacto way of connecting with customers.
-But email exchanges can take forever and inboxes are getting overwhelmed.
-But text messages are more user-friendly and they only have a 3% spam rate.
-Plus, 74% of consumers respond to texts from a business within an hour. Compare that to only 41% for email.
-So text messaging can be the better way to message customers.
-Especially when you need to deliver real-time updates and timely responses.
-Paying someone to answer phones gets costly. The average customer service phone call costs about $16.
-This is where SMS support is far cheaper and more scalable than answering phone calls.
-Keep in mind, there will always be a place for voice calls in your customer support process. A human voice can also make a world of difference when it comes to customer engagement.
-But text messaging can insulate your customer support staff or front desk from having to answer every phone call. 
-You get to reserve the most valuable customer service requests for real-life employees and team members.`;
 
-var habitat_guides = `The natural habitat of a species is the environment in which it is naturally found.
-It is the source of food, water, shelter, and other resources necessary for its survival. Every species has specific needs and requirements that must be met in order for it to live and thrive in its habitat.
-When these needs are not met, the species may be threatened with extinction.
-It is therefore essential to protect and preserve habitats so that species can continue to survive and evolve.
-Wild plants are the fundamental building blocks of all habitats, and while many different habitats exist, most of the plants we're working to protect are found in a small number of key ones, such as woodland, grassland and wetland.
-Habitats often overlap one another and include complex networks of 'microhabitats',
-each with their own particular characteristics. 
-Understanding how these specific environments work,
-how they relate to each other and how they've been looked after in the past,
-is key to caring for the plants that live there.
-`;
+//var idetify_guides = `The ability to properly identify plants is critical to proper environmental analysis and management.
+//In this course, designed for entry-level field biologists, botanists
+//, environmental management professionals and ecologists,
+// you will be introduced to the methods and best practices by which California plants are classified,
+// specifically using The Jepson Manual –
+// Vascular Plants of California.
+//Through lecture, discussions and hands-on activities,
+//you will learn how to overcome common challenges in plant identification by practicing the utilization of appropriate resources,
+//tools and scientific language. You will learn terminology, abbreviations,
+//use of dichotomous keys and use of dissection microscopes.
+//You will also be trained to recognize the characteristics that identify major vascular plant groups,
+//including characteristics at the Family, Genera and Species-level.
+//By the end of this course, you will be able to independently identify major taxa of California vascular
+// plants and successfully key out to Family and Genus.
+//You will be equipped to identify and properly use the online resources, tools, abbreviations,
+//and terminology necessary to accurately identify California plants in your day-to-day work.`;
 
-var midcine_guides = `Plants have many medicinal properties that have been used for centuries to treat a variety of ailments.
-These properties include anti-inflammatory, antiseptic, antifungal, analgesic, and antiviral effects.
-Plants also contain compounds that can act as antioxidants, helping to reduce oxidative stress and protect cells from damage.
-Additionally, some plants have been found to have anti-cancer properties,
-with certain compounds found to reduce the risk of certain types of cancer.
-According to the World Health Organization (WHO),
-a variety of drugs are obtained from different medicinal plants and
-about 80% of the world’s developing population depends on traditional medicines for their primary health care needs.
-Myanmar has abundant plant resources and Myanmar peoples have used their own traditional medicines to maintain their health and treat various ailments,
-including malaria, diarrhea and fever over millennia of history.`;
+//let explore_guides = `You can combine elements in the Simple search, for example, surname and significant word from the title, e.g.:
+//Austen Pride Prejudice
+//There is no need to include AND as this is assumed.
+//If you want to narrow your search down, use NOT and OR (enter these in capital letters), e.g.:
+//Pride NOT prejudice
+//Pride OR prejudice
+//Shakespeare (tragedy OR sonnet)
+//NB: Use lower case letters for your search terms and uppercase for (AND, OR, NOT).
+//If you use upper case, e.g ORANGES ARE NOT THE ONLY FRUIT the catalolgue will search for (oranges AND are) NOT (the AND only AND fruit)
+//To search for a phrase, enclose your search terms in quotation marks, for example:
+//“pride and prejudice”
+//“global warming”
+//NB: Use phrase searching to search for one word titles prefixed with ‘the’, e.g. “the Adelphi”, “the Lancet”.
+//You can use wildcards to replace one or more characters:
+//Use ? to replace one character, e.g. wom?n will search for woman and women
+//Use * to replace more than one character, e.g. cultur* will search for culture, cultural and culturally
+//To search for an ISBN enter the number without hyphens.
+//To search for an ISSN enter the number with the hyphen. If you omit the hyphen you will find journal records that match the ISSN but you will not find matching article records.
+//If you are searching for records in non-Roman scripts, it is recommended that you search both in the non-Roman script and Romanisation, for example, 香港 and Xianggang. (In a case such as this when a name has a form by which it is commonly known, also use that - in this case, Hong Kong.)
+//Some, especially older, records lack non-Roman script and so they can only be found by searching using a standardised form in the Roman alphabet. To discover which transliteration system is in use, see www.loc.gov/catdir/cpso/roman.
+//html or do a search for the name of your language in its non-Roman script, e.g., Русский for Russian.
+//That should display many records and you will be able to see how they are Romanised,
+//for example how any long vowels are represented.`;
 
-var growth_guides = `Plant growth is a complex process that is influenced by a variety of factors,
-including light, temperature, water, soil fertility, and the availability of nutrients.
-Plants require sunlight for photosynthesis,
-which is the process by which plants convert light energy into chemical energy.
-Light is also important for promoting the growth of stems, leaves, and other parts of the plant.
-Temperature is also a critical factor for plant growth,
-as it affects the rate of photosynthesis and the availability of water.
-Water is essential for the growth of plants, as it is necessary for photosynthesis and other metabolic processes.
-Water also helps to regulate the temperature of the plant and helps to transport nutrients and other materials throughout the plant.
-Soil fertility is also important for plant growth, as it provides the necessary nutrients for plant growth.
-Nutrients such as nitrogen, phosphorus, and potassium are essential for healthy plant growth.
-Plant growth is also affected by the availability of other materials such as carbon dioxide and oxygen.
-Carbon dioxide is necessary for photosynthesis, while oxygen is necessary for respiration.
-Plants also require certain trace elements such as iron, zinc, and copper for proper growth.
-Finally, the environment in which a plant is grown can also affect its growth.
-For example, certain plants may require specific temperatures or humidity levels in order to thrive.`;
+//let support_guides = `Online support is becoming increasingly important in today’s world.
+//With the advent of the internet, people are now able to access support from all over the world,
+//no matter where they are. Online support can come in the form of online forums,
+//chat rooms, and other online communities.
+//These online communities provide a safe space for people to talk about their problems,
+//share their experiences, and get advice from others. With online support, people can find the help they need without having to leave
+//the comfort of their own homes.
+//Online support can be a great tool for those struggling with mental health issues,
+//addiction, or any other issue they may be facing
+//Email is the defacto way of connecting with customers.
+//But email exchanges can take forever and inboxes are getting overwhelmed.
+//But text messages are more user-friendly and they only have a 3% spam rate.
+//Plus, 74% of consumers respond to texts from a business within an hour. Compare that to only 41% for email.
+//So text messaging can be the better way to message customers.
+//Especially when you need to deliver real-time updates and timely responses.
+//Paying someone to answer phones gets costly. The average customer service phone call costs about $16.
+//This is where SMS support is far cheaper and more scalable than answering phone calls.
+//Keep in mind, there will always be a place for voice calls in your customer support process. A human voice can also make a world of difference when it comes to customer engagement.
+//But text messaging can insulate your customer support staff or front desk from having to answer every phone call.
+//You get to reserve the most valuable customer service requests for real-life employees and team members.`;
+
+//let habitat_guides = `The natural habitat of a species is the environment in which it is naturally found.
+//It is the source of food, water, shelter, and other resources necessary for its survival. Every species has specific needs and requirements that must be met in order for it to live and thrive in its habitat.
+//When these needs are not met, the species may be threatened with extinction.
+//It is therefore essential to protect and preserve habitats so that species can continue to survive and evolve.
+//Wild plants are the fundamental building blocks of all habitats, and while many different habitats exist, most of the plants we're working to protect are found in a small number of key ones, such as woodland, grassland and wetland.
+//Habitats often overlap one another and include complex networks of 'microhabitats',
+//each with their own particular characteristics.
+//Understanding how these specific environments work,
+//how they relate to each other and how they've been looked after in the past,
+//is key to caring for the plants that live there.
+//`;
+
+//let medicines_guides = `Plants have many medicinal properties that have been used for centuries to treat a variety of ailments.
+//These properties include anti-inflammatory, antiseptic, antifungal, analgesic, and antiviral effects.
+//Plants also contain compounds that can act as antioxidants, helping to reduce oxidative stress and protect cells from damage.
+//Additionally, some plants have been found to have anti-cancer properties,
+//with certain compounds found to reduce the risk of certain types of cancer.
+//According to the World Health Organization (WHO),
+//a variety of drugs are obtained from different medicinal plants and
+//about 80% of the world’s developing population depends on traditional medicines for their primary health care needs.
+//Myanmar has abundant plant resources and Myanmar peoples have used their own traditional medicines to maintain their health and treat various ailments,
+//including malaria, diarrhea and fever over millennia of history.`;
+
+//let growth_guides = `Plant growth is a complex process that is influenced by a variety of factors,
+//including light, temperature, water, soil fertility, and the availability of nutrients.
+//Plants require sunlight for photosynthesis,
+//which is the process by which plants convert light energy into chemical energy.
+//Light is also important for promoting the growth of stems, leaves, and other parts of the plant.
+//Temperature is also a critical factor for plant growth,
+//as it affects the rate of photosynthesis and the availability of water.
+//Water is essential for the growth of plants, as it is necessary for photosynthesis and other metabolic processes.
+//Water also helps to regulate the temperature of the plant and helps to transport nutrients and other materials throughout the plant.
+//Soil fertility is also important for plant growth, as it provides the necessary nutrients for plant growth.
+//Nutrients such as nitrogen, phosphorus, and potassium are essential for healthy plant growth.
+//Plant growth is also affected by the availability of other materials such as carbon dioxide and oxygen.
+//Carbon dioxide is necessary for photosynthesis, while oxygen is necessary for respiration.
+//Plants also require certain trace elements such as iron, zinc, and copper for proper growth.
+//Finally, the environment in which a plant is grown can also affect its growth.
+//For example, certain plants may require specific temperatures or humidity levels in order to thrive.`;
 
 function search_in_text(text, keyword, subject, num_search) {
   guidesBackup = document.getElementById('display-guides').innerHTML;

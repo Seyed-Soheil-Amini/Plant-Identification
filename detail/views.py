@@ -1,5 +1,4 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,29 +9,17 @@ from .models import Plant
 from .serializers import PlantSerializer
 
 
-# @api_view(['POST'])
-# def randomPlant(request):
-#     p = Plant.objects.order_by('?')[0]
-#     return Response(PlantSerializer(p).data)
-
-
-# @api_view(['GET'])
-# def explorePlantList(request):
-#     p = Plant.objects.order_by('?')
-#     return Response(PartialPlantSerializer(p, many=True).data)
-
-
 class PlantList(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self,request):
+    def get(self, request):
         plants = Plant.objects.all()
         serializer = PlantSerializer(plants, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = PlantSerializer(data=request.data)
+        serializer = PlantSerializer(data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

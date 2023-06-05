@@ -19,14 +19,12 @@ class LanguageSelector {
 	removeLang()
 	{
 		localStorage.removeItem('lang');
-
 		return true;
 	}
 	loadLang()
 	{
 		var l = this.getLang();
 		var strs = lang[l];
-
 		return strs;
 	}
 

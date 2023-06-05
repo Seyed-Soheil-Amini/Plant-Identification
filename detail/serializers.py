@@ -6,25 +6,25 @@ from .models import *
 class LeafSerializer(serializers.ModelSerializer):
     class Meta:
         model = Leaf
-        fields = ['image', 'plant']
+        fields = ['image']
 
 
 class StemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Stem
-        fields = ['image', 'plant']
+        fields = ['image']
 
 
 class FlowerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Flower
-        fields = ['image', 'plant']
+        fields = ['image']
 
 
 class PlantSerializer(serializers.ModelSerializer):
-    leaf_image_set = LeafSerializer(many=True)
-    stem_image_set = StemSerializer(many=True)
-    flower_image_set = FlowerSerializer(many=True)
+    leaf_image_set = LeafSerializer(many=True, read_only=True)
+    stem_image_set = StemSerializer(many=True, read_only=True)
+    flower_image_set = FlowerSerializer(many=True, read_only=True)
 
     class Meta:
         model = Plant
@@ -32,21 +32,32 @@ class PlantSerializer(serializers.ModelSerializer):
                   'geographical_distribution',
                   'ecology',
                   'medicinal_properties',
-                  'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info',
+                  'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_iframe_link',
                   'leaf_image_set', 'stem_image_set', 'flower_image_set']
 
     def create(self, validated_data):
-        leaf_images = validated_data.pop('leaf_image_set')
-        stem_images = validated_data.pop('stem_image_set')
-        flower_images = validated_data.pop('flower_image_set')
+        leaf_images = self.context.get('request').FILES.get('leaf_image_set')
+        stem_images = self.context.get('request').FILES.get('stem_image_set')
+        flower_images = self.context.get('request').FILES.get('flower_image_set')
+
+        dict_leaf = {
+            'image': leaf_images
+        }
+
+        dict_stem = {
+            'image': stem_images
+        }
+
+        dict_flower = {
+            'image': flower_images
+        }
+
         plant = Plant.objects.create(**validated_data)
-        for leaf in leaf_images:
-            Leaf.objects.create(plant=plant, **leaf)
-        for stem in stem_images:
-            Stem.objects.create(plant=plant, **stem)
-        for flower in flower_images:
-            Flower.objects.create(plant=plant, **flower)
-        return Plant
+        Leaf.objects.create(plant=plant, **dict_leaf)
+        Stem.objects.create(plant=plant, **dict_stem)
+        Flower.objects.create(plant=plant, **dict_stem)
+
+        return plant
 
 #
 # class PartialPlantSerializer(PlantSerializer):

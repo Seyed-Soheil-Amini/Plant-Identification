@@ -40,3 +40,11 @@ def medicine_guides(request):
 
 def growth_guides(request):
     return render(request=request, template_name='HelpPage/topics/growth.html')
+
+
+def updating_error(request):
+    return render(request=request, template_name='updating.html')
+
+
+def implement_soon_error(request):
+    return render(request=request, template_name='soon.html')

@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from .models import Plant, Leaf, Stem, Flower
+from .models import Plant, Leaf, Stem, Flower, Medicine
+
 
 class LeafAdmin(admin.StackedInline):
     model = Leaf
@@ -25,13 +26,19 @@ class FlowerAdmin(admin.StackedInline):
     extra = 0
 
 
+class MedicineAdmin(admin.StackedInline):
+    model = Medicine
+    fields = ['property_name']
+    extra = 0
+
+
 # @admin.register(Plant)
 class PlantAdmin(admin.ModelAdmin):
     list_display = ['persian_name', 'scientific_name', 'family']
     list_filter = ['persian_name', 'scientific_name']
     list_editable = ['scientific_name', 'family']
     search_fields = ('persian_name', 'family', 'scientific_name', 'morphology')
-    inlines = [LeafAdmin, StemAdmin, FlowerAdmin]
+    inlines = [MedicineAdmin, LeafAdmin, StemAdmin, FlowerAdmin]
 
 
 admin.site.register(Plant, PlantAdmin)

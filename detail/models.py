@@ -17,18 +17,18 @@ def set_model_path(instance, filename):
 
 
 class Plant(models.Model):
-    persian_name = models.CharField(max_length=100, blank=False, null=True, verbose_name=_("Persian Name"))
+    persian_name = models.TextField(blank=False, null=True, verbose_name=_("Persian Name"))
     image = models.ImageField(upload_to=set_model_path, null=True, blank=True, verbose_name=_("Image"))
-    scientific_name = models.CharField(max_length=100, blank=False, null=True, verbose_name=_("scientific Name"))
-    family = models.CharField(max_length=100, blank=False, null=True, verbose_name=_("Family"))
+    scientific_name = models.TextField(blank=False, null=True, verbose_name=_("scientific Name"))
+    family = models.TextField(blank=False, null=True, verbose_name=_("Family"))
     morphology = models.TextField(blank=False, null=True, verbose_name=_("Morphology"))
-    flowering_time = models.CharField(max_length=200, blank=False, null=True, verbose_name=_("flowering Time"))
-    geographical_distribution = models.CharField(max_length=200, blank=False, null=True,
+    flowering_time = models.TextField(blank=False, null=True, verbose_name=_("flowering Time"))
+    geographical_distribution = models.TextField(blank=False, null=True,
                                                  verbose_name=_("Geographical Distribution"))
-    ecology = models.CharField(max_length=300, blank=False, null=True, verbose_name=_("Ecology"))
-    habitat_characteristics = models.CharField(max_length=200, blank=False, null=True, verbose_name=_("Habitat"))
-    climate = models.CharField(max_length=200, blank=False, null=True, verbose_name=_("Climate"))
-    soil_characteristics = models.CharField(max_length=200, blank=False, null=True,
+    ecology = models.TextField(blank=False, null=True, verbose_name=_("Ecology"))
+    habitat_characteristics = models.TextField(blank=False, null=True, verbose_name=_("Habitat"))
+    climate = models.TextField(blank=False, null=True, verbose_name=_("Climate"))
+    soil_characteristics = models.TextField(blank=False, null=True,
                                             verbose_name=_("Soil Characteristics"))
     more_info = models.TextField(blank=True, null=True, verbose_name=_("More Information"))
     video_iframe_link = models.URLField(null=True, blank=True)

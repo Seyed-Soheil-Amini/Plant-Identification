@@ -46,7 +46,7 @@ class PlantDetail(APIView):
 
     def put(self, request, pk):
         plant = self.get_object(pk)
-        serializer = PlantSerializer(plant, data=request.data)
+        serializer = PlantSerializer(plant, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -226,7 +226,7 @@ class PlantMedicinalList(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self):
+    def get(self,request):
         medicines = Medicine.objects.all()
         serializer = MedicinalSerializer(medicines, many=True)
         return Response(serializer.data)
@@ -249,7 +249,7 @@ class PlantMedicinalDetail(APIView):
         except Medicine.DoesNotExist:
             raise Http404
 
-    def get(self, pk):
+    def get(self,request ,pk):
         medicine = self.get_object(pk)
         serializer = MedicinalSerializer(medicine)
         return Response(serializer.data)

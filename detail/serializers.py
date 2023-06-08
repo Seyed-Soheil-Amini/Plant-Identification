@@ -1,7 +1,17 @@
+import json
+import os
+
+from django.http import Http404
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
 from .models import *
+
+
+class MedicinalUnitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MedicinalUnit
+        fields = ['id', 'plant', 'medicine']
 
 
 class MedicinalSerializer(serializers.ModelSerializer):
@@ -29,7 +39,8 @@ class FlowerSerializer(serializers.ModelSerializer):
 
 
 class PlantSerializer(serializers.ModelSerializer):
-    medicinal_properties = MedicinalSerializer(many=True, read_only=True)
+    medicinal_properties = MedicinalUnitSerializer(many=True, read_only=True)
+    # medicine_unit = MedicinalSerializer(many=True, read_only=True)
     leaf_image_set = LeafSerializer(many=True, read_only=True)
     stem_image_set = StemSerializer(many=True, read_only=True)
     flower_image_set = FlowerSerializer(many=True, read_only=True)
@@ -40,8 +51,14 @@ class PlantSerializer(serializers.ModelSerializer):
                   'geographical_distribution',
                   'ecology',
                   'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_iframe_link',
-                  'adder_user',
-                  'medicinal_properties', 'leaf_image_set', 'stem_image_set', 'flower_image_set']
+                  'adder_user', 'medicinal_properties',
+                  'leaf_image_set', 'stem_image_set', 'flower_image_set']
+
+    def get_object(self, model_name, pk):
+        try:
+            return model_name.objects.get(pk=pk)
+        except model_name.DoesNotExist:
+            return None
 
     def create(self, validated_data):
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
@@ -52,7 +69,7 @@ class PlantSerializer(serializers.ModelSerializer):
 
         plant = Plant.objects.create(adder_user=user, **validated_data)
         for medicine in range(0, len(medicinal_props)):
-            Medicine.objects.create(plant=plant, **{'property_name': medicinal_props[medicine]})
+            MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
         for leaf in range(0, len(leaf_images)):
             Leaf.objects.create(plant=plant, user=user, **{'image': leaf_images[leaf]})
         for stem in range(0, len(stem_images)):
@@ -62,8 +79,26 @@ class PlantSerializer(serializers.ModelSerializer):
 
         return plant
 
-#
-# class PartialPlantSerializer(PlantSerializer):
-#     class Meta:
-#         model = Plant
-#         fields = ['id', 'main_image', 'persian_name', 'flowering_time', 'scientific_name', 'family']
+    def update(self, instance, validated_data):
+        medicinal_props = self.context.get('request').data.getlist('medicine_unit')
+        leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
+        stem_images = self.context.get('request').FILES.getlist('stem_image_set')
+        flower_images = self.context.get('request').FILES.getlist('flower_image_set')
+        user = User.objects.get(username=self.context.get('request').user)
+
+        plant = Plant.objects.update(adder_user=user, **validated_data)
+
+        if medicinal_props is not None:
+            for medicine in range(0, len(medicinal_props)):
+                MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+        if leaf_images is not None:
+            for leaf in range(0, len(leaf_images)):
+                Leaf.objects.create(plant=plant, user=user, **{'image': leaf_images[leaf]})
+        if stem_images is not None:
+            for stem in range(0, len(stem_images)):
+                Stem.objects.create(plant=plant, user=user, **{'image': stem_images[stem]})
+        if flower_images is not None:
+            for flower in range(0, len(flower_images)):
+                Flower.objects.create(plant=plant, user=user, **{'image': flower_images[flower]})
+
+        return instance

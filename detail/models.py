@@ -17,9 +17,10 @@ def set_model_path(instance, filename):
 
 
 class Plant(models.Model):
-    persian_name = models.TextField(blank=False, null=True, verbose_name=_("Persian Name"))
+    persian_name = models.CharField(blank=False, max_length=100, unique=True, null=True, verbose_name=_("Persian Name"))
     image = models.ImageField(upload_to=set_model_path, null=True, blank=True, verbose_name=_("Image"))
-    scientific_name = models.TextField(blank=False, null=True, verbose_name=_("scientific Name"))
+    scientific_name = models.CharField(blank=False, max_length=100, null=True, unique=True,
+                                       verbose_name=_("scientific Name"))
     family = models.TextField(blank=False, null=True, verbose_name=_("Family"))
     morphology = models.TextField(blank=False, null=True, verbose_name=_("Morphology"))
     flowering_time = models.TextField(blank=False, null=True, verbose_name=_("flowering Time"))
@@ -45,7 +46,8 @@ class Plant(models.Model):
 
 class Medicine(models.Model):
     property_name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("Property Name"))
-    plant = models.ForeignKey('Plant', related_name="medicines_properties", on_delete=models.CASCADE)
+    def __str__(self):
+        return self.property_name
 
     class Meta:
         db_table = 'medicines'
@@ -129,3 +131,13 @@ class Flower(models.Model):
         db_table = 'flower_images'
         verbose_name = 'flower'
         verbose_name_plural = 'flowers'
+
+
+class MedicinalUnit(models.Model):
+    plant = models.ForeignKey('Plant', related_name="medicinal_properties", on_delete=models.CASCADE)
+    medicine = models.ForeignKey('Medicine', related_name="medicine_unit", on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'medicinal_unit'
+        verbose_name = 'medicinal unit'
+        verbose_name_plural = 'medicinal units'

@@ -1,4 +1,4 @@
-export const lang = {
+lang = {
 	'en': {
 		
 		// Home page

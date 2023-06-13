@@ -1,15 +1,18 @@
 import os
 import shutil
+import uuid
 
 from rest_framework import status
+from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
 
 from auth_api.authentication import CustomJWTAuthentication
-from .models import Plant, Leaf, Stem, Flower, Medicine
-from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer
+from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat
+from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
+    HabitatSerializer
 
 
 class PlantList(APIView):
@@ -22,7 +25,8 @@ class PlantList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = PlantSerializer(data=request.data, context={'request': request})
+        address = uuid.uuid4().__str__()[25:36]
+        serializer = PlantSerializer(data=request.data, context={'request': request, 'address': address})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -59,6 +63,20 @@ class PlantDetail(APIView):
         image_path = image_path[0: image_path.rindex('\\') + 1]
         shutil.rmtree(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['DELETE'])
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+def delete_plants(request):
+    deleted_plants_id = request.data.getlist('id')
+    for id in range(0, len(deleted_plants_id)):
+        deleted_obj = Plant.objects.get(pk=deleted_plants_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        image_path = image_path[0: image_path.rindex('\\') + 1]
+        shutil.rmtree(image_path)
+    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 class PlantLeafImageList(APIView):
@@ -226,7 +244,7 @@ class PlantMedicinalList(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]
 
-    def get(self,request):
+    def get(self, request):
         medicines = Medicine.objects.all()
         serializer = MedicinalSerializer(medicines, many=True)
         return Response(serializer.data)
@@ -249,7 +267,7 @@ class PlantMedicinalDetail(APIView):
         except Medicine.DoesNotExist:
             raise Http404
 
-    def get(self,request ,pk):
+    def get(self, request, pk):
         medicine = self.get_object(pk)
         serializer = MedicinalSerializer(medicine)
         return Response(serializer.data)
@@ -265,4 +283,92 @@ class PlantMedicinalDetail(APIView):
     def delete(self, request, pk):
         medicine = self.get_object(pk)
         medicine.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+@api_view(['DELETE'])
+def delete_plants_data(request):
+    deleted_medicines_id = request.data.getlist('medicine_id')
+    deleted_leafs_id = request.data.getlist('leaf_id')
+    deleted_stems_id = request.data.getlist('stem_id')
+    deleted_flowers_id = request.data.getlist('flower_id')
+    deleted_habitats_id = request.data.getlist('habitat_id')
+    for id in range(0, len(deleted_medicines_id)):
+        deleted_obj = MedicinalUnit.objects.get(pk=deleted_medicines_id[id])
+        deleted_obj.delete()
+    for id in range(0, len(deleted_leafs_id)):
+        deleted_obj = Leaf.objects.get(pk=deleted_leafs_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        os.remove(image_path)
+    for id in range(0, len(deleted_stems_id)):
+        deleted_obj = Stem.objects.get(pk=deleted_stems_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        os.remove(image_path)
+    for id in range(0, len(deleted_flowers_id)):
+        deleted_obj = Flower.objects.get(pk=deleted_flowers_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        os.remove(image_path)
+    for id in range(0, len(deleted_habitats_id)):
+        deleted_obj = Habitat.objects.get(pk=deleted_habitats_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        os.remove(image_path)
+    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PlantHabitatImageList(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        habitats = Habitat.objects.all()
+        serializer = HabitatSerializer(habitats, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = HabitatSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PlantHabitatImageDetail(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Habitat.objects.get(pk=pk)
+        except Habitat.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        habitat = self.get_object(pk)
+        serializer = HabitatSerializer(habitat)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        habitat = self.get_object(pk)
+        old_image_path = habitat.image.path
+        if os.path.isfile(old_image_path):
+            os.remove(old_image_path)
+
+        serializer = HabitatSerializer(habitat, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        habitat = self.get_object(pk)
+        image_path = habitat.image.path
+        habitat.delete()
+        if os.path.isfile(image_path):
+            os.remove(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)

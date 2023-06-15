@@ -50,7 +50,7 @@ class PlantDetail(APIView):
 
     def put(self, request, pk):
         plant = self.get_object(pk)
-        serializer = PlantSerializer(plant, data=request.data, context={'request': request})
+        serializer = PlantSerializer(plant, data=request.data, context={'request': request, 'pk': pk})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)

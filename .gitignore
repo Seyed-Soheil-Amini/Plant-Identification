@@ -3,8 +3,4 @@ venv/
 media/
 **/__pycache__/
 *.pyc
-<<<<<<< HEAD
-Plant_Identification/local_setting.py
-=======
 Plant_Identification/local_settings.py
->>>>>>> 15f09b244406f2665f9f940e6f7f96b0134ffcd1

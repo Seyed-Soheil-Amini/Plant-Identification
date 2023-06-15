@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, re_path
 
 urlpatterns = [
     path("", views.HomeView.as_view(), name='home_url'),
@@ -14,4 +14,6 @@ urlpatterns = [
     path("help/growth/", views.growth_guides, name='growth_guides_url'),
     path("Oops/",views.updating_error,name='updating_err_url'),
     path("Soon/",views.implement_soon_error,name='soon_err'),
+    re_path("users/*", views.DashboardView.as_view(), name='dashboard_url'),
+
 ]

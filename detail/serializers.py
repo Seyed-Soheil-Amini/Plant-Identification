@@ -67,7 +67,9 @@ class PlantSerializer(serializers.ModelSerializer):
             return None
 
     def create(self, validated_data):
+        print(self.context.get('request'))
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
+        print(medicinal_props)
         leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
         stem_images = self.context.get('request').FILES.getlist('stem_image_set')
         flower_images = self.context.get('request').FILES.getlist('flower_image_set')
@@ -113,9 +115,10 @@ class PlantSerializer(serializers.ModelSerializer):
             with open(filename, 'wb+') as f:
                 for chunk in image_field.chunks():
                     f.write(chunk)
-            plant = instance.update(editor_user=user, image=filename_to_database, **validated_data)
+
+            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database, **validated_data)
         else:
-            plant = instance.update(editor_user=user, **validated_data)
+            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
 
         file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
         with open(file_path, 'w', encoding='utf-8') as f:

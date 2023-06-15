@@ -4,7 +4,7 @@ from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat
 
 
 class MedicineAdmin(admin.ModelAdmin):
-    list_display = ['property_name']
+    list_display = ['id', 'property_name']
     list_filter = ['property_name']
 
 
@@ -45,7 +45,7 @@ class HabitatAdmin(admin.StackedInline):
 
 # @admin.register(Plant)
 class PlantAdmin(admin.ModelAdmin):
-    list_display = ['persian_name', 'scientific_name', 'family']
+    list_display = ['id', 'persian_name', 'scientific_name', 'family']
     list_filter = ['persian_name', 'scientific_name']
     list_editable = ['scientific_name', 'family']
     search_fields = ('persian_name', 'family', 'scientific_name', 'morphology')

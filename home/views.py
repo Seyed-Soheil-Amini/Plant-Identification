@@ -17,6 +17,8 @@ class HelpView(TemplateView):
 class FAQView(TemplateView):
     template_name = 'FAQPage/index.html'
 
+class DashboardView(TemplateView):
+    template_name = 'dashboard/index.html'
 
 def identify_guides(request):
     return render(request=request, template_name='HelpPage/topics/identify.html')

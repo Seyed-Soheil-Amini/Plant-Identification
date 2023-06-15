@@ -97,9 +97,8 @@ class PlantSerializer(serializers.ModelSerializer):
         return plant
 
     def update(self, instance, validated_data):
-        print(instance)
         new_image = self.context.get('request').FILES.get('image')
-        medicinal_props = self.context.get('request').data.getlist('medicine_unit')
+        medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
         leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
         stem_images = self.context.get('request').FILES.getlist('stem_image_set')
         flower_images = self.context.get('request').FILES.getlist('flower_image_set')

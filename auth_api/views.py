@@ -36,6 +36,7 @@ class ObtainJWTWithCookie(TokenObtainPairView):
         # Set refresh token in a cookie
         response.set_cookie('refresh_token', refresh_token, expires=refresh_token_expiration,
                             secure=settings.SESSION_COOKIE_SECURE, httponly=True, samesite='Lax',max_age=90*24*60*60)
+        # print(response.cookies)
         return response
 
 

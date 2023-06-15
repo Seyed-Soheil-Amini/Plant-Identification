@@ -55,7 +55,6 @@ class Plant(models.Model):
         #
         # ]
 
-
     def __str__(self):
         return self.persian_name
 
@@ -96,7 +95,7 @@ class Leaf(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_leaf_image_path)
     plant = models.ForeignKey('Plant', related_name="leaf_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="user_leaf_image_set",
-                             default=User.objects.get(username="ablfzlmntzri_121").id, on_delete=models.DO_NOTHING)
+                             default=User.objects.get(username="soheilofficial").id, on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'leaf_images'
@@ -119,7 +118,7 @@ def set_stem_image_path(instance, filename):
 class Stem(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_stem_image_path)
     plant = models.ForeignKey('Plant', related_name="stem_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="ablfzlmntzri_121").id,
+    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
                              related_name="user_stem_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -143,7 +142,7 @@ def set_flower_image_path(instance, filename):
 class Flower(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_flower_image_path)
     plant = models.ForeignKey('Plant', related_name="flower_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="ablfzlmntzri_121").id,
+    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
                              related_name="user_flower_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -167,7 +166,7 @@ def set_habitat_image_path(instance, filename):
 class Habitat(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_habitat_image_path)
     plant = models.ForeignKey('Plant', related_name="habitat_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="ablfzlmntzri_121").id,
+    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
                              related_name="user_habitat_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -177,7 +176,6 @@ class Habitat(models.Model):
 
 
 class MedicinalUnit(models.Model):
-
     plant = models.ForeignKey('Plant', related_name="medicinal_properties", on_delete=models.CASCADE)
     medicine = models.ForeignKey('Medicine', related_name="medicine_unit", on_delete=models.CASCADE)
 

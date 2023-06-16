@@ -1,4 +1,8 @@
 import os
+import io
+from PIL import Image
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.base import ContentFile
 
 from rest_framework import serializers
 
@@ -66,10 +70,25 @@ class PlantSerializer(serializers.ModelSerializer):
         except model_name.DoesNotExist:
             return None
 
+    def compress(self, image_file, content_type):
+        guess = 70
+        low = 1
+        high = 100
+        size = 1024 * 1024 * 1.25
+        image = Image.open(image_file)
+        while low < high:
+            buffer = io.BytesIO()
+            image.save(fp=buffer, format=content_type.split('/')[1], optimize=True, quality=guess)
+            if buffer.getbuffer().nbytes < size:
+                low = guess
+            else:
+                high = guess - 1
+            guess = (low + high + 1) // 2
+
+        return ContentFile(buffer.getvalue())
+
     def create(self, validated_data):
-        print(self.context.get('request'))
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
-        print(medicinal_props)
         leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
         stem_images = self.context.get('request').FILES.getlist('stem_image_set')
         flower_images = self.context.get('request').FILES.getlist('flower_image_set')
@@ -86,13 +105,29 @@ class PlantSerializer(serializers.ModelSerializer):
         for medicine in range(0, len(medicinal_props)):
             MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
         for leaf in range(0, len(leaf_images)):
-            Leaf.objects.create(plant=plant, user=user, **{'image': leaf_images[leaf]})
+            pillow_image = self.compress(image_file=str(leaf_images[leaf].temporary_file_path()),
+                                         content_type=str(leaf_images[leaf].content_type))
+            image_file = InMemoryUploadedFile(pillow_image, None, f'{leaf_images[leaf]}',
+                                              f'{leaf_images[leaf].content_type}', pillow_image.tell, None)
+            Leaf.objects.create(plant=plant, user=user, **{'image': image_file})
         for stem in range(0, len(stem_images)):
-            Stem.objects.create(plant=plant, user=user, **{'image': stem_images[stem]})
+            pillow_image = self.compress(image_file=str(stem_images[stem].temporary_file_path()),
+                                         content_type=str(stem_images[stem].content_type))
+            image_file = InMemoryUploadedFile(pillow_image, None, f'{stem_images[stem]}',
+                                              f'{stem_images[stem].content_type}', pillow_image.tell, None)
+            Stem.objects.create(plant=plant, user=user, **{'image': image_file})
         for flower in range(0, len(flower_images)):
-            Flower.objects.create(plant=plant, user=user, **{'image': flower_images[flower]})
+            pillow_image = self.compress(image_file=str(flower_images[flower].temporary_file_path()),
+                                         content_type=str(flower_images[flower].content_type))
+            image_file = InMemoryUploadedFile(pillow_image, None, f'{flower_images[flower]}',
+                                              f'{flower_images[flower].content_type}', pillow_image.tell, None)
+            Flower.objects.create(plant=plant, user=user, **{'image': image_file})
         for habitat in range(0, len(habitat_images)):
-            Habitat.objects.create(plant=plant, user=user, **{'image': habitat_images[habitat]})
+            pillow_image = self.compress(image_file=str(habitat_images[habitat].temporary_file_path()),
+                                         content_type=str(habitat_images[habitat].content_type))
+            image_file = InMemoryUploadedFile(pillow_image, None, f'{habitat_images[habitat]}',
+                                              f'{habitat_images[habitat].content_type}', pillow_image.tell, None)
+            Habitat.objects.create(plant=plant, user=user, **{'image': image_file})
 
         return plant
 
@@ -116,7 +151,8 @@ class PlantSerializer(serializers.ModelSerializer):
                 for chunk in image_field.chunks():
                     f.write(chunk)
 
-            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database, **validated_data)
+            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database,
+                                                                           **validated_data)
         else:
             plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
 
@@ -125,17 +161,35 @@ class PlantSerializer(serializers.ModelSerializer):
             f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
         if medicinal_props is not None:
             for medicine in range(0, len(medicinal_props)):
-                MedicinalUnit.objects.create(plant=instance, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+                MedicinalUnit.objects.create(plant=instance,
+                                             medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
         if leaf_images is not None:
             for leaf in range(0, len(leaf_images)):
-                Leaf.objects.create(plant=instance, user=user, **{'image': leaf_images[leaf]})
+                pillow_image = self.compress(image_file=str(leaf_images[leaf].temporary_file_path()),
+                                             content_type=str(leaf_images[leaf].content_type))
+                image_file = InMemoryUploadedFile(pillow_image, None, f'{leaf_images[leaf]}',
+                                                  f'{leaf_images[leaf].content_type}', pillow_image.tell, None)
+                Leaf.objects.create(plant=instance, user=user, **{'image': image_file})
         if stem_images is not None:
             for stem in range(0, len(stem_images)):
-                Stem.objects.create(plant=instance, user=user, **{'image': stem_images[stem]})
+                pillow_image = self.compress(image_file=str(stem_images[stem].temporary_file_path()),
+                                             content_type=str(stem_images[stem].content_type))
+                image_file = InMemoryUploadedFile(pillow_image, None, f'{stem_images[stem]}',
+                                                  f'{stem_images[stem].content_type}', pillow_image.tell, None)
+                Stem.objects.create(plant=instance, user=user, **{'image': image_file})
         if flower_images is not None:
             for flower in range(0, len(flower_images)):
-                Flower.objects.create(plant=instance, user=user, **{'image': flower_images[flower]})
+                pillow_image = self.compress(image_file=str(flower_images[flower].temporary_file_path()),
+                                             content_type=str(flower_images[flower].content_type))
+                image_file = InMemoryUploadedFile(pillow_image, None, f'{flower_images[flower]}',
+                                                  f'{flower_images[flower].content_type}', pillow_image.tell, None)
+                Flower.objects.create(plant=instance, user=user, **{'image': image_file})
         if habitat_images is not None:
             for habitat in range(0, len(habitat_images)):
-                Habitat.objects.create(plant=instance, user=user, **{'image': habitat_images[habitat]})
+                pillow_image = self.compress(image_file=str(habitat_images[habitat].temporary_file_path()),
+                                             content_type=str(habitat_images[habitat].content_type))
+                image_file = InMemoryUploadedFile(pillow_image, None, f'{habitat_images[habitat]}',
+                                                  f'{habitat_images[habitat].content_type}', pillow_image.tell, None)
+                Habitat.objects.create(plant=instance, user=user, **{'image': image_file})
+
         return Plant.objects.get(pk=instance.pk)

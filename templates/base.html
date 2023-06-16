@@ -50,6 +50,7 @@
                 <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-primary" href="http://127.0.0.1:8000/users/#/login">Login Admin</a>
             </div>
         </div>
     </div>
@@ -125,7 +126,8 @@
             </div>
             <div class="col-lg-3 col-md-6" style="direction:ltr;">
                 <h4 class="text-white mb-4">foot-ser-tit</h4>
-                <a class="btn btn-link" href="{% url 'updating_err_url' %}" id="except-change-language">foot-ser-sub-idn</a>
+                <a class="btn btn-link" href="{% url 'updating_err_url' %}"
+                   id="except-change-language">foot-ser-sub-idn</a>
                 <a class="btn btn-link" href="{% url 'explore_url' %}" id="except-change-language">foot-ser-sub-exp</a>
                 <a class="btn btn-link" href="" id="except-change-language">foot-ser-sub-sup</a>
             </div>
@@ -133,11 +135,16 @@
                 <h4 class="text-white mb-4">foot-pg-lnk-tit</h4>
                 <a class="btn btn-link" href="{% url 'home_url' %}" id="except-change-language">foot-q-lnk-hom</a>
                 <a class="btn btn-link" href="{% url 'updating_err_url' %}" id="except-change-language"><span>foot-q-lnk-idn</span></a>
-                <a class="btn btn-link" href="{% url 'explore_url' %}" id="except-change-language"><span>foot-q-lnk-exp</span></a>
-                <a class="btn btn-link" href="{% url 'about_us_url' %}" id="except-change-language"><span>foot-q-lnk-abo</span></a>
-                <a class="btn btn-link" href="{% url 'home_url' %}" id="except-change-language"><span>foot-q-lnk-blg</span></a>
-                <a class="btn btn-link" href="{% url 'help_url' %}" id="except-change-language"><span>foot-q-lnk-hlp</span></a>
-                <a class="btn btn-link" href="{% url 'faq_url' %}" id="except-change-language"><span>foot-q-lnk-faq</span></a>
+                <a class="btn btn-link" href="{% url 'explore_url' %}"
+                   id="except-change-language"><span>foot-q-lnk-exp</span></a>
+                <a class="btn btn-link" href="{% url 'about_us_url' %}"
+                   id="except-change-language"><span>foot-q-lnk-abo</span></a>
+                <a class="btn btn-link" href="{% url 'home_url' %}"
+                   id="except-change-language"><span>foot-q-lnk-blg</span></a>
+                <a class="btn btn-link" href="{% url 'help_url' %}"
+                   id="except-change-language"><span>foot-q-lnk-hlp</span></a>
+                <a class="btn btn-link" href="{% url 'faq_url' %}"
+                   id="except-change-language"><span>foot-q-lnk-faq</span></a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <h4 class="text-white mb-4 btn-sm align-items-center"
@@ -202,4 +209,6 @@
       location.reload();
     });
     l.changeLanguage(document.documentElement);
+
+
 </script>

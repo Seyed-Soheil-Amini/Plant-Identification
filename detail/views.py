@@ -54,7 +54,7 @@ class PlantDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         plant = self.get_object(pk)
@@ -121,7 +121,7 @@ class PlantLeafImageDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         leaf = self.get_object(pk)
@@ -177,7 +177,7 @@ class PlantStemImageDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         stem = self.get_object(pk)
@@ -229,7 +229,7 @@ class PlantFlowerImageDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         flower = self.get_object(pk)
@@ -278,7 +278,7 @@ class PlantMedicinalDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         medicine = self.get_object(pk)
@@ -363,7 +363,7 @@ class PlantHabitatImageDetail(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
-        return Response(status=status.HTTP_400_BAD_REQUEST)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         habitat = self.get_object(pk)

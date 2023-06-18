@@ -12,8 +12,9 @@ urlpatterns = [
     path("help/blog/", views.blog_guides, name='blog_guides_url'),
     path("help/medicinal/", views.medicine_guides, name='medicine_guides_url'),
     path("help/growth/", views.growth_guides, name='growth_guides_url'),
-    path("Oops/",views.updating_error,name='updating_err_url'),
-    path("Soon/",views.implement_soon_error,name='soon_err'),
+    path("Oops/", views.updating_error, name='updating_err_url'),
+    path("Soon/", views.implement_soon_error, name='soon_err'),
+    path("404/", views.not_found_error, name='404_err'),
     re_path("users/*", views.DashboardView.as_view(), name='dashboard_url'),
 
 ]

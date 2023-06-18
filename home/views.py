@@ -50,3 +50,6 @@ def updating_error(request):
 
 def implement_soon_error(request):
     return render(request=request, template_name='soon.html')
+
+def not_found_error(request):
+    return render(request=request, template_name='not_found.html')

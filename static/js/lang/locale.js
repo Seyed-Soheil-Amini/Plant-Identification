@@ -5,6 +5,7 @@ lang = {
 		
 		'phone-no': '+98 9103845418',
 		'follow': 'Follow Us',
+		'login-btn':'Login',
 		'plants-Identify': 'Identify plants',
 		'hdr-lft-tit':'Detector plants',
 		'nv-it-hom': 'Home',
@@ -300,6 +301,7 @@ lang = {
 		// home page
 		'phone-no': '۰۹۱۰۳۸۴۵۴۱۸',
 		'follow': 'ما را دنبال کنید',
+		'login-btn' : 'ورود',
 		'Plants-Identify': 'شناسایی گیاهان',
 		'hdr-lft-tit':'شناسایی گیاهان',
 		'nv-it-hom': 'خانه',

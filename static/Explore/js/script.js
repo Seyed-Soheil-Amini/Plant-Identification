@@ -24,16 +24,15 @@ xhr.onreadystatechange = function()
 {
         if(xhr.readyState == 4 && xhr.status == 200){
         const all_plants = xhr.responseText;
+//        alert(all_plants)
         plants = JSON.parse(all_plants);
         createCards()
         extendPage()
         window.addEventListener("scroll", scrollCheck)
-    }else if(xhr.readyState == 4 && xhr.status == 401){
-        show_401_error()
     }
 }
 
-xhr.open("get",location.origin + "/plants/data",true);
+xhr.open("get",location.origin + "/plants/explore/",true);
 xhr.send();
 
 function search() {

@@ -15,6 +15,14 @@ from .serializers import PlantSerializer, LeafSerializer, StemSerializer, Flower
     HabitatSerializer
 
 
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def random_plants(request):
+    plants = Plant.objects.order_by('?')
+    return Response(PlantSerializer(plants, many=True).data)
+
+
 class PlantList(APIView):
     authentication_classes = [CustomJWTAuthentication]
     permission_classes = [IsAuthenticated]

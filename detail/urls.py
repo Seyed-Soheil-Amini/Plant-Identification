@@ -2,9 +2,9 @@ from django.urls import path
 from rest_framework.urlpatterns import format_suffix_patterns
 
 from detail import views
-from detail.views import *
 
 urlpatterns = [
+    path('explore/',views.random_plants),
     path('data/', views.PlantList.as_view()),
     path('<int:pk>/', views.PlantDetail.as_view()),
     path('leaf/', views.PlantLeafImageList.as_view()),

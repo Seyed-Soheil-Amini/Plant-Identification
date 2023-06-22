@@ -47,13 +47,6 @@ class Plant(models.Model):
         db_table = 'plants'
         verbose_name = 'Plant'
         verbose_name_plural = 'Plants'
-        # ordering = ['persian_name', 'scientific_name']
-        # constraints = [
-        #     models.UniqueConstraint(
-        #         fields=['persian_name', 'scientific_name']
-        #     )
-        #
-        # ]
 
     def __str__(self):
         return self.persian_name
@@ -67,7 +60,8 @@ class Plant(models.Model):
 
 
 class Medicine(models.Model):
-    property_name = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("Property Name"))
+    property_name = models.CharField(max_length=100, blank=True, null=True, unique=True,
+                                     verbose_name=_("Property Name"))
 
     def __str__(self):
         return self.property_name

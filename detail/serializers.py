@@ -1,10 +1,15 @@
+import django
+
+django.setup()
 import os
 import io
 from PIL import Image
-from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from django.core.files.base import ContentFile
-
+from multiprocessing import Pool, Process
+from itertools import repeat
 from rest_framework import serializers
+from functools import partial
 
 from .models import *
 
@@ -70,22 +75,29 @@ class PlantSerializer(serializers.ModelSerializer):
         except model_name.DoesNotExist:
             return None
 
-    def compress(self, image_file, content_type):
-        guess = 70
-        low = 1
-        high = 100
-        size = 1024 * 1024 * 1.25
-        image = Image.open(image_file)
-        while low < high:
-            buffer = io.BytesIO()
-            image.save(fp=buffer, format=content_type.split('/')[1], optimize=True, quality=guess)
-            if buffer.getbuffer().nbytes < size:
-                low = guess
-            else:
-                high = guess - 1
-            guess = (low + high + 1) // 2
+    @staticmethod
+    def compress(image_file, args):
+        model_name, instance, user = args
+        file_path = image_file.temporary_file_path() if isinstance(image_file, TemporaryUploadedFile) else image_file
+        with Image.open(file_path) as image:
+            guess = 70
+            low = 1
+            high = 100
+            size = 1024 * 1024 * 1.25
+            while low < high:
+                buffer = io.BytesIO()
+                image.save(fp=buffer, format=image_file.content_type.split('/')[1], optimize=True, quality=guess)
+                if buffer.getbuffer().nbytes < size:
+                    low = guess
+                else:
+                    high = guess - 1
+                guess = (low + high + 1) // 2
+        model_name.objects.create(plant=instance, user=user,
+                                  **{'image': ContentFile(buffer.getvalue(), name=image_file)})
 
-        return ContentFile(buffer.getvalue())
+    def process_image(self, images, model_name, instance, user):
+        with Pool(processes=4) as pool:
+            results = pool.map(partial(PlantSerializer.compress, args=(model_name, instance, user)), images)
 
     def create(self, validated_data):
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
@@ -104,31 +116,12 @@ class PlantSerializer(serializers.ModelSerializer):
                                      **validated_data)
         for medicine in range(0, len(medicinal_props)):
             MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
-        for leaf in range(0, len(leaf_images)):
-            pillow_image = self.compress(image_file=str(leaf_images[leaf].temporary_file_path()),
-                                         content_type=str(leaf_images[leaf].content_type))
-            image_file = InMemoryUploadedFile(pillow_image, None, f'{leaf_images[leaf]}',
-                                              f'{leaf_images[leaf].content_type}', pillow_image.tell, None)
-            Leaf.objects.create(plant=plant, user=user, **{'image': image_file})
-        for stem in range(0, len(stem_images)):
-            pillow_image = self.compress(image_file=str(stem_images[stem].temporary_file_path()),
-                                         content_type=str(stem_images[stem].content_type))
-            image_file = InMemoryUploadedFile(pillow_image, None, f'{stem_images[stem]}',
-                                              f'{stem_images[stem].content_type}', pillow_image.tell, None)
-            Stem.objects.create(plant=plant, user=user, **{'image': image_file})
-        for flower in range(0, len(flower_images)):
-            pillow_image = self.compress(image_file=str(flower_images[flower].temporary_file_path()),
-                                         content_type=str(flower_images[flower].content_type))
-            image_file = InMemoryUploadedFile(pillow_image, None, f'{flower_images[flower]}',
-                                              f'{flower_images[flower].content_type}', pillow_image.tell, None)
-            Flower.objects.create(plant=plant, user=user, **{'image': image_file})
-        for habitat in range(0, len(habitat_images)):
-            pillow_image = self.compress(image_file=str(habitat_images[habitat].temporary_file_path()),
-                                         content_type=str(habitat_images[habitat].content_type))
-            image_file = InMemoryUploadedFile(pillow_image, None, f'{habitat_images[habitat]}',
-                                              f'{habitat_images[habitat].content_type}', pillow_image.tell, None)
-            Habitat.objects.create(plant=plant, user=user, **{'image': image_file})
-
+        # for image in leaf_images:
+        #     PlantSerializer.compress(image,(Leaf, plant, user))
+        self.process_image(leaf_images, Leaf, plant, user)
+        self.process_image(stem_images, Stem, plant, user)
+        self.process_image(flower_images, Flower, plant, user)
+        self.process_image(habitat_images, Habitat, plant, user)
         return plant
 
     def update(self, instance, validated_data):

@@ -1,8 +1,11 @@
+import shutil
+
 import django
 
 django.setup()
 import os
 import io
+import threading
 from PIL import Image
 from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
 from django.core.files.base import ContentFile
@@ -53,12 +56,19 @@ class HabitatSerializer(serializers.ModelSerializer):
         fields = ['id', 'plant', 'image', 'user']
 
 
+class FruitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Fruit
+        fields = ['id', 'plant', 'image', 'user']
+
+
 class PlantSerializer(serializers.ModelSerializer):
     medicinal_properties = MedicinalUnitSerializer(many=True, read_only=True)
     leaf_image_set = LeafSerializer(many=True, read_only=True)
     stem_image_set = StemSerializer(many=True, read_only=True)
     flower_image_set = FlowerSerializer(many=True, read_only=True)
     habitat_image_set = HabitatSerializer(many=True, read_only=True)
+    fruit_image_set = FruitSerializer(many=True, read_only=True)
 
     class Meta:
         model = Plant
@@ -67,7 +77,7 @@ class PlantSerializer(serializers.ModelSerializer):
                   'ecology',
                   'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_iframe_link',
                   'adder_user', 'editor_user', 'medicinal_properties',
-                  'leaf_image_set', 'stem_image_set', 'flower_image_set', 'habitat_image_set']
+                  'leaf_image_set', 'stem_image_set', 'flower_image_set', 'habitat_image_set', 'fruit_image_set', ]
 
     def get_object(self, model_name, pk):
         try:
@@ -76,28 +86,46 @@ class PlantSerializer(serializers.ModelSerializer):
             return None
 
     @staticmethod
-    def compress(image_file, args):
+    def compress(image_files, args):
         model_name, instance, user = args
-        file_path = image_file.temporary_file_path() if isinstance(image_file, TemporaryUploadedFile) else image_file
-        with Image.open(file_path) as image:
-            guess = 70
-            low = 1
-            high = 100
-            size = 1024 * 1024 * 1.25
-            while low < high:
-                buffer = io.BytesIO()
-                image.save(fp=buffer, format=image_file.content_type.split('/')[1], optimize=True, quality=guess)
-                if buffer.getbuffer().nbytes < size:
-                    low = guess
-                else:
-                    high = guess - 1
-                guess = (low + high + 1) // 2
-        model_name.objects.create(plant=instance, user=user,
-                                  **{'image': ContentFile(buffer.getvalue(), name=image_file)})
+        for i, image_file in enumerate(image_files):
+            file_path = image_file.temporary_file_path() if isinstance(image_file,
+                                                                       TemporaryUploadedFile) else image_file
+            with Image.open(file_path) as image:
+                guess = 70
+                low = 1
+                high = 100
+                size = 1024 * 1024 * 1.25
+                while low < high:
+                    buffer = io.BytesIO()
+                    image.save(fp=buffer, format=image_file.content_type.split('/')[1], optimize=True, quality=guess)
+                    if buffer.getbuffer().nbytes < size:
+                        low = guess
+                    else:
+                        high = guess - 1
+                    guess = (low + high + 1) // 2
+            try:
+                model_name.objects.create(plant=instance, user=user,
+                                          **{'image': ContentFile(buffer.getvalue(), name=image_file)})
+            except:
+                image_path = instance.image.path
+                instance.delete()
+                image_path = image_path[0: image_path.rindex('\\') + 1]
+                shutil.rmtree(image_path)
+                raise Exception
 
-    def process_image(self, images, model_name, instance, user):
-        with Pool(processes=4) as pool:
-            results = pool.map(partial(PlantSerializer.compress, args=(model_name, instance, user)), images)
+    def add_images(self, images, model_name, instance, user):
+        threads = []
+        step = len(images) // 8 if len(images) >= 8 else 1
+        for i in range(0, len(images), step):
+            thread = threading.Thread(target=PlantSerializer.compress,
+                                      args=(images[i:i + step], (model_name, instance, user),))
+            threads.append(thread)
+            thread.start()
+
+        return threads
+        # with Pool(processes=4) as pool:
+        #     results = pool.map(partial(PlantSerializer.compress, args=(model_name, instance, user)), images)
 
     def create(self, validated_data):
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
@@ -105,84 +133,86 @@ class PlantSerializer(serializers.ModelSerializer):
         stem_images = self.context.get('request').FILES.getlist('stem_image_set')
         flower_images = self.context.get('request').FILES.getlist('flower_image_set')
         habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
+        fruit_images = self.context.get('request').FILES.getlist('fruit_image_set')
         user = User.objects.get(username=self.context.get('request').user)
         file_pre_address = self.context.get('address')
         # file must be created here
-        os.mkdir(IMAGE_DIR_SER + file_pre_address)
-        file_path = os.path.join(IMAGE_DIR_SER + file_pre_address, 'info.txt')
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write(str(validated_data))
-        plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address, info_file='info.txt',
-                                     **validated_data)
-        for medicine in range(0, len(medicinal_props)):
-            MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
-        # for image in leaf_images:
-        #     PlantSerializer.compress(image,(Leaf, plant, user))
-        self.process_image(leaf_images, Leaf, plant, user)
-        self.process_image(stem_images, Stem, plant, user)
-        self.process_image(flower_images, Flower, plant, user)
-        self.process_image(habitat_images, Habitat, plant, user)
+        if len(leaf_images) > 100 or len(stem_images) > 100 or len(flower_images) > 100 or len(
+                habitat_images) > 100 or len(fruit_images) > 100:
+            raise Exception("The limit of the number of photos sent has not been respected.")
+        else:
+            os.mkdir(IMAGE_DIR_SER + file_pre_address)
+            file_path = os.path.join(IMAGE_DIR_SER + file_pre_address, 'info.txt')
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write(str(validated_data))
+            plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address,
+                                         info_file='info.txt',
+                                         **validated_data)
+            for medicine in range(0, len(medicinal_props)):
+                MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+            threads = []
+            threads.extend(self.add_images(leaf_images, Leaf, plant, user))
+            threads.extend(self.add_images(stem_images, Stem, plant, user))
+            threads.extend(self.add_images(flower_images, Flower, plant, user))
+            threads.extend(self.add_images(habitat_images, Habitat, plant, user))
+            self.add_images(fruit_images, Fruit, plant, user)
+            for thread in threads:
+                thread.join()
+            # else:
+            #     break
         return plant
 
-    def update(self, instance, validated_data):
-        new_image = self.context.get('request').FILES.get('image')
-        medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
-        leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
-        stem_images = self.context.get('request').FILES.getlist('stem_image_set')
-        flower_images = self.context.get('request').FILES.getlist('flower_image_set')
-        habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
-        user = User.objects.get(username=self.context.get('request').user)
 
-        if new_image is not None:
-            image_field = validated_data.pop('image')
-            os.remove(instance.image.path)
-            string_filename = str(new_image)
-            ext = string_filename[string_filename.rfind("."):len(string_filename)]
-            filename = os.path.join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext)
-            filename_to_database = os.path.join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext)
-            with open(filename, 'wb+') as f:
-                for chunk in image_field.chunks():
-                    f.write(chunk)
+def update(self, instance, validated_data):
+    new_image = self.context.get('request').FILES.get('image')
+    medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
+    leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
+    stem_images = self.context.get('request').FILES.getlist('stem_image_set')
+    flower_images = self.context.get('request').FILES.getlist('flower_image_set')
+    habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
+    fruit_images = self.context.get('request').FILES.getlist('fruit_image_set')
+    user = User.objects.get(username=self.context.get('request').user)
+    leaf_images_inventory = Leaf.objects.filter(plant=instance)
+    stem_images_inventory = Stem.objects.filter(plant=instance)
+    flower_images_inventory = Flower.objects.filter(plant=instance)
+    habitat_images_inventory = Habitat.objects.filter(plant=instance)
+    fruit_images_inventory = Fruit.objects.filter(plant=instance)
 
-            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database,
-                                                                           **validated_data)
-        else:
-            plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
-
-        file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
-        with open(file_path, 'w', encoding='utf-8') as f:
-            f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
-        if medicinal_props is not None:
-            for medicine in range(0, len(medicinal_props)):
-                MedicinalUnit.objects.create(plant=instance,
-                                             medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+    if new_image is not None:
+        image_field = validated_data.pop('image')
+        os.remove(instance.image.path)
+        string_filename = str(new_image)
+        ext = string_filename[string_filename.rfind("."):len(string_filename)]
+        filename = os.path.join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext)
+        filename_to_database = os.path.join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext)
+        with open(filename, 'wb+') as f:
+            for chunk in image_field.chunks():
+                f.write(chunk)
+        plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database,
+                                                                       **validated_data)
+    else:
+        plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
+    file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
+    if medicinal_props is not None:
+        for medicine in range(0, len(medicinal_props)):
+            MedicinalUnit.objects.create(plant=instance,
+                                         medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+    if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
+            stem_images) > 100 or len(
+        flower_images_inventory) + len(flower_images) > 100 or len(
+        habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(fruit_images):
+        raise Exception("The limit of the number of photos sent has not been respected.")
+    else:
         if leaf_images is not None:
-            for leaf in range(0, len(leaf_images)):
-                pillow_image = self.compress(image_file=str(leaf_images[leaf].temporary_file_path()),
-                                             content_type=str(leaf_images[leaf].content_type))
-                image_file = InMemoryUploadedFile(pillow_image, None, f'{leaf_images[leaf]}',
-                                                  f'{leaf_images[leaf].content_type}', pillow_image.tell, None)
-                Leaf.objects.create(plant=instance, user=user, **{'image': image_file})
+            self.add_images(leaf_images, Leaf, plant, user)
         if stem_images is not None:
-            for stem in range(0, len(stem_images)):
-                pillow_image = self.compress(image_file=str(stem_images[stem].temporary_file_path()),
-                                             content_type=str(stem_images[stem].content_type))
-                image_file = InMemoryUploadedFile(pillow_image, None, f'{stem_images[stem]}',
-                                                  f'{stem_images[stem].content_type}', pillow_image.tell, None)
-                Stem.objects.create(plant=instance, user=user, **{'image': image_file})
+            self.add_images(stem_images, Stem, plant, user)
         if flower_images is not None:
-            for flower in range(0, len(flower_images)):
-                pillow_image = self.compress(image_file=str(flower_images[flower].temporary_file_path()),
-                                             content_type=str(flower_images[flower].content_type))
-                image_file = InMemoryUploadedFile(pillow_image, None, f'{flower_images[flower]}',
-                                                  f'{flower_images[flower].content_type}', pillow_image.tell, None)
-                Flower.objects.create(plant=instance, user=user, **{'image': image_file})
+            self.add_images(flower_images, Flower, plant, user)
         if habitat_images is not None:
-            for habitat in range(0, len(habitat_images)):
-                pillow_image = self.compress(image_file=str(habitat_images[habitat].temporary_file_path()),
-                                             content_type=str(habitat_images[habitat].content_type))
-                image_file = InMemoryUploadedFile(pillow_image, None, f'{habitat_images[habitat]}',
-                                                  f'{habitat_images[habitat].content_type}', pillow_image.tell, None)
-                Habitat.objects.create(plant=instance, user=user, **{'image': image_file})
-
+            self.add_images(habitat_images, Habitat, plant, user)
+        if fruit_images is not None:
+            self.add_images(fruit_images, Fruit, plant, user)
         return Plant.objects.get(pk=instance.pk)

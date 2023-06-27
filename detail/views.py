@@ -10,9 +10,9 @@ from rest_framework.response import Response
 from django.http import Http404
 
 from auth_api.authentication import CustomJWTAuthentication
-from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat
+from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat, Fruit
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
-    HabitatSerializer
+    HabitatSerializer, FruitSerializer
 
 
 @api_view(['GET'])
@@ -37,7 +37,10 @@ class PlantList(APIView):
         serializer = PlantSerializer(data=request.data, context={'request': request, 'address': address})
         if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            if not bool(serializer.errors):
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -303,6 +306,7 @@ def delete_plants_data(request):
     deleted_stems_id = request.data.getlist('stem_id')
     deleted_flowers_id = request.data.getlist('flower_id')
     deleted_habitats_id = request.data.getlist('habitat_id')
+    deleted_fruits_id = request.data.getlist('fruit_id')
     for id in range(0, len(deleted_medicines_id)):
         deleted_obj = MedicinalUnit.objects.get(pk=deleted_medicines_id[id])
         deleted_obj.delete()
@@ -323,6 +327,11 @@ def delete_plants_data(request):
         os.remove(image_path)
     for id in range(0, len(deleted_habitats_id)):
         deleted_obj = Habitat.objects.get(pk=deleted_habitats_id[id])
+        image_path = deleted_obj.image.path
+        deleted_obj.delete()
+        os.remove(image_path)
+    for id in range(0, len(deleted_fruits_id)):
+        deleted_obj = Fruit.objects.get(pk=deleted_fruits_id[id])
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
@@ -377,6 +386,59 @@ class PlantHabitatImageDetail(APIView):
         habitat = self.get_object(pk)
         image_path = habitat.image.path
         habitat.delete()
+        if os.path.isfile(image_path):
+            os.remove(image_path)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PlantFruitImageList(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        fruits = Fruit.objects.all()
+        serializer = FruitSerializer(fruits, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = FruitSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PlantFruitImageDetail(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def get_object(self, pk):
+        try:
+            return Fruit.objects.get(pk=pk)
+        except Fruit.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk):
+        fruit = self.get_object(pk)
+        serializer = FruitSerializer(fruit)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        fruit = self.get_object(pk)
+        old_image_path = fruit.image.path
+        if os.path.isfile(old_image_path):
+            os.remove(old_image_path)
+
+        serializer = FruitSerializer(fruit, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        fruit = self.get_object(pk)
+        image_path = fruit.image.path
+        fruit.delete()
         if os.path.isfile(image_path):
             os.remove(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)

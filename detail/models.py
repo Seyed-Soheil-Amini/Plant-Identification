@@ -169,6 +169,30 @@ class Habitat(models.Model):
         verbose_name_plural = 'habitats'
 
 
+def set_fruit_image_path(instance, filename):
+    string_filename = str(filename)
+    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    if instance.user.is_superuser:
+        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'fruit',
+                                                '_FR_' + uuid.uuid4().__str__()[0:7] + ext)
+    else:
+        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Image', 'fruit',
+                                                    '_' +
+                                                    instance.user.username + '_FR_' + uuid.uuid4().__str__()[0:7] + ext)
+
+
+class Fruit(models.Model):
+    image = models.ImageField(blank=False, null=False, upload_to=set_habitat_image_path)
+    plant = models.ForeignKey('Plant', related_name="fruit_image_set", on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
+                             related_name="user_fruit_image_set", on_delete=models.DO_NOTHING)
+
+    class Meta:
+        db_table = 'fruit_images'
+        verbose_name = 'fruit'
+        verbose_name_plural = 'fruits'
+
+
 class MedicinalUnit(models.Model):
     plant = models.ForeignKey('Plant', related_name="medicinal_properties", on_delete=models.CASCADE)
     medicine = models.ForeignKey('Medicine', related_name="medicine_unit", on_delete=models.CASCADE)

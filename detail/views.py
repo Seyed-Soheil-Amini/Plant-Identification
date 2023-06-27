@@ -35,9 +35,15 @@ class PlantList(APIView):
     def post(self, request):
         address = uuid.uuid4().__str__()[25:36]
         serializer = PlantSerializer(data=request.data, context={'request': request, 'address': address})
-        if serializer.is_valid():
+        if serializer.is_valid() and (not bool(serializer.errors)):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # plant = Plant.objects.get(pk=serializer.validated_data.get('id'))
+        # if plant is not None:
+        #     image_path = plant.image.path
+        #     plant.delete()
+        #     image_path = image_path[0: image_path.rindex('\\') + 1]
+        #     shutil.rmtree(image_path)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -59,10 +65,10 @@ class PlantDetail(APIView):
     def put(self, request, pk):
         plant = self.get_object(pk)
         serializer = PlantSerializer(plant, data=request.data, context={'request': request, 'pk': pk})
-        if serializer.is_valid():
+        if serializer.is_valid() and (not bool(serializer.errors)):
             serializer.save()
             return Response(serializer.data)
-        return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         plant = self.get_object(pk)

@@ -182,7 +182,7 @@ def set_fruit_image_path(instance, filename):
 
 
 class Fruit(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_habitat_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_fruit_image_path)
     plant = models.ForeignKey('Plant', related_name="fruit_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
                              related_name="user_fruit_image_set", on_delete=models.DO_NOTHING)

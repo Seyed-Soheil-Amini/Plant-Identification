@@ -50,7 +50,7 @@
                 <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-primary" href="http://127.0.0.1:8000/users/#/login">login-btn</a>
+                <a class="btn btn-primary" id="login-button"></a>
             </div>
         </div>
     </div>
@@ -200,15 +200,51 @@
 <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{% static 'js/main.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const login_button = document.getElementById('login-button')
 
+    async function verifyUser() {
+        try {
+            const verify = await axios.get(`${window.location.origin}/verify/token/`, {
+                withCredentials: true
+            })
+            if(localStorage.getItem('lang') == 'en') login_button.inneText = 'Dashboard';
+            else login_button.innerText = 'داشبورد';
+
+            login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
+        } catch (error) {
+            refreshToken()
+        }
+
+    }
+
+    async function refreshToken() {
+        try {
+            const refresh = await axios.post(`${window.location.origin}/refresh/token/`, {
+                withCredentials: true
+            })
+            login_button.innerHTML = 'Dashboard'
+            login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
+        } catch (error) {
+            login_button.innerHTML = 'Login'
+            login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
+        }
+    }
+    verifyUser()
+
+
+</script>
 <script>
     var l = new LanguageSelector();
     $(document).on("change", "#langSelector", function () {
-      var s = $(this).children("option:selected").val();
-      l.setLang(s);
-      location.reload();
+        var s = $(this).children("option:selected").val();
+        l.setLang(s);
+        location.reload();
     });
     l.changeLanguage(document.documentElement);
+
+
 
 
 </script>

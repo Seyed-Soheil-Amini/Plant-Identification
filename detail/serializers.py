@@ -87,7 +87,7 @@ class PlantSerializer(serializers.ModelSerializer):
 
     @staticmethod
     def compress(image_files, args):
-        model_name, instance, user = args
+        model_name, instance, user, delete_need = args
         for i, image_file in enumerate(image_files):
             file_path = image_file.temporary_file_path() if isinstance(image_file,
                                                                        TemporaryUploadedFile) else image_file
@@ -108,18 +108,19 @@ class PlantSerializer(serializers.ModelSerializer):
                 model_name.objects.create(plant=instance, user=user,
                                           **{'image': ContentFile(buffer.getvalue(), name=image_file)})
             except:
-                image_path = instance.image.path
-                instance.delete()
-                image_path = image_path[0: image_path.rindex('\\') + 1]
-                shutil.rmtree(image_path)
+                if delete_need:
+                    image_path = instance.image.path
+                    instance.delete()
+                    image_path = image_path[0: image_path.rindex('\\') + 1]
+                    shutil.rmtree(image_path)
                 raise Exception
 
-    def add_images(self, images, model_name, instance, user):
+    def add_images(self, images, model_name, instance, user, must_delete):
         threads = []
         step = len(images) // 8 if len(images) >= 8 else 1
         for i in range(0, len(images), step):
             thread = threading.Thread(target=PlantSerializer.compress,
-                                      args=(images[i:i + step], (model_name, instance, user),))
+                                      args=(images[i:i + step], (model_name, instance, user, must_delete),))
             threads.append(thread)
             thread.start()
 
@@ -151,68 +152,70 @@ class PlantSerializer(serializers.ModelSerializer):
             for medicine in range(0, len(medicinal_props)):
                 MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
             threads = []
-            threads.extend(self.add_images(leaf_images, Leaf, plant, user))
-            threads.extend(self.add_images(stem_images, Stem, plant, user))
-            threads.extend(self.add_images(flower_images, Flower, plant, user))
-            threads.extend(self.add_images(habitat_images, Habitat, plant, user))
-            self.add_images(fruit_images, Fruit, plant, user)
+            threads.extend(self.add_images(leaf_images, Leaf, plant, user, True))
+            threads.extend(self.add_images(stem_images, Stem, plant, user, True))
+            threads.extend(self.add_images(flower_images, Flower, plant, user, True))
+            threads.extend(self.add_images(habitat_images, Habitat, plant, user, True))
+            threads.extend(self.add_images(fruit_images, Fruit, plant, user, True))
             for thread in threads:
                 thread.join()
-            # else:
-            #     break
         return plant
 
+    def update(self, instance, validated_data):
+        new_image = self.context.get('request').FILES.get('image')
+        medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
+        leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
+        stem_images = self.context.get('request').FILES.getlist('stem_image_set')
+        flower_images = self.context.get('request').FILES.getlist('flower_image_set')
+        habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
+        fruit_images = self.context.get('request').FILES.getlist('fruit_image_set')
+        user = User.objects.get(username=self.context.get('request').user)
+        leaf_images_inventory = Leaf.objects.filter(plant=instance)
+        stem_images_inventory = Stem.objects.filter(plant=instance)
+        flower_images_inventory = Flower.objects.filter(plant=instance)
+        habitat_images_inventory = Habitat.objects.filter(plant=instance)
+        fruit_images_inventory = Fruit.objects.filter(plant=instance)
 
-def update(self, instance, validated_data):
-    new_image = self.context.get('request').FILES.get('image')
-    medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
-    leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
-    stem_images = self.context.get('request').FILES.getlist('stem_image_set')
-    flower_images = self.context.get('request').FILES.getlist('flower_image_set')
-    habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
-    fruit_images = self.context.get('request').FILES.getlist('fruit_image_set')
-    user = User.objects.get(username=self.context.get('request').user)
-    leaf_images_inventory = Leaf.objects.filter(plant=instance)
-    stem_images_inventory = Stem.objects.filter(plant=instance)
-    flower_images_inventory = Flower.objects.filter(plant=instance)
-    habitat_images_inventory = Habitat.objects.filter(plant=instance)
-    fruit_images_inventory = Fruit.objects.filter(plant=instance)
+        if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
+                stem_images) > 100 or len(
+            flower_images_inventory) + len(flower_images) > 100 or len(
+            habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(fruit_images) > 100:
+            raise Exception("The limit of the number of photos sent has not been respected.")
+        else:
+            threads = []
+            if leaf_images is not None:
+                threads.extend(self.add_images(leaf_images, Leaf, instance, user, False))
+            if stem_images is not None:
+                threads.extend(self.add_images(stem_images, Stem, instance, user, False))
+            if flower_images is not None:
+                threads.extend(self.add_images(flower_images, Flower, instance, user, False))
+            if habitat_images is not None:
+                threads.extend(self.add_images(habitat_images, Habitat, instance, user, False))
+            if fruit_images is not None:
+                threads.extend(self.add_images(fruit_images, Fruit, instance, user, False))
+            for thread in threads:
+                thread.join()
+            if new_image is not None:
+                image_field = validated_data.pop('image')
+                os.remove(instance.image.path)
+                string_filename = str(new_image)
+                ext = string_filename[string_filename.rfind("."):len(string_filename)]
+                filename = os.path.join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext)
+                filename_to_database = os.path.join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext)
+                with open(filename, 'wb+') as f:
+                    for chunk in image_field.chunks():
+                        f.write(chunk)
+                plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user,
+                                                                               image=filename_to_database,
+                                                                               **validated_data)
+            else:
+                plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
+            file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
+            with open(file_path, 'w', encoding='utf-8') as f:
+                f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
 
-    if new_image is not None:
-        image_field = validated_data.pop('image')
-        os.remove(instance.image.path)
-        string_filename = str(new_image)
-        ext = string_filename[string_filename.rfind("."):len(string_filename)]
-        filename = os.path.join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext)
-        filename_to_database = os.path.join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext)
-        with open(filename, 'wb+') as f:
-            for chunk in image_field.chunks():
-                f.write(chunk)
-        plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, image=filename_to_database,
-                                                                       **validated_data)
-    else:
-        plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
-    file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
-    with open(file_path, 'w', encoding='utf-8') as f:
-        f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
-    if medicinal_props is not None:
-        for medicine in range(0, len(medicinal_props)):
-            MedicinalUnit.objects.create(plant=instance,
-                                         medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
-    if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
-            stem_images) > 100 or len(
-        flower_images_inventory) + len(flower_images) > 100 or len(
-        habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(fruit_images):
-        raise Exception("The limit of the number of photos sent has not been respected.")
-    else:
-        if leaf_images is not None:
-            self.add_images(leaf_images, Leaf, plant, user)
-        if stem_images is not None:
-            self.add_images(stem_images, Stem, plant, user)
-        if flower_images is not None:
-            self.add_images(flower_images, Flower, plant, user)
-        if habitat_images is not None:
-            self.add_images(habitat_images, Habitat, plant, user)
-        if fruit_images is not None:
-            self.add_images(fruit_images, Fruit, plant, user)
-        return Plant.objects.get(pk=instance.pk)
+            if medicinal_props is not None:
+                for medicine in range(0, len(medicinal_props)):
+                    MedicinalUnit.objects.create(plant=instance,
+                                                 medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+            return Plant.objects.get(pk=instance.pk)

@@ -209,7 +209,7 @@
             const verify = await axios.get(`${window.location.origin}/verify/token/`, {
                 withCredentials: true
             })
-            if(localStorage.getItem('lang') == 'en') login_button.inneText = 'Dashboard';
+            if(localStorage.getItem('lang') == 'en') login_button.innerText = 'Dashboard';
             else login_button.innerText = 'داشبورد';
 
             login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
@@ -234,6 +234,7 @@
     verifyUser()
 
 
+
 </script>
 <script>
     var l = new LanguageSelector();
@@ -243,6 +244,7 @@
         location.reload();
     });
     l.changeLanguage(document.documentElement);
+
 
 
 

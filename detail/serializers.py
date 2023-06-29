@@ -15,7 +15,9 @@ from rest_framework import serializers
 from functools import partial
 
 from .models import *
-WINDOWS_OR_UBUNTU = "/"
+
+from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
+
 IMAGE_DIR_SER = f'media{WINDOWS_OR_UBUNTU}mainImages{WINDOWS_OR_UBUNTU}'
 IMAGE_DIR_NEW = f'mainImages{WINDOWS_OR_UBUNTU}'
 

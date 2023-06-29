@@ -14,8 +14,7 @@ from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat,
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
     HabitatSerializer, FruitSerializer
 
-
-WINDOWS_OR_UBUNTU = "/"
+from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
 
 @api_view(['GET'])
 @authentication_classes([])

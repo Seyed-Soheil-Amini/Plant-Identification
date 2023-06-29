@@ -33,9 +33,8 @@
 </head>
 
 <div class="container-fluid bg-dark text-light px-0 py-2 shadow-sm" style="direction:ltr;">
-    <div class="row gx-0 d-none d-lg-flex">
-        <div class="col-lg-7 px-5 text-start">
-
+    <div class="row gx-0 d-lg-flex">
+        <div class="col-lg-7 px-5 text-start d-none d-md-flex">
             <div class="h-100 d-inline-flex align-items-center me-4">
                 <span class="fa fa-phone-alt me-2"></span>
                 <span>phone-no</span>
@@ -52,7 +51,7 @@
                 <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
                 <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
-                <a class="btn btn-primary" id="login-button"></a>
+                <a class="btn btn-primary" id="login-button">login-btn</a>
             </div>
         </div>
     </div>
@@ -225,7 +224,6 @@
             login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
         }
     } catch (error) {
-        login_button.innerHTML = 'Login'
         login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
     }
 }

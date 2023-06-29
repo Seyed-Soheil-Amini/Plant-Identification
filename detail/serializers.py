@@ -16,8 +16,8 @@ from functools import partial
 
 from .models import *
 
-IMAGE_DIR_SER = 'media\\mainImages\\'
-IMAGE_DIR_NEW = 'mainImages\\'
+IMAGE_DIR_SER = 'media/mainImages/'
+IMAGE_DIR_NEW = 'mainImages/'
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):
@@ -111,7 +111,7 @@ class PlantSerializer(serializers.ModelSerializer):
                 if delete_need:
                     image_path = instance.image.path
                     instance.delete()
-                    image_path = image_path[0: image_path.rindex('\\') + 1]
+                    image_path = image_path[0: image_path.rindex('/') + 1]
                     shutil.rmtree(image_path)
                 raise Exception
 

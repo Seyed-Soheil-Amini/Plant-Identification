@@ -15,6 +15,8 @@ from .serializers import PlantSerializer, LeafSerializer, StemSerializer, Flower
     HabitatSerializer, FruitSerializer
 
 
+WINDOWS_OR_UBUNTU = "/"
+
 @api_view(['GET'])
 @authentication_classes([])
 @permission_classes([])
@@ -74,7 +76,7 @@ class PlantDetail(APIView):
         plant = self.get_object(pk)
         image_path = plant.image.path
         plant.delete()
-        image_path = image_path[0: image_path.rindex('/') + 1]
+        image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
         shutil.rmtree(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -88,7 +90,7 @@ def delete_plants(request):
         deleted_obj = Plant.objects.get(pk=deleted_plants_id[id])
         image_path = deleted_obj.image.path
         deleted_obj.delete()
-        image_path = image_path[0: image_path.rindex('/') + 1]
+        image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
         shutil.rmtree(image_path)
     return Response(status=status.HTTP_204_NO_CONTENT)
 

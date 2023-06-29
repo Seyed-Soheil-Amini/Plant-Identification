@@ -67,7 +67,7 @@ class PlantDetail(APIView):
             if not bool(serializer.errors):
                 return Response(serializer.data)
             else:
-                return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+                return Response(serializer.errors)
         return Response(template_name='not_found.html', status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):

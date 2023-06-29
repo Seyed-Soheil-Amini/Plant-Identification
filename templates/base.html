@@ -28,6 +28,8 @@
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
           rel="stylesheet">
     <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font/fontAdder.css' %}" rel="stylesheet">
+
 </head>
 
 <div class="container-fluid bg-dark text-light px-0 py-2 shadow-sm" style="direction:ltr;">
@@ -203,38 +205,31 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const login_button = document.getElementById('login-button')
-
-    async function verifyUser() {
-        try {
-            const verify = await axios.get(`${window.location.origin}/verify/token/`, {
-                withCredentials: true
-            })
-            if(localStorage.getItem('lang') == 'en') login_button.innerText = 'Dashboard';
-            else login_button.innerText = 'داشبورد';
-
-            login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
-        } catch (error) {
-            refreshToken()
-        }
-
+    async function requireAuth() {
+    if(!localStorage.getItem('lr') || !localStorage.getItem('username')){
+        login_button.innerHTML = 'Login'
+        login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
+        return
     }
-
-    async function refreshToken() {
-        try {
-            const refresh = await axios.post(`${window.location.origin}/refresh/token/`, {
-                withCredentials: true
-            })
+    try {
+        if (Date.parse(localStorage.getItem('lr')) < ((new Date()) - 60 * 60000)) {
+            const data = await axios.post(window.location.origin+'/refresh/token/')
+            if(data?.status === 200) {
+                login_button.innerHTML = 'Dashboard'
+                login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
+                localStorage.setItem('lr', new Date())
+            }
+        }
+        else {
             login_button.innerHTML = 'Dashboard'
             login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
-        } catch (error) {
-            login_button.innerHTML = 'Login'
-            login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
         }
+    } catch (error) {
+        login_button.innerHTML = 'Login'
+        login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
     }
-    verifyUser()
-
-
-
+}
+requireAuth()
 </script>
 <script>
     var l = new LanguageSelector();

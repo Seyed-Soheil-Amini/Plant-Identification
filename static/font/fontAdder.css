@@ -1,0 +1,12 @@
+@font-face {
+    font-family: sahel;
+    src: url("Sahel.woff");
+}
+
+h1, h2, h3, h4, h5, h6, a, p, li, button, ::placeholder, label{
+    font-family: sahel, serif !important;
+}
+
+span {
+    font-family: sahel, serif;
+}

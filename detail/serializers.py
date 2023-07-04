@@ -100,7 +100,7 @@ class PlantSerializer(serializers.ModelSerializer):
                 size = 1024 * 1024 * 1.25
                 while low < high:
                     buffer = io.BytesIO()
-                    image.save(fp=buffer, format=image_file.content_type.split(WINDOWS_OR_UBUNTU)[1], optimize=True, quality=guess)
+                    image.save(fp=buffer, format=image_file.content_type.split('/')[1], optimize=True, quality=guess)
                     if buffer.getbuffer().nbytes < size:
                         low = guess
                     else:

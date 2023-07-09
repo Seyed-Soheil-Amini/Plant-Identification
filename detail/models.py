@@ -26,14 +26,14 @@ class Plant(models.Model):
     scientific_name = models.CharField(blank=False, max_length=100, null=False, unique=True,
                                        verbose_name=_("scientific Name"))
     family = models.TextField(blank=False, null=True, verbose_name=_("Family"))
-    morphology = models.TextField(blank=False, null=True, verbose_name=_("Morphology"))
-    flowering_time = models.TextField(blank=False, null=True, verbose_name=_("flowering Time"))
-    geographical_distribution = models.TextField(blank=False, null=True,
+    morphology = models.TextField(blank=True, null=True, verbose_name=_("Morphology"))
+    flowering_time = models.TextField(blank=True, null=True, verbose_name=_("flowering Time"))
+    geographical_distribution = models.TextField(blank=True, null=True,
                                                  verbose_name=_("Geographical Distribution"))
-    ecology = models.TextField(blank=False, null=True, verbose_name=_("Ecology"))
-    habitat_characteristics = models.TextField(blank=False, null=True, verbose_name=_("Habitat"))
-    climate = models.TextField(blank=False, null=True, verbose_name=_("Climate"))
-    soil_characteristics = models.TextField(blank=False, null=True,
+    ecology = models.TextField(blank=True, null=True, verbose_name=_("Ecology"))
+    habitat_characteristics = models.TextField(blank=True, null=True, verbose_name=_("Habitat"))
+    climate = models.TextField(blank=True, null=True, verbose_name=_("Climate"))
+    soil_characteristics = models.TextField(blank=True, null=True,
                                             verbose_name=_("Soil Characteristics"))
     more_info = models.TextField(blank=True, null=True, verbose_name=_("More Information"))
     video_iframe_link = models.URLField(null=True, blank=True)
@@ -89,7 +89,7 @@ class Leaf(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_leaf_image_path)
     plant = models.ForeignKey('Plant', related_name="leaf_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="user_leaf_image_set",
-                             default=User.objects.get(username="soheilofficial").id, on_delete=models.DO_NOTHING)
+                             default=None, on_delete=models.DO_NOTHING)
 
     class Meta:
         db_table = 'leaf_images'
@@ -112,7 +112,7 @@ def set_stem_image_path(instance, filename):
 class Stem(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_stem_image_path)
     plant = models.ForeignKey('Plant', related_name="stem_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
+    user = models.ForeignKey(User, default=None,
                              related_name="user_stem_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -136,7 +136,7 @@ def set_flower_image_path(instance, filename):
 class Flower(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_flower_image_path)
     plant = models.ForeignKey('Plant', related_name="flower_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
+    user = models.ForeignKey(User, default=None,
                              related_name="user_flower_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -160,7 +160,7 @@ def set_habitat_image_path(instance, filename):
 class Habitat(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_habitat_image_path)
     plant = models.ForeignKey('Plant', related_name="habitat_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
+    user = models.ForeignKey(User, default=None,
                              related_name="user_habitat_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:
@@ -184,7 +184,7 @@ def set_fruit_image_path(instance, filename):
 class Fruit(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_fruit_image_path)
     plant = models.ForeignKey('Plant', related_name="fruit_image_set", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, default=User.objects.get(username="soheilofficial").id,
+    user = models.ForeignKey(User, default=None,
                              related_name="user_fruit_image_set", on_delete=models.DO_NOTHING)
 
     class Meta:

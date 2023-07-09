@@ -16,8 +16,10 @@ from functools import partial
 
 from .models import *
 
-IMAGE_DIR_SER = 'media\\mainImages\\'
-IMAGE_DIR_NEW = 'mainImages\\'
+from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
+
+IMAGE_DIR_SER = f'media{WINDOWS_OR_UBUNTU}mainImages{WINDOWS_OR_UBUNTU}'
+IMAGE_DIR_NEW = f'mainImages{WINDOWS_OR_UBUNTU}'
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):
@@ -111,7 +113,7 @@ class PlantSerializer(serializers.ModelSerializer):
                 if delete_need:
                     image_path = instance.image.path
                     instance.delete()
-                    image_path = image_path[0: image_path.rindex('\\') + 1]
+                    image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
                     shutil.rmtree(image_path)
                 raise Exception
 

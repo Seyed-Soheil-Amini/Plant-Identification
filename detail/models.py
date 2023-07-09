@@ -36,7 +36,7 @@ class Plant(models.Model):
     soil_characteristics = models.TextField(blank=True, null=True,
                                             verbose_name=_("Soil Characteristics"))
     more_info = models.TextField(blank=True, null=True, verbose_name=_("More Information"))
-    video_iframe_link = models.URLField(null=True, blank=True)
+    video_aparat_id = models.CharField(max_length=30, null=True, blank=True, unique=True)
     adder_user = models.ForeignKey(User, null=True, related_name="adding_user", on_delete=models.DO_NOTHING)
     editor_user = models.ForeignKey(User, null=True, related_name="editor_user", on_delete=models.DO_NOTHING)
     info_file = models.FileField(verbose_name=_("Information File"), upload_to=set_model_info_file, blank=True,
@@ -56,7 +56,7 @@ class Plant(models.Model):
                f' family={self.family}, morphology={self.morphology}, flowering_time={self.flowering_time},' \
                f' geographical_distribution={self.geographical_distribution},' \
                f' ecology={self.ecology}, habitat_characteristics={self.habitat_characteristics}, climate={self.climate},' \
-               f' soil_characteristics={self.soil_characteristics}, more_info={self.info_file} ,video_iframe_link={self.video_iframe_link})'
+               f' soil_characteristics={self.soil_characteristics}, more_info={self.info_file} ,video_aparat_id={self.video_aparat_id})'
 
 
 class Medicine(models.Model):

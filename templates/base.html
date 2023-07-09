@@ -28,6 +28,8 @@
     <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}"
           rel="stylesheet">
     <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font/fontAdder.css' %}" rel="stylesheet">
+
 </head>
 
 <div class="container-fluid bg-dark text-light px-0 py-2 shadow-sm" style="direction:ltr;">
@@ -165,7 +167,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                &copy; <a class="border-bottom" href="#">semicheckplant.com</a>,
+                &copy; <a class="border-bottom" href="#">persianplantify.ir</a>,
                 All Right Reserved.
             </div>
             <div class="col-md-6 text-center text-md-end">
@@ -202,36 +204,34 @@
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     const login_button = document.getElementById('login-button')
+    async function requireAuth() {
+    if(!localStorage.getItem('lr') || !localStorage.getItem('username')){
+        login_button.innerHTML = 'Login'
+        login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
+        return
+    }
+    try {
+        if (Date.parse(localStorage.getItem('lr')) < ((new Date()) - 60 * 60000)) {
+            const data = await axios.post(window.location.origin+'/refresh/token/')
+            if(data?.status === 200) {
+                if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Dashboard'
+                else login_button.innerHTML = 'داشبورد'
 
-    async function verifyUser() {
-        try {
-            const verify = await axios.get(`${window.location.origin}/verify/token/`, {
-                withCredentials: true
-            })
-            if(localStorage.getItem('lang') == 'en') login_button.innerText = 'Dashboard';
-            else login_button.innerText = 'داشبورد';
+                login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
+                localStorage.setItem('lr', new Date())
+            }
+        }
+        else {
+            if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Dashboard'
+            else login_button.innerHTML = 'داشبورد'
 
             login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
-        } catch (error) {
-            refreshToken()
         }
-
+    } catch (error) {
+        login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
     }
-
-    async function refreshToken() {
-        try {
-            const refresh = await axios.post(`${window.location.origin}/refresh/token/`, {
-                withCredentials: true
-            })
-            login_button.innerHTML = 'Dashboard'
-            login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
-        } catch (error) {
-            login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
-        }
-    }
-    verifyUser()
-
-
+}
+requireAuth()
 
 
 </script>
@@ -243,6 +243,7 @@
         location.reload();
     });
     l.changeLanguage(document.documentElement);
+
 
 
 

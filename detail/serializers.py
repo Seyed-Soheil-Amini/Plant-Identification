@@ -1,3 +1,4 @@
+import re
 import shutil
 
 import django
@@ -77,7 +78,7 @@ class PlantSerializer(serializers.ModelSerializer):
         fields = ['id', 'persian_name', 'image', 'scientific_name', 'family', 'morphology', 'flowering_time',
                   'geographical_distribution',
                   'ecology',
-                  'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_iframe_link',
+                  'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_aparat_id',
                   'adder_user', 'editor_user', 'medicinal_properties',
                   'leaf_image_set', 'stem_image_set', 'flower_image_set', 'habitat_image_set', 'fruit_image_set', ]
 
@@ -149,7 +150,7 @@ class PlantSerializer(serializers.ModelSerializer):
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(str(validated_data))
             plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address,
-                                         info_file='info.txt',
+                                         info_file='info.txt', video_aparat_id=self.context.get('video_id'),
                                          **validated_data)
             for medicine in range(0, len(medicinal_props)):
                 MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
@@ -181,7 +182,8 @@ class PlantSerializer(serializers.ModelSerializer):
         if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
                 stem_images) > 100 or len(
             flower_images_inventory) + len(flower_images) > 100 or len(
-            habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(fruit_images) > 100:
+            habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(
+            fruit_images) > 100:
             raise Exception("The limit of the number of photos sent has not been respected.")
         else:
             threads = []
@@ -209,9 +211,14 @@ class PlantSerializer(serializers.ModelSerializer):
                         f.write(chunk)
                 plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user,
                                                                                image=filename_to_database,
+                                                                               video_aparat_id=self.context.get(
+                                                                                   'video_id'),
                                                                                **validated_data)
             else:
-                plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user, **validated_data)
+                plant = Plant.objects.filter(pk=self.context.get('pk')).update(editor_user=user,
+                                                                               video_aparat_id=self.context.get(
+                                                                                   'video_id')
+                                                                               , **validated_data)
             file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())

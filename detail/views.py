@@ -37,18 +37,20 @@ class PlantList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        aparat_clip_url = request.data.get('aparat_video_link')
-        regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
-        match = re.match(regex, aparat_clip_url)
-        if match:
-            video_id = match.group(1)  # Output: U1lFp
-            aparat_id = video_id
-        else:
-            return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+        aparat_id = None
+        if request.data.get('aparat_video_link') is not None:
+            aparat_clip_url = request.data.get('aparat_video_link')
+            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
+            match = re.match(regex, aparat_clip_url)
+            if match:
+                video_id = match.group(1)  # Output: U1lFp
+                aparat_id = video_id
+            else:
+                return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
 
-        response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
-        if response_test_video.get('video').get('size') is None:
-            return Response(data="Video not found!", status=status.HTTP_404_NOT_FOUND)
+            response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
+            if response_test_video.get('video').get('size') is None:
+                return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
         address = uuid.uuid4().__str__()[25:36]
         serializer = PlantSerializer(data=request.data,
                                      context={'request': request, 'address': address, 'video_id': aparat_id})
@@ -77,6 +79,7 @@ class PlantDetail(APIView):
         return Response(serializer.data)
 
     def put(self, request, pk):
+        aparat_id = None
         if request.data.get('aparat_video_link') is not None:
             aparat_clip_url = request.data.get('aparat_video_link')
             regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
@@ -475,3 +478,23 @@ class PlantFruitImageDetail(APIView):
         if os.path.isfile(image_path):
             os.remove(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@authentication_classes([CustomJWTAuthentication])
+@permission_classes([IsAuthenticated])
+@api_view(['GET'])
+def check_valid_video(request):
+    aparat_clip_url = request.data.get('aparat_video_link')
+    regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
+    match = re.match(regex, aparat_clip_url)
+    if match:
+        video_id = match.group(1)  # Output: U1lFp
+        aparat_id = video_id
+    else:
+        return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
+
+    response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
+    if response_test_video.get('video').get('size') is None:
+        return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response(status=status.HTTP_200_OK)

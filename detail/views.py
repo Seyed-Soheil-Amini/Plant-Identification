@@ -482,7 +482,7 @@ class PlantFruitImageDetail(APIView):
 
 @authentication_classes([CustomJWTAuthentication])
 @permission_classes([IsAuthenticated])
-@api_view(['GET'])
+@api_view(['POST'])
 def check_valid_video(request):
     aparat_clip_url = request.data.get('aparat_video_link')
     regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"

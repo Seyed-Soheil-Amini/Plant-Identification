@@ -40,7 +40,7 @@ class PlantList(APIView):
         aparat_id = None
         if request.data.get('aparat_video_link') != '':
             aparat_clip_url = request.data.get('aparat_video_link')
-            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
+            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
             match = re.match(regex, aparat_clip_url)
             if match:
                 video_id = match.group(1)  # Output: U1lFp
@@ -82,7 +82,7 @@ class PlantDetail(APIView):
         aparat_id = None
         if request.data.get('aparat_video_link') != '':
             aparat_clip_url = request.data.get('aparat_video_link')
-            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
+            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
             match = re.match(regex, aparat_clip_url)
             if match:
                 video_id = match.group(1)  # Output: U1lFp
@@ -485,7 +485,7 @@ class PlantFruitImageDetail(APIView):
 @api_view(['POST'])
 def check_valid_video(request):
     aparat_clip_url = request.data.get('aparat_video_link')
-    regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)"
+    regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
     match = re.match(regex, aparat_clip_url)
     if match:
         video_id = match.group(1)  # Output: U1lFp

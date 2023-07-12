@@ -492,9 +492,11 @@ def check_valid_video(request):
         aparat_id = video_id
     else:
         return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
-
-    response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
-    if response_test_video.get('video').get('size') is None:
-        return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
+    if Plant.objects.filter(video_aparat_id=aparat_id) is None:
+        response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
+        if response_test_video.get('video').get('size') is None:
+            return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
     else:
-        return Response(status=status.HTTP_200_OK)
+        return Response(data="Video link already exits!", status=status.HTTP_400_BAD_REQUEST)

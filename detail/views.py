@@ -2,6 +2,7 @@ import os
 import re
 import shutil
 import uuid
+from os.path import normpath, join
 
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -10,13 +11,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404, HttpRequest
 import requests
+from rest_framework import serializers
 
+from Plant_Identification.settings import BASE_DIR
 from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat, Fruit
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
     HabitatSerializer, FruitSerializer
 
-from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
 
 
 @api_view(['GET'])
@@ -52,15 +54,18 @@ class PlantList(APIView):
             if response_test_video.get('video').get('size') is None:
                 return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
         address = uuid.uuid4().__str__()[25:36]
-        serializer = PlantSerializer(data=request.data,
+        try:
+            serializer = PlantSerializer(data=request.data,
                                      context={'request': request, 'address': address, 'video_id': aparat_id})
-        if serializer.is_valid():
-            serializer.save()
-            if not bool(serializer.errors):
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                if not bool(serializer.errors):
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except serializers.ValidationError as e:
+            return Response({"error": e.detail}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PlantDetail(APIView):
@@ -95,20 +100,22 @@ class PlantDetail(APIView):
         plant = self.get_object(pk)
         serializer = PlantSerializer(plant, data=request.data,
                                      context={'request': request, 'pk': pk, 'video_id': aparat_id})
-        if serializer.is_valid():
-            serializer.save()
-            if not bool(serializer.errors):
-                return Response(serializer.data, status=status.HTTP_201_CREATED)
-            else:
-                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        try:
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
+                if not bool(serializer.errors):
+                    return Response(serializer.data, status=status.HTTP_201_CREATED)
+                else:
+                    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except serializers.ValidationError as e:
+            return Response({"error": e.detail}, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         plant = self.get_object(pk)
-        image_path = plant.image.path
+        folder_path = normpath(join(BASE_DIR, "media/mainImages/", plant.pre_path))
         plant.delete()
-        image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
-        shutil.rmtree(image_path)
+        shutil.rmtree(folder_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -119,10 +126,9 @@ def delete_plants(request):
     deleted_plants_id = request.data.getlist('id')
     for id in range(0, len(deleted_plants_id)):
         deleted_obj = Plant.objects.get(pk=deleted_plants_id[id])
-        image_path = deleted_obj.image.path
+        folder_path = normpath(join(BASE_DIR, "media/mainImages/", deleted_obj.pre_path))
         deleted_obj.delete()
-        image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
-        shutil.rmtree(image_path)
+        shutil.rmtree(folder_path)
     return Response(status=status.HTTP_204_NO_CONTENT)
 
 
@@ -486,7 +492,7 @@ class PlantFruitImageDetail(APIView):
 def check_valid_video(request):
     aparat_clip_url = request.data.get('aparat_video_link')
     regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
-    match = re.match(regex, aparat_clip_url)
+    match = re.search(regex, aparat_clip_url)
     if match:
         video_id = match.group(1)  # Output: U1lFp
         aparat_id = video_id

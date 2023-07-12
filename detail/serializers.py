@@ -5,6 +5,7 @@ import django
 
 django.setup()
 import os
+from os.path import normpath, join
 import io
 import threading
 from PIL import Image
@@ -14,13 +15,11 @@ from multiprocessing import Pool, Process
 from itertools import repeat
 from rest_framework import serializers
 from functools import partial
-
+from Plant_Identification.settings import BASE_DIR
 from .models import *
 
-from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
-
-IMAGE_DIR_SER = f'media{WINDOWS_OR_UBUNTU}mainImages{WINDOWS_OR_UBUNTU}'
-IMAGE_DIR_NEW = f'mainImages{WINDOWS_OR_UBUNTU}'
+IMAGE_DIR_SER = f'media/mainImages/'
+IMAGE_DIR_NEW = f'mainImages/'
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):
@@ -73,6 +72,10 @@ class PlantSerializer(serializers.ModelSerializer):
     habitat_image_set = HabitatSerializer(many=True, read_only=True)
     fruit_image_set = FruitSerializer(many=True, read_only=True)
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.threadErrors = []
+
     class Meta:
         model = Plant
         fields = ['id', 'persian_name', 'image', 'scientific_name', 'family', 'morphology', 'flowering_time',
@@ -88,8 +91,10 @@ class PlantSerializer(serializers.ModelSerializer):
         except model_name.DoesNotExist:
             return None
 
-    @staticmethod
-    def compress(image_files, args):
+    def compress(self, image_files, args):
+        if len(self.threadErrors) > 0:
+            return
+
         model_name, instance, user, delete_need = args
         for i, image_file in enumerate(image_files):
             file_path = image_file.temporary_file_path() if isinstance(image_file,
@@ -112,22 +117,22 @@ class PlantSerializer(serializers.ModelSerializer):
                                           **{'image': ContentFile(buffer.getvalue(), name=image_file)})
             except:
                 if delete_need:
-                    image_path = instance.image.path
+                    folder_path = normpath(join(BASE_DIR, IMAGE_DIR_SER, instance.pre_path))
                     instance.delete()
-                    image_path = image_path[0: image_path.rindex(WINDOWS_OR_UBUNTU) + 1]
-                    shutil.rmtree(image_path)
-                raise Exception
+                    shutil.rmtree(folder_path)
+                self.threadErrors.append(serializers.ValidationError("error"))
 
     def add_images(self, images, model_name, instance, user, must_delete):
         threads = []
         step = len(images) // 8 if len(images) >= 8 else 1
         for i in range(0, len(images), step):
-            thread = threading.Thread(target=PlantSerializer.compress,
+            thread = threading.Thread(target=self.compress,
                                       args=(images[i:i + step], (model_name, instance, user, must_delete),))
             threads.append(thread)
             thread.start()
 
         return threads
+
         # with Pool(processes=4) as pool:
         #     results = pool.map(partial(PlantSerializer.compress, args=(model_name, instance, user)), images)
 
@@ -143,10 +148,10 @@ class PlantSerializer(serializers.ModelSerializer):
         # file must be created here
         if len(leaf_images) > 100 or len(stem_images) > 100 or len(flower_images) > 100 or len(
                 habitat_images) > 100 or len(fruit_images) > 100:
-            raise Exception("The limit of the number of photos sent has not been respected.")
+            raise serializers.ValidationError("The limit of the number of photos sent has not been respected.")
         else:
-            os.mkdir(IMAGE_DIR_SER + file_pre_address)
-            file_path = os.path.join(IMAGE_DIR_SER + file_pre_address, 'info.txt')
+            os.mkdir(normpath(IMAGE_DIR_SER + file_pre_address))
+            file_path = normpath(join(IMAGE_DIR_SER + file_pre_address, 'info.txt'))
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write(str(validated_data))
             plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address,
@@ -162,6 +167,8 @@ class PlantSerializer(serializers.ModelSerializer):
             threads.extend(self.add_images(fruit_images, Fruit, plant, user, True))
             for thread in threads:
                 thread.join()
+            if len(self.threadErrors) > 0:
+                raise self.threadErrors[0]
         return plant
 
     def update(self, instance, validated_data):
@@ -180,11 +187,10 @@ class PlantSerializer(serializers.ModelSerializer):
         fruit_images_inventory = Fruit.objects.filter(plant=instance)
 
         if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
-                stem_images) > 100 or len(
-            flower_images_inventory) + len(flower_images) > 100 or len(
+                stem_images) > 100 or len(flower_images_inventory) + len(flower_images) > 100 or len(
             habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(
             fruit_images) > 100:
-            raise Exception("The limit of the number of photos sent has not been respected.")
+            raise serializers.ValidationError("The limit of the number of photos sent has not been respected.")
         else:
             threads = []
             if leaf_images is not None:
@@ -199,13 +205,15 @@ class PlantSerializer(serializers.ModelSerializer):
                 threads.extend(self.add_images(fruit_images, Fruit, instance, user, False))
             for thread in threads:
                 thread.join()
+            if len(self.threadErrors) > 0:
+                raise self.threadErrors[0]
             if new_image is not None:
                 image_field = validated_data.pop('image')
                 os.remove(instance.image.path)
                 string_filename = str(new_image)
                 ext = string_filename[string_filename.rfind("."):len(string_filename)]
-                filename = os.path.join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext)
-                filename_to_database = os.path.join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext)
+                filename = normpath(join(IMAGE_DIR_SER + instance.pre_path, instance.pre_path[::-1] + ext))
+                filename_to_database = normpath(join(IMAGE_DIR_NEW + instance.pre_path, instance.pre_path[::-1] + ext))
                 with open(filename, 'wb+') as f:
                     for chunk in image_field.chunks():
                         f.write(chunk)
@@ -219,7 +227,7 @@ class PlantSerializer(serializers.ModelSerializer):
                                                                                video_aparat_id=self.context.get(
                                                                                    'video_id')
                                                                                , **validated_data)
-            file_path = os.path.join(IMAGE_DIR_SER + instance.pre_path, 'info.txt')
+            file_path = normpath(join(IMAGE_DIR_SER + instance.pre_path, 'info.txt'))
             with open(file_path, 'w', encoding='utf-8') as f:
                 f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
 

@@ -206,7 +206,8 @@
     const login_button = document.getElementById('login-button')
     async function requireAuth() {
     if(!localStorage.getItem('lr') || !localStorage.getItem('username')){
-        login_button.innerHTML = 'Login'
+        if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Login'
+        else login_button.innerHTML = 'ورود'
         login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
         return
     }

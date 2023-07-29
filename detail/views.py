@@ -3,6 +3,7 @@ import re
 import shutil
 import uuid
 
+from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
 from rest_framework.permissions import IsAuthenticated
@@ -14,7 +15,7 @@ import requests
 from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat, Fruit
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
-    HabitatSerializer, FruitSerializer
+    HabitatSerializer, FruitSerializer, IMAGE_DIR_SER
 
 from Plant_Identification.local_setting import WINDOWS_OR_UBUNTU
 
@@ -136,11 +137,23 @@ class PlantLeafImageList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = LeafSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        leaf_images = request.FILES.getlist('leaf_image_set')
+        if len(leaf_images) != 0:
+            plant_instance = Plant.objects.get(pk=request.data.get('plant_id'))
+            leaf_inventory = Leaf.objects.filter(plant=plant_instance)
+            if len(leaf_inventory) + len(leaf_images) > 100:
+                return Response("The number of photos submitted has exceeded the limit.",
+                                status=status.HTTP_400_BAD_REQUEST)
+            user_instance = User.objects.get(username=request.user)
+            try:
+                for leaf in leaf_images:
+                    Leaf.objects.create(plant=plant_instance, user=user_instance,
+                                        **{'image': leaf})
+                return Response("Leafs of plant is saved successfully", status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
 
 
 class PlantLeafImageDetail(APIView):
@@ -189,11 +202,23 @@ class PlantStemImageList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = StemSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        stem_images = request.FILES.getlist('stem_image_set')
+        if len(stem_images) != 0:
+            plant_instance = Plant.objects.get(pk=request.data.get('plant_id'))
+            stem_inventory = Stem.objects.filter(plant=plant_instance)
+            if len(stem_inventory) + len(stem_images) > 100:
+                return Response("The number of photos submitted has exceeded the limit.",
+                                status=status.HTTP_400_BAD_REQUEST)
+            user_instance = User.objects.get(username=request.user)
+            try:
+                for stem in stem_images:
+                    Stem.objects.create(plant=plant_instance, user=user_instance,
+                                        **{'image': stem})
+                return Response("Stems of plant is saved successfully", status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
 
 
 class PlantStemImageDetail(APIView):
@@ -245,11 +270,23 @@ class PlantFlowerImageList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = FlowerSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        flower_images = request.FILES.getlist('flower_image_set')
+        if len(flower_images) != 0:
+            plant_instance = Plant.objects.get(pk=request.data.get('plant_id'))
+            flower_inventory = Flower.objects.filter(plant=plant_instance)
+            if len(flower_inventory) + len(flower_images) > 100:
+                return Response("The number of photos submitted has exceeded the limit.",
+                                status=status.HTTP_400_BAD_REQUEST)
+            user_instance = User.objects.get(username=request.user)
+            try:
+                for flower in flower_images:
+                    Flower.objects.create(plant=plant_instance, user=user_instance,
+                                          **{'image': flower})
+                return Response("Flowers of plant is saved successfully", status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
 
 
 class PlantFlowerImageDetail(APIView):
@@ -384,11 +421,23 @@ class PlantHabitatImageList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = HabitatSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        habitat_images = request.FILES.getlist('habitat_image_set')
+        if len(habitat_images) != 0:
+            plant_instance = Plant.objects.get(pk=request.data.get('plant_id'))
+            habitat_inventory = Habitat.objects.filter(plant=plant_instance)
+            if len(habitat_inventory) + len(habitat_images) > 100:
+                return Response("The number of photos submitted has exceeded the limit.",
+                                status=status.HTTP_400_BAD_REQUEST)
+            user_instance = User.objects.get(username=request.user)
+            try:
+                for habitat in habitat_images:
+                    Habitat.objects.create(plant=plant_instance, user=user_instance,
+                                           **{'image': habitat})
+                return Response("Habitats of plant is saved successfully", status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
 
 
 class PlantHabitatImageDetail(APIView):
@@ -437,11 +486,23 @@ class PlantFruitImageList(APIView):
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = FruitSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        fruit_images = request.FILES.getlist('fruit_image_set')
+        if len(fruit_images) != 0:
+            plant_instance = Plant.objects.get(pk=request.data.get('plant_id'))
+            fruit_inventory = Fruit.objects.filter(plant=plant_instance)
+            if len(fruit_inventory) + len(fruit_images) > 100:
+                return Response("The number of photos submitted has exceeded the limit.",
+                                status=status.HTTP_400_BAD_REQUEST)
+            user_instance = User.objects.get(username=request.user)
+            try:
+                for fruit in fruit_images:
+                    Fruit.objects.create(plant=plant_instance, user=user_instance,
+                                         **{'image': fruit})
+                return Response("Fruits of plant is saved successfully", status=status.HTTP_201_CREATED)
+            except Exception as e:
+                return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(status=status.HTTP_200_OK)
 
 
 class PlantFruitImageDetail(APIView):
@@ -500,6 +561,3 @@ def check_valid_video(request):
             return Response(status=status.HTTP_200_OK)
     else:
         return Response(data="Video link already exits!", status=status.HTTP_400_BAD_REQUEST)
-
-
-

@@ -1,5 +1,5 @@
-if(localStorage.getItem('lang') == 'en') document.getElementById('search-btn-exp').setAttribute('placeholder' , 'What are you looking for?');
-else document.getElementById('search-btn-exp').setAttribute('placeholder' , 'به دنبال چه می گردید؟');
+if(localStorage.getItem('lang') == 'fa') document.getElementById('search-btn-exp').setAttribute('placeholder' , 'به دنبال چه می گردید؟');
+else document.getElementById('search-btn-exp').setAttribute('placeholder' , 'What are you looking for?');
 
 document.querySelector(".input-search").addEventListener("focus", () => {
     document.querySelector(".btn-search").style.color = "#ffffff"

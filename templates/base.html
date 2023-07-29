@@ -206,8 +206,8 @@
     const login_button = document.getElementById('login-button')
     async function requireAuth() {
     if(!localStorage.getItem('lr') || !localStorage.getItem('username')){
-        if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Login'
-        else login_button.innerHTML = 'ورود'
+        if(localStorage.getItem('lang') == 'fa') login_button.innerHTML = 'ورود'
+        else login_button.innerHTML = 'Login'
         login_button.setAttribute('href', `${window.location.origin}/users/#/login`)
         return
     }
@@ -215,16 +215,16 @@
         if (Date.parse(localStorage.getItem('lr')) < ((new Date()) - 60 * 60000)) {
             const data = await axios.post(window.location.origin+'/refresh/token/')
             if(data?.status === 200) {
-                if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Dashboard'
-                else login_button.innerHTML = 'داشبورد'
+                if(localStorage.getItem('lang') == 'fa') login_button.innerHTML = 'داشبورد'
+                else login_button.innerHTML = 'Dashboard'
 
                 login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
                 localStorage.setItem('lr', new Date())
             }
         }
         else {
-            if(localStorage.getItem('lang') == 'en') login_button.innerHTML = 'Dashboard'
-            else login_button.innerHTML = 'داشبورد'
+                if(localStorage.getItem('lang') == 'fa') login_button.innerHTML = 'داشبورد'
+                else login_button.innerHTML = 'Dashboard'
 
             login_button.setAttribute('href', `${window.location.origin}/users/#/dashboard`)
         }
@@ -233,6 +233,7 @@
     }
 }
 requireAuth()
+
 
 
 </script>
@@ -244,6 +245,7 @@ requireAuth()
         location.reload();
     });
     l.changeLanguage(document.documentElement);
+
 
 
 

@@ -18,7 +18,7 @@ urlpatterns = [
     path('habitat/', views.PlantHabitatImageList.as_view()),
     path('habitat/<int:pk>/', views.PlantMedicinalDetail.as_view()),
     path('fruit/', views.PlantFruitImageList.as_view()),
-    path('habitat/<int:pk>/', views.PlantFruitImageDetail.as_view()),
+    path('fruit/<int:pk>/', views.PlantFruitImageDetail.as_view()),
     path('delete/', views.delete_plants),
     path('delete/options/', views.delete_plants_data),
     path('checkvideo/',views.check_valid_video),

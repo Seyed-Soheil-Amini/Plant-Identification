@@ -566,4 +566,4 @@ def check_valid_video(request):
         else:
             return Response(status=status.HTTP_200_OK)
     else:
-        return Response(data="Video link already exits!", status=status.HTTP_400_BAD_REQUEST)
+        return Response(data="Video link already exists!", status=status.HTTP_400_BAD_REQUEST)

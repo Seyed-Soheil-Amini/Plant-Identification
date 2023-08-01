@@ -4,4 +4,4 @@ media/
 **/__pycache__/
 *.pyc
 Plant_Identification/local_setting.py
-**/migrations/
+**/migrations/*

@@ -1,22 +1,22 @@
+from os.path import join, normpath
+
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
-from Plant_Identification import settings
-
 import uuid
 
-IMAGE_DIR = 'mainImages/'
+IMAGE_DIR = normpath('mainImages')
 
 
 def set_model_path(instance, filename):
     string_filename = str(filename)
     ext = string_filename[string_filename.rfind("."):len(string_filename)]
-    return IMAGE_DIR + '{0}/{1}'.format(instance.pre_path, instance.pre_path[::-1] + ext)
+    return normpath(join(IMAGE_DIR, instance.pre_path, instance.pre_path[::-1] + ext))
 
 
 def set_model_info_file(instance, filename):
-    return IMAGE_DIR + '{0}/{1}'.format(instance.pre_path, filename)
+    return normpath(join(IMAGE_DIR, instance.pre_path, filename))
 
 
 class Plant(models.Model):
@@ -72,21 +72,32 @@ class Medicine(models.Model):
         verbose_name_plural = 'Medicines'
 
 
-def set_leaf_image_path(instance, filename):
+class MedicinalUnit(models.Model):
+    plant = models.ForeignKey('Plant', related_name="medicinal_properties", on_delete=models.CASCADE)
+    medicine = models.ForeignKey('Medicine', related_name="medicine_unit", on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'medicinal_unit'
+        verbose_name = 'medicinal unit'
+        verbose_name_plural = 'medicinal units'
+        unique_together = (('plant', 'medicine'),)
+
+
+def set_sub_image_path(instance, filename):
     string_filename = str(filename)
-    ext = string_filename[string_filename.rfind("."):len(string_filename)]
+    ext = string_filename[string_filename.rfind("."):]
+    instance_model_name = instance._meta.model.__name__.lower()
     if instance.user.is_superuser:
-        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'leaf',
-                                                '_L_' + uuid.uuid4().__str__()[0:7] + ext)
+        return normpath(join(IMAGE_DIR, instance.plant.pre_path, instance_model_name,
+                             f'_{instance_model_name}_' + uuid.uuid4().__str__()[0:7] + ext))
     else:
-        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Images', 'leaf',
-                                                    '_' +
-                                                    instance.user.username + '_L_' + uuid.uuid4().__str__()[
-                                                                                     0:7] + ext)
+        return normpath(join(IMAGE_DIR, instance.plant.pre_path, 'User_Images', instance_model_name, '_' +
+                             instance.user.username + f'_{instance_model_name}_' + uuid.uuid4().__str__()[
+                                                                                   0:7] + ext))
 
 
 class Leaf(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_leaf_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="leaf_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="user_leaf_image_set",
                              default=None, on_delete=models.DO_NOTHING)
@@ -97,20 +108,8 @@ class Leaf(models.Model):
         verbose_name_plural = 'leafs'
 
 
-def set_stem_image_path(instance, filename):
-    string_filename = str(filename)
-    ext = string_filename[string_filename.rfind("."):len(string_filename)]
-    if instance.user.is_superuser:
-        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'stem',
-                                                '_S_' + uuid.uuid4().__str__()[0:7] + ext)
-    else:
-        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Images', 'stem',
-                                                    '_' +
-                                                    instance.user.username + '_S_' + uuid.uuid4().__str__()[0:7] + ext)
-
-
 class Stem(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_stem_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="stem_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=None,
                              related_name="user_stem_image_set", on_delete=models.DO_NOTHING)
@@ -121,20 +120,8 @@ class Stem(models.Model):
         verbose_name_plural = 'stems'
 
 
-def set_flower_image_path(instance, filename):
-    string_filename = str(filename)
-    ext = string_filename[string_filename.rfind("."):len(string_filename)]
-    if instance.user.is_superuser:
-        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'flower',
-                                                '_F_' + uuid.uuid4().__str__()[0:7] + ext)
-    else:
-        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Image', 'flower',
-                                                    '_' +
-                                                    instance.user.username + '_F_' + uuid.uuid4().__str__()[0:7] + ext)
-
-
 class Flower(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_flower_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="flower_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=None,
                              related_name="user_flower_image_set", on_delete=models.DO_NOTHING)
@@ -145,20 +132,8 @@ class Flower(models.Model):
         verbose_name_plural = 'flowers'
 
 
-def set_habitat_image_path(instance, filename):
-    string_filename = str(filename)
-    ext = string_filename[string_filename.rfind("."):len(string_filename)]
-    if instance.user.is_superuser:
-        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'habitat',
-                                                '_H_' + uuid.uuid4().__str__()[0:7] + ext)
-    else:
-        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Image', 'habitat',
-                                                    '_' +
-                                                    instance.user.username + '_H_' + uuid.uuid4().__str__()[0:7] + ext)
-
-
 class Habitat(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_habitat_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="habitat_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=None,
                              related_name="user_habitat_image_set", on_delete=models.DO_NOTHING)
@@ -169,20 +144,8 @@ class Habitat(models.Model):
         verbose_name_plural = 'habitats'
 
 
-def set_fruit_image_path(instance, filename):
-    string_filename = str(filename)
-    ext = string_filename[string_filename.rfind("."):len(string_filename)]
-    if instance.user.is_superuser:
-        return IMAGE_DIR + '{0}/{1}/{2}'.format(instance.plant.pre_path, 'fruit',
-                                                '_FR_' + uuid.uuid4().__str__()[0:7] + ext)
-    else:
-        return IMAGE_DIR + '{0}/{1}/{2}/{3}'.format(instance.plant.pre_path, 'User_Image', 'fruit',
-                                                    '_' +
-                                                    instance.user.username + '_FR_' + uuid.uuid4().__str__()[0:7] + ext)
-
-
 class Fruit(models.Model):
-    image = models.ImageField(blank=False, null=False, upload_to=set_fruit_image_path)
+    image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="fruit_image_set", on_delete=models.CASCADE)
     user = models.ForeignKey(User, default=None,
                              related_name="user_fruit_image_set", on_delete=models.DO_NOTHING)
@@ -191,14 +154,3 @@ class Fruit(models.Model):
         db_table = 'fruit_images'
         verbose_name = 'fruit'
         verbose_name_plural = 'fruits'
-
-
-class MedicinalUnit(models.Model):
-    plant = models.ForeignKey('Plant', related_name="medicinal_properties", on_delete=models.CASCADE)
-    medicine = models.ForeignKey('Medicine', related_name="medicine_unit", on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'medicinal_unit'
-        verbose_name = 'medicinal unit'
-        verbose_name_plural = 'medicinal units'
-        unique_together = (('plant', 'medicine'),)

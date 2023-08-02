@@ -18,7 +18,7 @@ from Plant_Identification.settings import BASE_DIR
 from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat, Fruit
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
-    HabitatSerializer, FruitSerializer, IMAGE_DIR_SER
+    HabitatSerializer, FruitSerializer
 
 
 @api_view(['GET'])
@@ -41,7 +41,7 @@ class PlantList(APIView):
     def post(self, request):
         aparat_id = None
         aparat_clip_url = request.data.get('aparat_video_link')
-        if (aparat_clip_url != '' and aparat_clip_url is not None):
+        if aparat_clip_url != '' and aparat_clip_url is not None:
             check_video = check_valid_video(request._request)
             if check_video.status_code != 200:
                 return check_video
@@ -78,19 +78,12 @@ class PlantDetail(APIView):
 
     def put(self, request, pk):
         aparat_id = None
-        aparat_video_link = request.data.get('aparat_video_link')
-        if aparat_video_link != '' and aparat_video_link is not None:
-            aparat_clip_url = request.data.get('aparat_video_link')
-            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
-            match = re.match(regex, aparat_clip_url)
-            if match:
-                video_id = match.group(1)  # Output: U1lFp
-                aparat_id = video_id
-            else:
-                return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
-            response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
-            if response_test_video.get('video').get('size') is None:
-                return Response(data="Video not found!", status=status.HTTP_404_NOT_FOUND)
+        aparat_clip_url = request.data.get('aparat_video_link')
+        if aparat_clip_url != '' and aparat_clip_url is not None:
+            check_video = check_valid_video(request._request)
+            if check_video.status_code != 200:
+                return check_video
+            aparat_id = check_video.data['aparat_id']
         plant = self.get_object(pk)
         serializer = PlantSerializer(plant, data=request.data,
                                      context={'request': request, 'pk': pk, 'video_id': aparat_id})
@@ -107,7 +100,7 @@ class PlantDetail(APIView):
 
     def delete(self, request, pk):
         plant = self.get_object(pk)
-        folder_path = normpath(join(BASE_DIR, "media/mainImages/", plant.pre_path))
+        folder_path = normpath(join(BASE_DIR, 'media', 'mainImages', plant.pre_path))
         plant.delete()
         shutil.rmtree(folder_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
@@ -120,7 +113,7 @@ def delete_plants(request):
     deleted_plants_id = request.data.getlist('id')
     for id in range(0, len(deleted_plants_id)):
         deleted_obj = Plant.objects.get(pk=deleted_plants_id[id])
-        folder_path = normpath(join(BASE_DIR, "media/mainImages/", deleted_obj.pre_path))
+        folder_path = normpath(join(BASE_DIR, 'media', 'mainImages', deleted_obj.pre_path))
         deleted_obj.delete()
         shutil.rmtree(folder_path)
     return Response(status=status.HTTP_204_NO_CONTENT)
@@ -379,31 +372,31 @@ def delete_plants_data(request):
     deleted_flowers_id = request.data.getlist('flower_id')
     deleted_habitats_id = request.data.getlist('habitat_id')
     deleted_fruits_id = request.data.getlist('fruit_id')
-    for id in range(0, len(deleted_medicines_id)):
-        deleted_obj = MedicinalUnit.objects.get(pk=deleted_medicines_id[id])
+    for delete_id in deleted_medicines_id:
+        deleted_obj = MedicinalUnit.objects.get(pk=delete_id)
         deleted_obj.delete()
-    for id in range(0, len(deleted_leafs_id)):
-        deleted_obj = Leaf.objects.get(pk=deleted_leafs_id[id])
+    for delete_id in deleted_leafs_id:
+        deleted_obj = Leaf.objects.get(pk=delete_id)
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
-    for id in range(0, len(deleted_stems_id)):
-        deleted_obj = Stem.objects.get(pk=deleted_stems_id[id])
+    for delete_id in deleted_stems_id:
+        deleted_obj = Stem.objects.get(pk=delete_id)
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
-    for id in range(0, len(deleted_flowers_id)):
-        deleted_obj = Flower.objects.get(pk=deleted_flowers_id[id])
+    for delete_id in deleted_flowers_id:
+        deleted_obj = Flower.objects.get(pk=delete_id)
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
-    for id in range(0, len(deleted_habitats_id)):
-        deleted_obj = Habitat.objects.get(pk=deleted_habitats_id[id])
+    for delete_id in deleted_habitats_id:
+        deleted_obj = Habitat.objects.get(pk=delete_id)
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
-    for id in range(0, len(deleted_fruits_id)):
-        deleted_obj = Fruit.objects.get(pk=deleted_fruits_id[id])
+    for delete_id in deleted_fruits_id:
+        deleted_obj = Fruit.objects.get(pk=delete_id)
         image_path = deleted_obj.image.path
         deleted_obj.delete()
         os.remove(image_path)
@@ -546,10 +539,9 @@ class PlantFruitImageDetail(APIView):
 def check_valid_video(request):
     aparat_clip_url = request.data.get('aparat_video_link')
     regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
-    match = re.search(regex, aparat_clip_url)
+    match = re.match(regex, aparat_clip_url)
     if match:
-        video_id = match.group(1)  # Output: U1lFp
-        aparat_id = video_id
+        aparat_id = match.group(1)  # Output: U1lFp
     else:
         return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
     if not bool(Plant.objects.filter(video_aparat_id=aparat_id)):
@@ -559,4 +551,4 @@ def check_valid_video(request):
         else:
             return Response(data={"aparat_id": aparat_id}, status=status.HTTP_200_OK)
     else:
-        return Response(data="Video link already exits!", status=status.HTTP_400_BAD_REQUEST)
+        return Response(data="Video link already exists!", status=status.HTTP_400_BAD_REQUEST)

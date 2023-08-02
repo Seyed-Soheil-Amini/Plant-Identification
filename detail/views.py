@@ -21,7 +21,6 @@ from .serializers import PlantSerializer, LeafSerializer, StemSerializer, Flower
     HabitatSerializer, FruitSerializer, IMAGE_DIR_SER
 
 
-
 @api_view(['GET'])
 @authentication_classes([])
 @permission_classes([])
@@ -41,23 +40,16 @@ class PlantList(APIView):
 
     def post(self, request):
         aparat_id = None
-        if request.data.get('aparat_video_link') != '':
-            aparat_clip_url = request.data.get('aparat_video_link')
-            regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
-            match = re.match(regex, aparat_clip_url)
-            if match:
-                video_id = match.group(1)  # Output: U1lFp
-                aparat_id = video_id
-            else:
-                return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
-
-            response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
-            if response_test_video.get('video').get('size') is None:
-                return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
+        aparat_clip_url = request.data.get('aparat_video_link')
+        if (aparat_clip_url != '' and aparat_clip_url is not None):
+            check_video = check_valid_video(request._request)
+            if check_video.status_code != 200:
+                return check_video
+            aparat_id = check_video.data['aparat_id']
         address = uuid.uuid4().__str__()[25:36]
         try:
             serializer = PlantSerializer(data=request.data,
-                                     context={'request': request, 'address': address, 'video_id': aparat_id})
+                                         context={'request': request, 'address': address, 'video_id': aparat_id})
             if serializer.is_valid(raise_exception=True):
                 serializer.save()
                 if not bool(serializer.errors):
@@ -65,8 +57,8 @@ class PlantList(APIView):
                 else:
                     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        except serializers.ValidationError as e:
-            return Response({"error": e.detail}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response({"error": e}, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PlantDetail(APIView):
@@ -86,7 +78,8 @@ class PlantDetail(APIView):
 
     def put(self, request, pk):
         aparat_id = None
-        if request.data.get('aparat_video_link') != '':
+        aparat_video_link = request.data.get('aparat_video_link')
+        if aparat_video_link != '' and aparat_video_link is not None:
             aparat_clip_url = request.data.get('aparat_video_link')
             regex = r"^(?:https?:\/\/)?(?:www\.)?aparat\.com\/v\/([A-Za-z0-9]+)(([!\"#$%\[\]&\'()*+,-.:;<=>?@^_`{|}~\\\/]).*|($))"
             match = re.match(regex, aparat_clip_url)
@@ -94,7 +87,7 @@ class PlantDetail(APIView):
                 video_id = match.group(1)  # Output: U1lFp
                 aparat_id = video_id
             else:
-                return Response(status=status.HTTP_406_NOT_ACCEPTABLE)
+                return Response(data="Video link is not correct!", status=status.HTTP_400_BAD_REQUEST)
             response_test_video = requests.get(f"https://www.aparat.com/etc/api/video/videohash/{aparat_id}").json()
             if response_test_video.get('video').get('size') is None:
                 return Response(data="Video not found!", status=status.HTTP_404_NOT_FOUND)
@@ -564,6 +557,6 @@ def check_valid_video(request):
         if response_test_video.get('video').get('size') is None:
             return Response(data="Video not found!", status=status.HTTP_400_BAD_REQUEST)
         else:
-            return Response(status=status.HTTP_200_OK)
+            return Response(data={"aparat_id": aparat_id}, status=status.HTTP_200_OK)
     else:
         return Response(data="Video link already exits!", status=status.HTTP_400_BAD_REQUEST)

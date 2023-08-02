@@ -1,22 +1,10 @@
-import re
-import shutil
 from os.path import normpath, join
 
 import django
 
-from Plant_Identification.settings import BASE_DIR
-
 django.setup()
 import os
-import io
-import threading
-from PIL import Image
-from django.core.files.uploadedfile import InMemoryUploadedFile, TemporaryUploadedFile
-from django.core.files.base import ContentFile
-from multiprocessing import Pool, Process
-from itertools import repeat
 from rest_framework import serializers
-from functools import partial
 
 from .models import *
 
@@ -149,48 +137,21 @@ class PlantSerializer(serializers.ModelSerializer):
         file_path = os.path.join(IMAGE_DIR_SER + file_pre_address, 'info.txt')
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(str(validated_data))
-        plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address,
-                                     info_file='info.txt', video_aparat_id=self.context.get('video_id'),
-                                     **validated_data)
-        for medicine in range(0, len(medicinal_props)):
-            MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
-        return plant
+        try:
+            plant = Plant.objects.create(adder_user=user, editor_user=user, pre_path=file_pre_address,
+                                         info_file='info.txt', video_aparat_id=self.context.get('video_id'),
+                                         **validated_data)
+            for medicine in range(0, len(medicinal_props)):
+                MedicinalUnit.objects.create(plant=plant, medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
+            return plant
+        except Exception as e:
+            plant.delete()
+            raise e
 
     def update(self, instance, validated_data):
         new_image = self.context.get('request').FILES.get('image')
         medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
-        # leaf_images = self.context.get('request').FILES.getlist('leaf_image_set')
-        # stem_images = self.context.get('request').FILES.getlist('stem_image_set')
-        # flower_images = self.context.get('request').FILES.getlist('flower_image_set')
-        # habitat_images = self.context.get('request').FILES.getlist('habitat_image_set')
-        # fruit_images = self.context.get('request').FILES.getlist('fruit_image_set')
         user = User.objects.get(username=self.context.get('request').user)
-        # leaf_images_inventory = Leaf.objects.filter(plant=instance)
-        # stem_images_inventory = Stem.objects.filter(plant=instance)
-        # flower_images_inventory = Flower.objects.filter(plant=instance)
-        # habitat_images_inventory = Habitat.objects.filter(plant=instance)
-        # fruit_images_inventory = Fruit.objects.filter(plant=instance)
-
-        # if len(leaf_images_inventory) + len(leaf_images) > 100 or len(stem_images_inventory) + len(
-        #         stem_images) > 100 or len(
-        #     flower_images_inventory) + len(flower_images) > 100 or len(
-        #     habitat_images_inventory) + len(habitat_images) > 100 or len(fruit_images_inventory) + len(
-        #     fruit_images) > 100:
-        #     raise Exception("The limit of the number of photos sent has not been respected.")
-        # else:
-        #     threads = []
-        #     if leaf_images is not None:
-        #         threads.extend(self.add_images(leaf_images, Leaf, instance, user, False))
-        #     if stem_images is not None:
-        #         threads.extend(self.add_images(stem_images, Stem, instance, user, False))
-        #     if flower_images is not None:
-        #         threads.extend(self.add_images(flower_images, Flower, instance, user, False))
-        #     if habitat_images is not None:
-        #         threads.extend(self.add_images(habitat_images, Habitat, instance, user, False))
-        #     if fruit_images is not None:
-        #         threads.extend(self.add_images(fruit_images, Fruit, instance, user, False))
-        #     for thread in threads:
-        #         thread.join()
         if new_image is not None:
             image_field = validated_data.pop('image')
             os.remove(instance.image.path)
@@ -220,3 +181,24 @@ class PlantSerializer(serializers.ModelSerializer):
                     MedicinalUnit.objects.create(plant=instance,
                                                  medicine=Medicine.objects.get(pk=medicinal_props[medicine]))
             return Plant.objects.get(pk=instance.pk)
+
+        # medicinal_props = self.context.get('request').data.getlist('medicinal_properties')
+        #
+        # if 'image' in validated_data and os.path.exists(normpath(instance.image.path)):
+        #     os.remove(normpath(instance.image.path))
+        #
+        # for field, value in validated_data.items():
+        #     setattr(instance, field, value)
+        # instance.save()
+        #
+        # file_path = normpath(join(IMAGE_DIR_SER, instance.pre_path, 'info.txt'))
+        # with open(file_path, 'w', encoding='utf-8') as f:
+        #     f.write((Plant.objects.get(pk=instance.pk)).__str_to_file__())
+        #
+        # if medicinal_props is not None:
+        #     for medicine in medicinal_props:
+        #         MedicinalUnit.objects.create(plant=instance,
+        #                                      medicine=Medicine.objects.get(pk=medicine))
+        #
+        # return instance
+

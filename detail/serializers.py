@@ -100,6 +100,8 @@ class PlantSerializer(serializers.ModelSerializer):
 
         for field, value in validated_data.items():
             setattr(instance, field, value)
+        if self.context.get('video_id') is not None:
+            setattr(instance, 'video_aparat_id', self.context.get('video_id'))
         instance.save()
 
         file_path = normpath(join(IMAGE_DIR_SER, instance.pre_path, 'info.txt'))

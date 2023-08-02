@@ -21,7 +21,7 @@ urlpatterns = [
     path('fruit/<int:pk>/', views.PlantFruitImageDetail.as_view()),
     path('delete/', views.delete_plants),
     path('delete/options/', views.delete_plants_data),
-    path('checkvideo/', views.check_valid_video),
+    # path('checkvideo/', views.check_valid_video),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

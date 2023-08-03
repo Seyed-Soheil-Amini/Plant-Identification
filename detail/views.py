@@ -112,6 +112,8 @@ class PlantDetail(APIView):
             if check_video.status_code != 200:
                 return check_video
             aparat_id = check_video.data['aparat_id']
+        else:
+            aparat_id = aparat_clip_url
         plant = self.get_object(pk)
         serializer = PlantSerializer(plant, data=request.data,
                                      context={'request': request, 'pk': pk, 'video_id': aparat_id})

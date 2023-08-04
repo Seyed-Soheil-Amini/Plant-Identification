@@ -1,4 +1,6 @@
+import os
 from os.path import join, normpath
+from PIL import Image
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -58,6 +60,18 @@ class Plant(models.Model):
                f' ecology={self.ecology}, habitat_characteristics={self.habitat_characteristics}, climate={self.climate},' \
                f' soil_characteristics={self.soil_characteristics}, more_info={self.info_file} ,video_aparat_id={self.video_aparat_id})'
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        ext = self.image.name[self.image.name.rfind('.'):]
+        if ext != 'JPG' and ext != 'JPEG':
+            image = Image.open(self.image.path)
+            image = image.convert('RGB')
+            os.remove(self.image.path)
+            self.image = self.image.name[:self.image.name.rfind('.')] + '.jpg'
+            image.save(self.image.path, format='JPEG')
+            super().save(update_fields=['image'])
+        return self
+
 
 class Medicine(models.Model):
     property_name = models.CharField(max_length=100, blank=True, null=True, unique=True,
@@ -96,6 +110,28 @@ def set_sub_image_path(instance, filename):
                                                                                    0:7] + ext))
 
 
+def save_compress_image(instance):
+    with Image.open(instance.image.path) as image:
+        guess = 70
+        low = 1
+        high = 100
+        size = 1024 * 1024 * 1.25
+        if image.format != 'JPG' and image.format != 'JPEG':
+            image = image.convert('RGB')
+            os.remove(instance.image.path)
+            instance.image = instance.image.name[:instance.image.name.rfind('.')] + '.jpg'
+
+        while low < high:
+            image.save(instance.image.path, format='JPEG', optimize=True,
+                       quality=guess)
+            if instance.image.size < size:
+                low = guess
+            else:
+                high = guess - 1
+            guess = (low + high + 1) // 2
+    return instance
+
+
 class Leaf(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
     plant = models.ForeignKey('Plant', related_name="leaf_image_set", on_delete=models.CASCADE)
@@ -106,6 +142,11 @@ class Leaf(models.Model):
         db_table = 'leaf_images'
         verbose_name = 'leaf'
         verbose_name_plural = 'leafs'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        save_compress_image(self)
+        super().save(update_fields=['image'])
 
 
 class Stem(models.Model):
@@ -119,6 +160,11 @@ class Stem(models.Model):
         verbose_name = 'stem'
         verbose_name_plural = 'stems'
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        save_compress_image(self)
+        super().save(update_fields=['image'])
+
 
 class Flower(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
@@ -130,6 +176,11 @@ class Flower(models.Model):
         db_table = 'flower_images'
         verbose_name = 'flower'
         verbose_name_plural = 'flowers'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        save_compress_image(self)
+        super().save(update_fields=['image'])
 
 
 class Habitat(models.Model):
@@ -143,6 +194,11 @@ class Habitat(models.Model):
         verbose_name = 'habitat'
         verbose_name_plural = 'habitats'
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        save_compress_image(self)
+        super().save(update_fields=['image'])
+
 
 class Fruit(models.Model):
     image = models.ImageField(blank=False, null=False, upload_to=set_sub_image_path)
@@ -154,3 +210,8 @@ class Fruit(models.Model):
         db_table = 'fruit_images'
         verbose_name = 'fruit'
         verbose_name_plural = 'fruits'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        save_compress_image(self)
+        super().save(update_fields=['image'])

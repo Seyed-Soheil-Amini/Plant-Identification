@@ -34,10 +34,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     'rest_framework_simplejwt.token_blacklist',
+    'import_export',
+
     'home',
     'detail',
     'explore',
@@ -119,7 +122,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [normpath(join(BASE_DIR, 'static'))]
 STATIC_ROOT = normpath(join(BASE_DIR, 'static_root'))
-
 
 # Media
 MEDIA_ROOT = normpath(join(BASE_DIR, 'media'))

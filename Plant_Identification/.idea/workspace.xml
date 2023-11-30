@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc1ac9b6-c706-407c-9573-91836b9ad1bd" name="Changes" comment="" />
+    <list default="true" id="bc1ac9b6-c706-407c-9573-91836b9ad1bd" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0002_alter_medicinalunit_medicine.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0003_plant_editor_user_alter_medicinalunit_medicine_and_more.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0004_habitat.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0005_plant_info_file_plant_per_path.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0006_rename_per_path_plant_pre_path.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0007_alter_plant_persian_name_alter_plant_scientific_name.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0008_fruit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../detail/migrations/0009_alter_fruit_image.py" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

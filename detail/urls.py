@@ -21,6 +21,7 @@ urlpatterns = [
     path('fruit/<int:pk>/', views.PlantFruitImageDetail.as_view()),
     path('delete/', views.delete_plants),
     path('delete/options/', views.delete_plants_data),
+    path('identify/', views.PlantIdentifyView.as_view())
     # path('checkvideo/', views.check_valid_video),
 ]
 

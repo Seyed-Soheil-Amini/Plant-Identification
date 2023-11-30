@@ -1,3 +1,4 @@
+import random
 from os.path import normpath, join
 import os
 
@@ -115,3 +116,31 @@ class PlantSerializer(serializers.ModelSerializer):
                 MedicinalUnit.objects.create(plant=instance,
                                              medicine=Medicine.objects.get(pk=medicine))
         return instance
+
+
+class PlantIdentifySerializer(serializers.ModelSerializer):
+    other_images = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Plant
+        fields = ['id', 'persian_name', 'scientific_name', 'family', 'image', 'other_images']
+
+    def get_other_images(self, obj):
+        serialized_image_list = []
+
+        plant_leaf_image = Leaf.objects.filter(plant=obj).order_by('?').first()
+        if plant_leaf_image is not None:
+            serialized_image_list.append(LeafSerializer(plant_leaf_image).data)
+
+        plant_stem_image = Stem.objects.filter(plant=obj).order_by('?').first()
+        if plant_stem_image is not None:
+            serialized_image_list.append(StemSerializer(plant_stem_image).data)
+
+        plant_flower_image = Flower.objects.filter(plant=obj).order_by('?').first()
+        if plant_flower_image is not None:
+            serialized_image_list.append(FlowerSerializer(plant_flower_image).data)
+
+        plant_fruit_image = Fruit.objects.filter(plant=obj).order_by('?').first()
+        if plant_fruit_image is not None:
+            serialized_image_list.append(FruitSerializer(plant_fruit_image).data)
+        return serialized_image_list

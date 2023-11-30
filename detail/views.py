@@ -10,6 +10,7 @@ from rest_framework.decorators import api_view, authentication_classes, permissi
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.request import Request
 from django.http import Http404, HttpRequest
 import requests
 from rest_framework import serializers
@@ -18,7 +19,7 @@ from Plant_Identification.settings import BASE_DIR
 from auth_api.authentication import CustomJWTAuthentication
 from .models import Plant, Leaf, Stem, Flower, Medicine, MedicinalUnit, Habitat, Fruit
 from .serializers import PlantSerializer, LeafSerializer, StemSerializer, FlowerSerializer, MedicinalSerializer, \
-    HabitatSerializer, FruitSerializer
+    HabitatSerializer, FruitSerializer, PlantIdentifySerializer
 
 
 @api_view(['GET'])
@@ -385,7 +386,7 @@ class PlantMedicinalDetail(APIView):
 
     def put(self, request, pk):
         medicine = self.get_object(pk)
-        serializer = Medicine(medicine, data=request.data)
+        serializer = MedicinalSerializer(medicine, data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -566,3 +567,19 @@ class PlantFruitImageDetail(APIView):
         if os.path.isfile(image_path):
             os.remove(image_path)
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class PlantIdentifyView(APIView):
+    authentication_classes = [CustomJWTAuthentication]
+    permission_classes = [AllowAny]
+
+    def post(self, request: Request):
+        plants = list(Plant.objects.order_by('?')[0:4])
+        return Response(
+            {'main_result': PlantIdentifySerializer(plants[0]).data,
+             **{
+                 f'result_{i}': PlantIdentifySerializer(plant).data for i, plant in
+                 enumerate(plants[1:4], start=2)
+             }
+             }
+        )

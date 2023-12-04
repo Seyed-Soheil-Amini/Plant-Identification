@@ -55,7 +55,13 @@ const Dropzone = ({ imageName, handler, icon }) => {
             <div className="flex justify-content-center mx-auto pt-2 md:pb-5">
               <img className="w-5 h-5 md:w-14 md:h-14" src={icon} />
               <h6 className="h-2/5 my-auto pl-1 md:pl-3 text-md md:text-3xl">
-                {imageName}
+                {imageName === "Flower"
+                  ? "idn-up-p-flw"
+                  : imageName === "Fruit"
+                  ? "idn-up-p-frt"
+                  : imageName === "Stem"
+                  ? "idn-up-p-stm"
+                  : "idn-up-p-lef"}
               </h6>
             </div>
             <FaPlus className="mx-auto text-center mt-2 text-lg md:text-3xl" />
@@ -75,7 +81,7 @@ const Dropzone = ({ imageName, handler, icon }) => {
             className="border border-red-700 focus:ring-4 font-medium rounded-md text-xs md:text-sm px-3 py-2 md:px-5 md:py-2.5 text-center mb-0 md:mb-2 border-red-500 text-white bg-red-600 hover:bg-red-500"
             onClick={() => handleRemove()}
           >
-            remove
+            idn-reset-btn
           </button>
         </div>
       )}

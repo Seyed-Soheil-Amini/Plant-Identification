@@ -29,7 +29,7 @@ const ResultModal = ({ res, handleClose, waiting }) => {
           <div className="">
             <div className="bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
               <h1 className="mb-3 text-center text-xl font-bold tracking-tight leading-none text-green-900 md:text-3xl lg:text-4xl">
-                Identified Plants
+                idn-res-title
               </h1>
             </div>
             <div className="flex flex-col w-5/6 mx-auto">
@@ -72,7 +72,7 @@ const ResultModal = ({ res, handleClose, waiting }) => {
                       className="border-success-subtle font-semibold text-gray-200 bg-green-950 hover:bg-white hover:text-green-800 tracking-tight rounded-lg py-1.5 px-2.5 border-1 text-xs md:text-sm"
                       // style={{ backgroundColor: "#0F4229" }}
                     >
-                      More Info
+                      idn-more-clk
                     </button>
                   </Link>
                 </div>
@@ -85,7 +85,7 @@ const ResultModal = ({ res, handleClose, waiting }) => {
             <div className="">
               <div className="bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
                 <h1 className="mb-2 text-center text-sm font-medium tracking-tight leading-none text-green-900 md:text-xl lg:text-2xl">
-                  Similar Result
+                  idn-same-res-tit
                 </h1>
               </div>
               <div className="flex justify-content-center pt-1">

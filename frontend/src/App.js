@@ -71,14 +71,14 @@ function App() {
       >
         <div className="container text-center py-5">
           <h1 className="display-3 text-white mb-4 animated slideInDown">
-            Identify
+            idn-tit
           </h1>
           <nav aria-label="breadcrumb animated slideInDown">
             <ol className="breadcrumb justify-content-center mb-0">
-              <li className="text-light">Fast /&nbsp;</li>
-              <li className="text-light">Trust /&nbsp;</li>
+              <li className="text-light">idn-subtit1\ &nbsp;</li>
+              <li className="text-light">idn-subtit2\ &nbsp;</li>
               <li className="text-light" aria-current="page">
-                Comfortable
+                idn-subtit3
               </li>
             </ol>
           </nav>
@@ -87,34 +87,20 @@ function App() {
       <div className="container-fluid flex-row md:flex md:flex-col justify-content-between">
         <div className="w-auto md:w-2/3 flex justify-end mx-auto">
           <div className="flex flex-col wow fadeInUp">
-            <h2 className="text-uppercase text-lg md:text-3xl">Guides to Upload</h2>
+            <h2 className="text-uppercase text-lg md:text-3xl">
+              idn-guides-tit
+            </h2>
             <p className="mb-4 text-xs md:text-sm">
               <ol className="fw-medium list-decimal space-y-2 space-overflow-y-auto">
+                <li>idn-guides1 </li>
                 <li>
-                  Select your file and click to upload the photo you want{" "}
-                </li>
-                <li>
-                  Select a photo. Click or tap the photo that you want to upload
-                  to website.{" "}
+                  idn-guides2.{" "}
                   <ul className="list-disc">
-                    <li>
-                      If you want to upload multiple photos at once on a
-                      desktop, hold down Ctrl (Windows) or ⌘ Command (Mac) while
-                      clicking each photo you want to upload.
-                    </li>
+                    <li>idn-guides2-sub.</li>
                   </ul>
                 </li>
-                <li>
-                  Confirm your selection. Click Open (desktop) or tap Next twice
-                  (mobile).
-                </li>
-                <li>
-                  Upload the photo(s). Click Upload a Photo (or Upload some
-                  Photos) in the lower-right side of the page and then click
-                  Upload when prompted (desktop), or tap Post in the top-right
-                  corner of the screen (mobile). Your selected photo(s) will be
-                  uploaded to website.
-                </li>
+                <li>idn-guides3.</li>
+                <li>idn-guides4</li>
               </ol>
             </p>
             <div
@@ -132,16 +118,11 @@ function App() {
               </svg>
               <span className="sr-only">Danger</span>
               <div>
-                <span className="font-medium">
-                  Ensure that these requirements are met:
-                </span>
+                <span className="font-medium">idn-dng-tit:</span>
                 <ul className="mt-1.5 list-disc list-inside text-xs md:text-sm">
-                  <li>
-                    The image you upload should be vertical for better
-                    recognition
-                  </li>
-                  <li>Transparency of the photo</li>
-                  <li>Avoid taking pictures while moving.</li>
+                  <li>idn-img-guide1</li>
+                  <li>idn-img-guide2-tit</li>
+                  <li>idn-img-guide3-tit</li>
                 </ul>
               </div>
             </div>
@@ -156,16 +137,17 @@ function App() {
       </div>
       <hr className="my-4 mx-3 border-4 border-green-700 rounded-5" />{" "}
       <div
-        className={`mx-2.5 md:mx-5 px-1 md:px-3 bg-green-50 pb-2 ${isWaiting && "opacity-75"}`}
+        className={`mx-2.5 md:mx-5 px-1 md:px-3 bg-green-50 pb-2 ${
+          isWaiting && "opacity-75"
+        }`}
       >
         <section className="bg-[url('https://flowbite.s3.amazonaws.com/docs/jumbotron/hero-pattern.svg')]">
           <div className="py-8 px-1 mx-auto max-w-screen-xl text-center lg:py-16 z-10">
             <h1 className="mb-2.5 md:mb-4 text-xl font-extrabold tracking-tight leading-none text-green-900 md:text-5xl lg:text-6xl">
-              Plant Images Uploading Section
+              idn-upload-pr-tit
             </h1>
             <p className="mb-2 md:mb-8 text-xs md:text-xl font-normal text-gray-500 sm:px-16 lg:px-48">
-              You can upload pictures of different parts of the plant you want
-              in the corresponding box.
+              idn-plch-txt
             </p>
           </div>
           <div className="bg-gradient-to-b from-blue-50 to-transparent w-full h-full z-0" />
@@ -217,7 +199,7 @@ function App() {
             ) : (
               <FaSearch className="flex items-center mr-2 my-auto" />
             )}
-            {isWaiting ? "Waiting..." : "Identify"}
+            {isWaiting ? "idn-wait-text" : "idn-upload-btn"}
           </button>
         )}
       </div>

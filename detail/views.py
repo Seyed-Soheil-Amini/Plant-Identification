@@ -4,6 +4,7 @@ import shutil
 import uuid
 from os.path import normpath, join
 
+from PIL import Image
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
@@ -11,7 +12,7 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.request import Request
-from django.http import Http404, HttpRequest
+from django.http import Http404, HttpResponse
 import requests
 from rest_framework import serializers
 
@@ -27,7 +28,7 @@ from .serializers import PlantSerializer, LeafSerializer, StemSerializer, Flower
 @permission_classes([])
 def random_plants(request):
     plants = Plant.objects.order_by('?')
-    return Response(PlantSerializer(plants, many=True).data)
+    return Response(PlantSerializer(plants, many=True, context={'request': request}).data)
 
 
 # @authentication_classes([CustomJWTAuthentication])
@@ -64,7 +65,7 @@ class PlantList(APIView):
 
     def get(self, request):
         plants = Plant.objects.all()
-        serializer = PlantSerializer(plants, many=True)
+        serializer = PlantSerializer(plants, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -107,7 +108,7 @@ class PlantDetail(APIView):
 
     def get(self, request, pk):
         plant = self.get_object(pk)
-        serializer = PlantSerializer(plant)
+        serializer = PlantSerializer(plant, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -161,7 +162,7 @@ class PlantLeafImageList(APIView):
 
     def get(self, request):
         leafs = Leaf.objects.all()
-        serializer = LeafSerializer(leafs, many=True)
+        serializer = LeafSerializer(leafs, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -196,7 +197,7 @@ class PlantLeafImageDetail(APIView):
 
     def get(self, request, pk):
         leaf = self.get_object(pk)
-        serializer = LeafSerializer(leaf)
+        serializer = LeafSerializer(leaf, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -205,7 +206,7 @@ class PlantLeafImageDetail(APIView):
         if os.path.isfile(old_image_path):
             os.remove(old_image_path)
 
-        serializer = LeafSerializer(leaf, data=request.data)
+        serializer = LeafSerializer(leaf, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -226,7 +227,7 @@ class PlantStemImageList(APIView):
 
     def get(self, request):
         stems = Stem.objects.all()
-        serializer = StemSerializer(stems, many=True)
+        serializer = StemSerializer(stems, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -261,7 +262,7 @@ class PlantStemImageDetail(APIView):
 
     def get(self, request, pk):
         stem = Stem.objects.get(pk=pk)
-        serializer = StemSerializer(stem)
+        serializer = StemSerializer(stem, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -273,7 +274,7 @@ class PlantStemImageDetail(APIView):
         # for example below line,stem is old data , request.data is new data,then serializer update old data to new data
         # stem.image = request.FILES.get('image')
         # stem.save()
-        serializer = StemSerializer(stem, data=request.data)
+        serializer = StemSerializer(stem, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -294,7 +295,7 @@ class PlantFlowerImageList(APIView):
 
     def get(self, request):
         flowers = Flower.objects.all()
-        serializer = FlowerSerializer(flowers, many=True)
+        serializer = FlowerSerializer(flowers, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -329,7 +330,7 @@ class PlantFlowerImageDetail(APIView):
 
     def get(self, request, pk):
         flower = self.get_object(pk)
-        serializer = FlowerSerializer(flower)
+        serializer = FlowerSerializer(flower, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -337,7 +338,7 @@ class PlantFlowerImageDetail(APIView):
         old_image_path = flower.image.path
         if os.path.isfile(old_image_path):
             os.remove(old_image_path)
-        serializer = FlowerSerializer(flower, data=request.data)
+        serializer = FlowerSerializer(flower, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -445,7 +446,7 @@ class PlantHabitatImageList(APIView):
 
     def get(self, request):
         habitats = Habitat.objects.all()
-        serializer = HabitatSerializer(habitats, many=True)
+        serializer = HabitatSerializer(habitats, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -480,7 +481,7 @@ class PlantHabitatImageDetail(APIView):
 
     def get(self, request, pk):
         habitat = self.get_object(pk)
-        serializer = HabitatSerializer(habitat)
+        serializer = HabitatSerializer(habitat, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -489,7 +490,7 @@ class PlantHabitatImageDetail(APIView):
         if os.path.isfile(old_image_path):
             os.remove(old_image_path)
 
-        serializer = HabitatSerializer(habitat, data=request.data)
+        serializer = HabitatSerializer(habitat, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -510,7 +511,7 @@ class PlantFruitImageList(APIView):
 
     def get(self, request):
         fruits = Fruit.objects.all()
-        serializer = FruitSerializer(fruits, many=True)
+        serializer = FruitSerializer(fruits, many=True, context={'request': request})
         return Response(serializer.data)
 
     def post(self, request):
@@ -545,7 +546,7 @@ class PlantFruitImageDetail(APIView):
 
     def get(self, request, pk):
         fruit = self.get_object(pk)
-        serializer = FruitSerializer(fruit)
+        serializer = FruitSerializer(fruit, context={'request': request})
         return Response(serializer.data)
 
     def put(self, request, pk):
@@ -554,7 +555,7 @@ class PlantFruitImageDetail(APIView):
         if os.path.isfile(old_image_path):
             os.remove(old_image_path)
 
-        serializer = FruitSerializer(fruit, data=request.data)
+        serializer = FruitSerializer(fruit, data=request.data, context={'request': request})
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -576,10 +577,31 @@ class PlantIdentifyView(APIView):
     def post(self, request: Request):
         plants = list(Plant.objects.order_by('?')[0:4])
         return Response(
-            {'main_result': PlantIdentifySerializer(plants[0]).data,
+            {'main_result': PlantIdentifySerializer(plants[0], context={'request': request}).data,
              **{
-                 f'result_{i}': PlantIdentifySerializer(plant).data for i, plant in
+                 f'result_{i}': PlantIdentifySerializer(plant, context={'request': request}).data for i, plant in
                  enumerate(plants[1:4], start=2)
              }
              }
         )
+
+
+@api_view(['GET'])
+@authentication_classes([])
+@permission_classes([])
+def compressed_image(request):
+    size = [*map(int, request.GET.get('size', '150x150').split('x'))]
+    if len(size) == 1:
+        size.insert(1, size[0])
+    if all(i < 10 or i > 10000 for i in size):
+        raise Http404
+    try:
+        image_loc = re.search(r'process-image/media/(.*(\.jpg|\.jpeg))', request.build_absolute_uri())
+        image = Image.open(join('media', image_loc.group(1)))
+        image.thumbnail((size[0], size[1]), Image.LANCZOS)
+        response = HttpResponse(content_type='image/jpeg')
+        image.save(response, 'JPEG')
+        image.close()
+        return response
+    except Exception:
+        raise Http404

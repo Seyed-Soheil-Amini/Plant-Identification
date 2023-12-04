@@ -1,9 +1,4 @@
-import random
-from os.path import normpath, join
-import os
-
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
 
 from .models import *
 
@@ -18,11 +13,7 @@ class ThumbnailSerializer(serializers.ModelSerializer):
         abstract = True
 
     def get_thumbnail_image(self, obj):
-        request = self.context.get('request', None)
-        if request:
-            return request.build_absolute_uri('/') + f'process-image{obj.image.url}'
-        else:
-            raise ValidationError('context not found')
+        return f'/process-image{obj.image.url}'
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):
@@ -145,20 +136,19 @@ class PlantIdentifySerializer(ThumbnailSerializer):
 
     def get_other_images(self, obj):
         serialized_image_list = []
-        request = self.context.get('request', None)
         plant_leaf_image = Leaf.objects.filter(plant=obj).order_by('?').first()
         if plant_leaf_image is not None:
-            serialized_image_list.append(LeafSerializer(plant_leaf_image, context={'request': request}).data)
+            serialized_image_list.append(LeafSerializer(plant_leaf_image).data)
 
         plant_stem_image = Stem.objects.filter(plant=obj).order_by('?').first()
         if plant_stem_image is not None:
-            serialized_image_list.append(StemSerializer(plant_stem_image, context={'request': request}).data)
+            serialized_image_list.append(StemSerializer(plant_stem_image).data)
 
         plant_flower_image = Flower.objects.filter(plant=obj).order_by('?').first()
         if plant_flower_image is not None:
-            serialized_image_list.append(FlowerSerializer(plant_flower_image, context={'request': request}).data)
+            serialized_image_list.append(FlowerSerializer(plant_flower_image).data)
 
         plant_fruit_image = Fruit.objects.filter(plant=obj).order_by('?').first()
         if plant_fruit_image is not None:
-            serialized_image_list.append(FruitSerializer(plant_fruit_image, context={'request': request}).data)
+            serialized_image_list.append(FruitSerializer(plant_fruit_image).data)
         return serialized_image_list

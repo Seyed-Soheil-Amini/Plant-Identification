@@ -17,8 +17,14 @@ class HelpView(TemplateView):
 class FAQView(TemplateView):
     template_name = 'FAQPage/index.html'
 
+
 class DashboardView(TemplateView):
     template_name = 'dashboard/index.html'
+
+
+class DetailView(TemplateView):
+    template_name = ''
+
 
 def identify_guides(request):
     return render(request=request, template_name='HelpPage/topics/identify.html')
@@ -50,6 +56,7 @@ def updating_error(request):
 
 def implement_soon_error(request):
     return render(request=request, template_name='soon.html')
+
 
 def not_found_error(request):
     return render(request=request, template_name='not_found.html')

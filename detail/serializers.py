@@ -2,11 +2,28 @@ import random
 from os.path import normpath, join
 import os
 
+from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import *
 
 IMAGE_DIR_SER = normpath(join('media', 'mainImages'))
+
+
+class ThumbnailSerializer(serializers.ModelSerializer):
+    thumbnail_image = serializers.SerializerMethodField()
+
+    class Meta:
+        fields = ['thumbnail_image']
+        abstract = True
+
+    def get_thumbnail_image(self, obj):
+        request = self.context.get('request', None)
+        if request:
+            return request.build_absolute_uri('/') + f'process-image{obj.image.url}'
+        else:
+            raise ValidationError('context not found')
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):
@@ -21,37 +38,37 @@ class MedicinalSerializer(serializers.ModelSerializer):
         fields = ['id', 'property_name']
 
 
-class LeafSerializer(serializers.ModelSerializer):
+class LeafSerializer(ThumbnailSerializer):
     class Meta:
         model = Leaf
-        fields = ['id', 'plant', 'image', 'user']
+        fields = ['id', 'plant', 'user', 'image'] + ThumbnailSerializer.Meta.fields
 
 
-class StemSerializer(serializers.ModelSerializer):
+class StemSerializer(ThumbnailSerializer):
     class Meta:
         model = Stem
-        fields = ['id', 'plant', 'image', 'user']
+        fields = ['id', 'plant', 'image', 'user'] + ThumbnailSerializer.Meta.fields
 
 
-class FlowerSerializer(serializers.ModelSerializer):
+class FlowerSerializer(ThumbnailSerializer):
     class Meta:
         model = Flower
-        fields = ['id', 'plant', 'image', 'user']
+        fields = ['id', 'plant', 'image', 'user'] + ThumbnailSerializer.Meta.fields
 
 
-class HabitatSerializer(serializers.ModelSerializer):
+class HabitatSerializer(ThumbnailSerializer):
     class Meta:
         model = Habitat
-        fields = ['id', 'plant', 'image', 'user']
+        fields = ['id', 'plant', 'image', 'user'] + ThumbnailSerializer.Meta.fields
 
 
-class FruitSerializer(serializers.ModelSerializer):
+class FruitSerializer(ThumbnailSerializer):
     class Meta:
         model = Fruit
-        fields = ['id', 'plant', 'image', 'user']
+        fields = ['id', 'plant', 'image', 'user'] + ThumbnailSerializer.Meta.fields
 
 
-class PlantSerializer(serializers.ModelSerializer):
+class PlantSerializer(ThumbnailSerializer):
     medicinal_properties = MedicinalUnitSerializer(many=True, read_only=True)
     leaf_image_set = LeafSerializer(many=True, read_only=True)
     stem_image_set = StemSerializer(many=True, read_only=True)
@@ -66,7 +83,8 @@ class PlantSerializer(serializers.ModelSerializer):
                   'ecology',
                   'habitat_characteristics', 'climate', 'soil_characteristics', 'more_info', 'video_aparat_id',
                   'adder_user', 'editor_user', 'medicinal_properties',
-                  'leaf_image_set', 'stem_image_set', 'flower_image_set', 'habitat_image_set', 'fruit_image_set', ]
+                  'leaf_image_set', 'stem_image_set', 'flower_image_set', 'habitat_image_set',
+                  'fruit_image_set', ] + ThumbnailSerializer.Meta.fields
 
     def get_object(self, model_name, pk):
         try:
@@ -118,29 +136,30 @@ class PlantSerializer(serializers.ModelSerializer):
         return instance
 
 
-class PlantIdentifySerializer(serializers.ModelSerializer):
+class PlantIdentifySerializer(ThumbnailSerializer):
     other_images = serializers.SerializerMethodField()
 
     class Meta:
         model = Plant
-        fields = ['id', 'persian_name', 'scientific_name', 'family', 'image', 'other_images']
+        fields = ['id', 'persian_name', 'scientific_name', 'family', 'image',
+                  'other_images'] + ThumbnailSerializer.Meta.fields
 
     def get_other_images(self, obj):
         serialized_image_list = []
-
+        request = self.context.get('request', None)
         plant_leaf_image = Leaf.objects.filter(plant=obj).order_by('?').first()
         if plant_leaf_image is not None:
-            serialized_image_list.append(LeafSerializer(plant_leaf_image).data)
+            serialized_image_list.append(LeafSerializer(plant_leaf_image, context={'request': request}).data)
 
         plant_stem_image = Stem.objects.filter(plant=obj).order_by('?').first()
         if plant_stem_image is not None:
-            serialized_image_list.append(StemSerializer(plant_stem_image).data)
+            serialized_image_list.append(StemSerializer(plant_stem_image, context={'request': request}).data)
 
         plant_flower_image = Flower.objects.filter(plant=obj).order_by('?').first()
         if plant_flower_image is not None:
-            serialized_image_list.append(FlowerSerializer(plant_flower_image).data)
+            serialized_image_list.append(FlowerSerializer(plant_flower_image, context={'request': request}).data)
 
         plant_fruit_image = Fruit.objects.filter(plant=obj).order_by('?').first()
         if plant_fruit_image is not None:
-            serialized_image_list.append(FruitSerializer(plant_fruit_image).data)
+            serialized_image_list.append(FruitSerializer(plant_fruit_image, context={'request': request}).data)
         return serialized_image_list

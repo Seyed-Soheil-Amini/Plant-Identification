@@ -16,5 +16,6 @@ urlpatterns = [
     path("Soon/", views.implement_soon_error, name='soon_err'),
     path("404/", views.not_found_error, name='404_err'),
     re_path("users/*", views.DashboardView.as_view(), name='dashboard_url'),
+    path("plant/<int:pk>/", views.DetailView.as_view(), name='detail_page_url')
 
 ]

@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.exceptions import ValidationError
 
 from .models import *
 
@@ -13,7 +14,10 @@ class ThumbnailSerializer(serializers.ModelSerializer):
         abstract = True
 
     def get_thumbnail_image(self, obj):
-        return f'/process-image{obj.image.url}'
+        try:
+            return f'/process-image{obj.image.url}'
+        except Exception:
+            raise ValidationError('thumbnail create link error!')
 
 
 class MedicinalUnitSerializer(serializers.ModelSerializer):

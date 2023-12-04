@@ -95,7 +95,10 @@ lang = {
 		'idn-guides2-sub' : 'If you want to upload multiple photos at once on a desktop, hold down Ctrl (Windows) or ⌘ Command (Mac) while clicking each photo you want to upload.',
 		'idn-guides3' : ' Confirm your selection. Click Open (desktop) or tap Next twice (mobile). ',
 		'idn-guides4' : 'Upload the photo(s). Click Upload a Photo (or Upload some Photos) in the lower-right side of the page and then click Upload when prompted (desktop), or tap Post in the top-right corner of the screen (mobile). Your selected photo(s) will be uploaded to website.',
+		'idn-dng-tit':'Ensure that these requirements are met',
 		'idn-img-guide1-tit' : 'Get vertical',
+		'idn-img-guide2-tit' :'Transparency of the photo',
+		'idn-img-guide3-tit':'Avoid taking pictures while moving.',
 		'idn-img-guide1' : 'The image you upload should be vertical for better recognition',
 		'idn-img-guide2-tit' : 'Add to database',
 		'idn-img-guide2' : 'Your photo will be added to our database if you allow it',
@@ -104,8 +107,17 @@ lang = {
 		'idn-wait-text' : 'Waiting to Identify...',
 		'idn-result' : 'Result',
 		'idn-drag-text' : 'Drag your files here.',
-		'idn-upload-btn' : 'Upload',
+		'idn-upload-btn' : 'Identify',
 		'idn-reset-btn' : 'Reset',
+		'idn-upload-pr-tit':'Plant Images Uploading Section',
+		'idn-plch-txt':'You can upload pictures of different parts of the plant you want in the corresponding box.',
+		'idn-res-title' : 'Identified Plants',
+		'idn-more-clk' : 'More Info',
+		'idn-same-res-tit' : 'Similar Result',
+		'idn-up-p-flw' : 'Flower',
+		'idn-up-p-frt':'Fruit',
+		'idn-up-p-stm':'Stem',
+		'idn-up-p-lef':'Leaf',
 
 		// Explore is empty
 		'exp-sea-plc' : 'What are you looking for?',
@@ -391,7 +403,10 @@ lang = {
 		'idn-guides2-sub' : 'اگر می‌خواهید چند عکس را همزمان روی دسک‌تاپ آپلود کنید، Ctrl (ویندوز) یا ⌘ Command (Mac) را نگه دارید و روی هر عکسی که می‌خواهید آپلود کنید کلیک کنید.',
 		'idn-guides3' : ' انتخاب خود را تایید کنید روی Open (رومیزی) کلیک کنید یا دو بار روی Next (موبایل) ضربه بزنید. ',
 		'idn-guides4' : 'عکس(ها) را آپلود کنید. روی آپلود عکس (یا آپلود چند عکس) در سمت راست پایین صفحه کلیک کنید و سپس در صورت درخواست روی آپلود کلیک کنید (ویندوز)، یا روی ارسال در گوشه سمت راست بالای صفحه (موبایل) ضربه بزنید. عکس(های) انتخابی شما در وب سایت آپلود خواهد شد.',
+		'idn-dng-tit':'اطمینان حاصل کنید که این الزامات برآورده شده است',
 		'idn-img-guide1-tit' : 'عمودی عکس بگیرید',
+		'idn-img-guide2-tit' : 'شفافیت عکس',
+		'idn-img-guide3-tit' : 'از گرفتن عکس در حین حرکت خودداری کنید.',
 		'idn-img-guide1' : 'تصویری که آپلود می کنید برای تشخیص بهتر باید عمودی باشد',
 		'idn-img-guide2-tit' : 'افزودن عکس به پایگاه داده گیاهان',
 		'idn-img-guide2' : 'اگر اجازه دهید عکس شما به پایگاه داده ما اضافه خواهد شد.',
@@ -400,12 +415,19 @@ lang = {
 		'idn-wait-text' : 'در حال تشخیص...',
 		'idn-result' : 'گیاه تشخیص داده شد',
 		'idn-drag-text' : 'فایل های خود را به اینجا بکشید.',
-		'idn-upload-btn' : 'آپلود',
+		'idn-upload-btn' : 'شناسایی',
 		'idn-reset-btn' : 'بازنشانی',
-
+		'idn-upload-pr-tit':'بخش آپلود تصاویر گیاهی',
+		'idn-plch-txt' : 'می توانید تصاویر قسمت های مختلف گیاه مورد نظر خود را در کادر مربوطه آپلود کنید.',
+		'idn-res-title' : 'گیاهان شناسایی شده',
+		'idn-more-clk' : 'اطلاعات بیشتر',
+		'idn-same-res-tit' : 'نتایج مشابه',
+		'idn-up-p-flw' : 'گلبرگ',
+		'idn-up-p-frt':'میوه',
+		'idn-up-p-stm':'ساقه',
+		'idn-up-p-lef':'برگ',
 
 		//Explore page
-
 		'exp-sea-plc' : 'در جست و جوی چه هستید؟',
 		
 	    //help page

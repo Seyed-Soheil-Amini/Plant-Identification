@@ -2,7 +2,6 @@ import random
 from os.path import normpath, join
 import os
 
-from easy_thumbnails.files import get_thumbnailer
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 

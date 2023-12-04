@@ -17,7 +17,7 @@
      data-wow-delay="0.1s">
     <div class="wow fadeInUp container text-center mx-auto my-auto py-5-help" data-wow-delay="0.1s">
         <h1 class="display-3 text-white animated
-                    slideInDown">hlp-tit</h1>
+                    slideInDown">چگونه می توانیم به شما کمک کنیم؟</h1>
     </div>
     <div class="container pb-5">
         <br/>
@@ -42,7 +42,7 @@
                         <button class="btn btn-lg btn-success rounded-pill"
                                 id="border-bottun-h"
                                 type="submit"
-                                onclick="search_help_ajax(document.getElementById('keyword').value)">hlp-search-btn
+                                onclick="search_help_ajax(document.getElementById('keyword').value)">جست وجو 
                         </button>
                     </div>
                 </div>
@@ -56,8 +56,8 @@
         <div class="text-center wow fadeInUp mx-auto"
              data-wow-delay="0.1s" style="max-width:
                         600px;font-family:Verdana, Geneva, Tahoma, sans-serif;">
-            <p class="fs-5 fw-bold text-primary">hlp-topics-tit</p>
-            <h1 class="display-5 mb-5">hlp-topics-subtit</h1>
+            <p class="fs-5 fw-bold text-primary">موضوعات</p>
+            <h1 class="display-5 mb-5">موضوعاتی که می توانیم در نحوه استفاده آن به شما کمک کنیم</h1>
         </div>
         <div class="row gx-1 gy-3" id="width-topics-m">
             <div class="col-lg-4 col-md-6 wow fadeInUp" style="height:fit-content;"
@@ -76,11 +76,11 @@
                                  src="{% static 'img/icon/iconIden.jpg' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-3">hlp-ser1-tit</h4>
-                        <p class="mb-4">hlp-ser1-txt</p>
+                        <h4 class="mb-3">شناسایی گیاه</h4>
+                        <p class="mb-4">تشخیص آنلاین و سریع گل و گیاه با هوش مصنوعی</p>
                         <a href="{% url 'identify_guides_url' %}" style="direction:ltr;"
                            class="btn btn-sm"><i class="fa
-                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -100,12 +100,12 @@
                                  src="{% static 'Help/img/exploreIcon2.png' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-3">hlp-ser2-tit</h4>
-                        <p class="mb-4">hlp-ser2-txt</p>
+                        <h4 class="mb-3">دایره المعارف گیاهان</h4>
+                        <p class="mb-4">گیاهان و گل های مختلف را جستجو کنید و اطلاعاتی در مورد آنها ارائه دهید.</p>
                         <a class="btn btn-sm" style="direction:ltr;"
                            href="{% url 'explore_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -125,12 +125,12 @@
                                  src="{% static 'Help/img/supportIcon3.png' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-3">hlp-ser3-tit</h4>
-                        <p class="mb-4">hlp-ser3-txt</p>
+                        <h4 class="mb-3">پشتیبانی آنلاین</h4>
+                        <p class="mb-4">پشتیبانی آنلاین توسط مشاوران متخصص در تمامی مراحل رشد گیاه و تعامل با آنها.</p>
                         <a class="btn btn-sm" style="direction:ltr;"
                            href="{% url 'support_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -150,12 +150,12 @@
                                  src="{% static 'Help/img/habiIcon2.png' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-3">hlp-ser4-tit</h4>
-                        <p class="mb-4">hlp-ser4-txt</p>
+                        <h4 class="mb-3">مقالات علمی وکاربردی</h4>
+                        <p class="mb-4">مقالات و اسناد مربوط به گیاهان که با کارشناسان ارائه می شود.</p>
                         <a class="btn btn-sm" style="direction:ltr;"
                            href="{% url 'blog_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -175,12 +175,12 @@
                                  src="{% static 'Help/img/midcineIcon4.png' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-0">hlp-ser5-tit</h4>
-                        <p class="mb-4">hlp-ser5-txt</p>
+                        <h4 class="mb-0">خواص دارویی</h4>
+                        <p class="mb-4">شما می توانید کاربرد هر گیاه را بر اساس خواص دارویی بدانید.</p>
                         <a class="btn btn-sm" style="direction:ltr;"
                            href="{% url 'medicine_guides_url' %}"><i
                                 class="fa
-                                            fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                            fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -200,11 +200,11 @@
                                  src="{% static 'Help/img/growIcon4.png' %}"
                                  alt="Icon">
                         </div>
-                        <h4 class="mb-3">hlp-ser6-tit</h4>
-                        <p class="mb-4">hlp-ser6-txt</p>
+                        <h4 class="mb-3">مشاوره و پشتیبانی در رشد گیاه</h4>
+                        <p class="mb-4">به شما کمک می کند تا روند رشد گام به گام رشد کنید</p>
                         <a class="btn btn-sm" style="direction:ltr;"
                            href="{% url 'growth_guides_url' %}"><i
-                                class="fa fa-plus text-primary me-2"></i><span class="px-1">hlp-red-btn</span></a>
+                                class="fa fa-plus text-primary me-2"></i><span class="px-1">بیشتر بخوانید</span></a>
                     </div>
                 </div>
             </div>
@@ -217,34 +217,34 @@
                         BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
                         Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
             <div class="p-4 bg-light h-25" id="margin-between-box">
-                <h3 class="w-100 h-25 fw-bold pb-2" id="common-q-h">hlp-cmm-ques-tit</h3>
+                <h3 class="w-100 h-25 fw-bold pb-2" id="common-q-h">سوالات رایج</h3>
                 <ul class="text-decoration-underline">
-                    <li>hlp-cmm-q1</li>
-                    <li>hlp-cmm-q2</li>
-                    <li>hlp-cmm-q3
+                    <li>چگونه عکس گیاه را آپلود کنم؟</li>
+                    <li>چگونه در مورد گیاهی اطلاعاتی به دست بیارم؟</li>
+                    <li>چگونه می توان مناطقی که گیاه مورد نظر در آن رشد می کند پیدا کرد؟
                     </li>
-                    <li>hlp-cmm-q4</li>
-                    <li>hlp-cmm-q5
+                    <li>چگونه با پشتیبانی تماس بگیریم؟</li>
+                    <li>آیا سایت از تشخیص گل نیز پشتیبانی می کند؟
                     </li>
                 </ul>
             </div>
             <div class="w-100 h-50 my-auto py-5 text-center">
                 <span>
-                    hlp-guides-txt
+                    پشتیبانی آنلاین می تواند منبع ارزشمندی برای کسانی باشد که علاقه مند به شناسایی گیاهان هستند، به ویژه برای کسانی که تازه شروع به کار کرده اند. وب‌سایت‌های شناسایی گیاهان می‌توانند گزینه‌های پشتیبانی آنلاین مختلفی را برای کمک به کاربران در شناسایی گیاهان، از جمله انجمن‌ها، اتاق‌های گفتگو و مشاوره‌های تخصصی ارائه دهند. این منابع می تواند به ویژه برای کسانی مفید باشد که ممکن است به منابع سنتی شناسایی گیاهان مانند راهنمایان مزرعه یا باغ های گیاه شناسی دسترسی نداشته باشند.
                 </span>
             </div>
             <div class="w-100 p-4 bg-light mt-4 h-25
                             justify-content-center"
                  id="margin-between-box">
-                <h3 class="w-100 h-25 fw-bolder pb-3 text-center">hlp-sup-tit</h3>
+                <h3 class="w-100 h-25 fw-bolder pb-3 text-center">نیاز به پشتیبانی دارید؟</h3>
                 <span class="text-center">
-                                <p>hlp-sup-txt
+                                <p>شما می توانید در صورت نیاز به پشتیبان آنلاین برای استفاده از سرویس های سایت ، با پشتیبان تماس بگیرید.
                                 </p>
                             </span>
                 <div class="mx-auto my-auto" style="width:
                                 fit-content;">
                     <button class="btn-primary w-100"
-                            id="margin-support" type="submit">hlp-sup-btn
+                            id="margin-support" type="submit">تماس با پشتیبانی
                     </button>
                 </div>
             </div>

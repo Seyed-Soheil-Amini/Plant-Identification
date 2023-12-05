@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: Sahel;
+    src: url("./assets/Sahel.woff");
+}
+
+* {
+    font-family: Sahel, serif !important;
+}
+
+html, body {
+    min-height: 100vh;
+    min-width: 320px;
+    margin: auto;
+}
+
+
+
+#root {
+    height: 100vh;
+    overflow-y: auto;
+    margin: auto;
+    padding-left: 15px;
+}
+
+@media (min-width: 768px) {
+    #root {
+        padding-left: 50px;
+    }
+}

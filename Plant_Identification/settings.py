@@ -18,7 +18,6 @@ from .local_setting import *
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -61,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Plant_Identification.urls'
-
 # CORS_ALLOWED_ORIGINS = ['http://localhost:3000', 'http://127.0.0.1:3000', 'http://localhost:8001', "http://127.0.0.1:8001"]
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
@@ -194,6 +192,7 @@ SIMPLE_JWT = {
     # "SLIDING_TOKEN_OBTAIN_SERIALIZER": "rest_framework_simplejwt.serializers.TokenObtainSlidingSerializer",
     # "SLIDING_TOKEN_REFRESH_SERIALIZER": "rest_framework_simplejwt.serializers.TokenRefreshSlidingSerializer",
 }
+
 
 DATA_UPLOAD_MAX_NUMBER_FILES = 1000
 FILE_UPLOAD_MAX_MEMORY_SIZE = 50 * 1024 * 1024

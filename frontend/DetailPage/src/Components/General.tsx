@@ -12,7 +12,7 @@ function General({plant, Ref}: { plant: { [key: string]: any }, Ref: React.Mutab
 
     return (
         <div className='flex w-full mt-10 items-stretch'>
-            <div dir='ltr' className='hidden lg:block fixed top-[50px] py-2 hover:px-2 flex-col overflow-x-hidden items-end bg-[#E8F5E9] w-[40px] mx-3 rounded-[20px]  hover:w-[125px] transition-all duration-50'>
+            <div dir='ltr' className='hidden lg:block fixed top-[150px] z-50 py-2 hover:px-2 flex-col overflow-x-hidden items-end bg-[#E8F5E9] w-[40px] mx-3 rounded-[20px]  hover:w-[125px] transition-all duration-50'>
                 <div className='px-1 py-[1px] text-gray-600 hover:text-green-950 flex justify-between w-[110px] rounded-xl
                                     hover:border-[1px] hover:border-green-950 duration-100
                                     box-border items-center my-[2px]'
@@ -49,12 +49,12 @@ function General({plant, Ref}: { plant: { [key: string]: any }, Ref: React.Mutab
                     <p className='pr-1 tracking-tight text-[12px]'>تصاویر</p>
                 </div>
             </div>
-            <div className='lg:mr-[150px] md:mr-[50px] mr-[15px]'>
+            <div className='lg:mr-[150px] md:mr-[50px] mr-[15px] grow'>
                 <div className='flex mb-7'>
                     <img src={infoLogo} className='w-[40px] h-[40px] ml-2'/>
                     <h1 ref={ref => Ref.current.general = ref} className='text-[30px]'>جامع</h1>
                 </div>
-                <div className='flex flex-col items-center justify-center lg:flex-row md:ml-10'>
+                <div className='flex flex-col grow items-center justify-center lg:flex-row md:ml-10'>
                     <div className='grow-[2] ps-10'>
                         <h1 className='font-bold text-[25px]'>{plant.persian_name}</h1>
                         <p className='font-semibold text-[20px]>{plant.family} mt-3'>{plant.family}</p>

@@ -8,11 +8,20 @@ import MoreInfo from "./Components/MoreInfo.tsx";
 import MoreImages from "./Components/MoreImages.tsx";
 import {Spinner} from "@material-tailwind/react";
 import {useRef} from "react";
+import {useParams} from "react-router-dom";
+
+export async function loader({params}: {params: {id: number}}) {
+    console.log(params)
+    return params.id
+}
+
 
 function App() {
-    const {data: plant, isLoading, error} = useSWR(`/plants/${window.location.pathname.split('/').pop()}`, PlantFetcher)
-    const shortcuts = useRef({general: null,care:null,ecology:null,moreInfo:null,moreImages:null})
 
+    const {data: plant, isLoading, error} = useSWR(`/plants/${useParams().id}`, PlantFetcher)
+    const shortcuts = useRef({general: null,care:null,ecology:null,moreInfo:null,moreImages:null})
+    console.log(plant)
+    console.log(error)
     if (plant) {
         document.title = plant.persian_name
     }

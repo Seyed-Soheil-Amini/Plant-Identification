@@ -23,7 +23,7 @@ class DashboardView(TemplateView):
 
 
 class DetailView(TemplateView):
-    template_name = ''
+    template_name = 'DetailPage/index.html'
 
 
 def identify_guides(request):

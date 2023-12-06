@@ -571,7 +571,7 @@ class PlantFruitImageDetail(APIView):
 
 
 class PlantIdentifyView(APIView):
-    authentication_classes = [CustomJWTAuthentication]
+    authentication_classes = []
     permission_classes = [AllowAny]
 
     def post(self, request: Request):

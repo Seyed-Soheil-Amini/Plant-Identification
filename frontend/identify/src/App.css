@@ -1,14 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 
-@font-face {
-    font-family: sahel;
-    src: url("../../font/Sahel.woff");
-}
 body {
     font-family: sahel;
 }
 .page-header {
-    background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(../img/focusPhone2.jpg) center center no-repeat;
+    background     : linear-gradient(rgba(15, 66, 41, .6), rgba(15, 66, 41, .6)), url(img/focusPhone2.jpg) center center no-repeat;
     background-size: cover;
 }
 

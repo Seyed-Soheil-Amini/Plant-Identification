@@ -23,8 +23,8 @@ html, body {
 
 
 #root {
-    height: 100vh;
-    overflow-y: auto;
+    min-height: 100vh;
+    /*overflow-y: auto;*/
     margin: auto;
     padding-left: 15px;
 }

@@ -15,17 +15,19 @@ function App() {
     // console.log(window.location.pathname)
     if(!/^\/plant\/([0-9]*)\/?$/.test(window.location.pathname)){
         return (
-            <div className='w-full h-full z-50 flex items-center justify-center'>
+            <div className='w-full h-screen z-50 flex items-screener justify-center'>
                 <p className='text-red-600 text-[20px]'>404 - صفحه مورد نظر یافت نشد!</p>
             </div>
         )
     }
 
 
-    const {data: plant, isLoading, error} = useSWR(`/plants/${window.location.pathname.split('/')[2]}`, PlantFetcher)
+    const {data: plant, isLoading, error} = useSWR(`/plants/${window.location.pathname.split('/')[2]}`,
+        PlantFetcher, {
+            revalidateOnFocus: false,
+        })
     const shortcuts = useRef({general: null,care:null,ecology:null,moreInfo:null,moreImages:null})
-    console.log(plant)
-    console.log(error)
+
     if (plant) {
         document.title = plant.persian_name
     }
@@ -33,13 +35,13 @@ function App() {
     if(error) {
         if(error.response.status === 404) {
             return (
-                <div className='w-full h-full z-50 flex items-center justify-center'>
+                <div className='w-full h-screen z-50 flex items-center justify-center'>
                     <p className='text-red-600 text-[20px]'>404 - صفحه مورد نظر یافت نشد!</p>
                 </div>
             )
         } else {
             return (
-                <div className='w-full h-full z-50 flex items-center justify-center'>
+                <div className='w-full h-screen z-50 flex items-center justify-center'>
                     <p className='text-red-600 text-[20px]'>مشکلی در دریافت اطلاعات وجود دارد!</p>
                 </div>
             )
@@ -54,6 +56,7 @@ function App() {
             </div>
         )
     }
+
     return (
         <>
             <General plant={plant} Ref={shortcuts}/>

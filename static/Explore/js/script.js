@@ -76,7 +76,7 @@ function createCard(id , perName, sciName, family, morph, img) {
     const col = document.createElement("div");
     col.className = "col myCol"
     col.innerHTML = `
-         <div class="py-2 px-3 myCard h-100">
+         <div class="py-2 px-3 myCard h-100" onclick="location.href = '${window.location.origin}/plant/${id}';">
             <div class="container-fluid mt-2 h-100">
 <!--            <div class="row h-50 mt-2" style="width: fit-content">-->
             <img src="${location.origin + img}" class="myImg mx-auto px-0">

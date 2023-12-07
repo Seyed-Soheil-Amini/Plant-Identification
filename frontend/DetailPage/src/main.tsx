@@ -20,5 +20,5 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     </ThemeProvider>
 )
 
-axios.defaults.baseURL = 'http://localhost:9000'
-// axios.defaults.baseURL = window.location.origin
+// axios.defaults.baseURL = 'http://localhost:9000'
+axios.defaults.baseURL = window.location.origin

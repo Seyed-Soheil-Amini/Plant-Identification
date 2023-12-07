@@ -15,7 +15,7 @@ function App() {
     // console.log(window.location.pathname)
     if(!/^\/plant\/([0-9]*)\/?$/.test(window.location.pathname)){
         return (
-            <div className='w-full h-screen z-50 flex items-screener justify-center'>
+            <div className='w-full h-screen z-50 flex items-center justify-center'>
                 <p className='text-red-600 text-[20px]'>404 - صفحه مورد نظر یافت نشد!</p>
             </div>
         )
